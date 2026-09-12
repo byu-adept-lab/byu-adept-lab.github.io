@@ -1,0 +1,254 @@
+# Lab-relevant publications, grouped by year (newest year first) and newest
+# first within a year. A fuller list, including work outside the lab's themes,
+# lives on the PI's site: https://twkillian.github.io/publications/
+#
+# To add a paper, drop a block under the right year (add a new `- year:` group
+# at the top if the year does not exist yet):
+#
+#   - title: "Paper title, sentence case or title case — be consistent"
+#     authors: "First Author, <strong>Taylor W. Killian</strong>, Last Author"
+#     venue: "NeurIPS 2027"
+#     description: "One or two sentences. Optional."
+#     featured: true            # true surfaces it in short/selected lists
+#     areas: [offline-reinforcement-learning]   # optional; slugs must match _research/*.md
+#                                               # filenames. Drives the "relevant work"
+#                                               # list on each research area page. Omit
+#                                               # when a paper does not belong to an area.
+#     links:
+#       - text: "Paper"
+#         url: "https://arxiv.org/abs/…"
+#       - text: "Code"
+#         url: "https://github.com/…"
+#
+# `authors` is rendered as HTML, which is why <strong> works. PDFs hosted on
+# the PI's site must use absolute URLs — they are not files on this site.
+
+- year: 2026
+  papers:
+    - title: "Improving and Accelerating Offline RL in Large Discrete Action Spaces with Structured Policy Initialization"
+      authors: "Matt Landers, <strong>Taylor W. Killian</strong>, Tom Hartvigsen, Afsaneh Doryab"
+      venue: "ICLR 2026"
+      description: "SPIN is a two-stage framework for reinforcement learning in combinatorial action spaces: first pre-train an Action Structure Model that learns which joint actions are valid, then train lightweight control heads on top. It outperforms prior methods by up to 39% in reward while converging up to 12.8x faster."
+      featured: true
+      areas: [offline-reinforcement-learning, structured-action-spaces]
+      links:
+        - text: "Paper"
+          url: "https://twkillian.github.io/papers/SPIN_LandersKillianHartvigsenDoryab_ICLR26.pdf"
+        - text: "Code"
+          url: "https://github.com/matthewlanders/SPIN"
+
+    - title: "IsoCompute Playbook: Optimally Scaling Sampling Compute for LLM RL"
+      authors: "Zhoujun Cheng, Yutao Xie, Yuxiao Qu, Amrith Setlur, Shibo Hao, Varad Pimpalkhute, Tongtong Liang, Feng Yao, Zhengzhong Liu, Eric Xing, Virginia Smith, Ruslan Salakhutdinov, Zhiting Hu, <strong>Taylor W. Killian</strong>, Aviral Kumar"
+      venue: "ICML 2026"
+      description: "Scaling laws for LLM reinforcement learning: how to allocate a fixed compute budget across parallel rollouts, problem batch size, and update steps. Increasing rollouts per problem turns out to be the primary driver, improving solution quality on easy tasks and coverage on hard ones."
+      featured: true
+      links:
+        - text: "Website"
+          url: "https://compute-optimal-rl-llm-scaling.github.io/"
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2603.12151"
+
+    - title: "From Reasoning Traces to Reusable Modules: Reinforcement Learning for Compositional Generalization in Language Model Reasoning"
+      authors: "Lingjing Kong, Xin Liu, Guangyi Chen, Martin Q. Ma, Xiangchen Song, Yuekai Sun, Mikhail Yurochkin, <strong>Taylor W. Killian</strong>, Ruslan Salakhutdinov, Kun Zhang, Eric P. Xing, Zhengzhong Liu"
+      venue: "ICML 2026"
+      description: "RL lets language models achieve compositional generalization by extracting and recombining reusable atomic modules from reasoning traces. RL's exploratory nature supplies the coverage needed to identify the latent structure, and training on compound traces generalizes better than training on isolated modules."
+      featured: false
+
+    - title: "Behavior Cue Reasoning: Monitorable Reasoning Improves Efficiency and Safety through Oversight"
+      authors: "Christopher Z. Cui, <strong>Taylor W. Killian</strong>, Prithviraj Ammanabrolu"
+      venue: "arXiv pre-print"
+      description: "Training language models to emit special tokens before specific behaviors makes their reasoning legible enough to supervise. Weak monitors prune up to 50% of wasted reasoning tokens, and in safety-constrained environments the approach recovers safe actions from 80% of otherwise-failing traces."
+      featured: false
+      links:
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2605.07021"
+        - text: "Code"
+          url: "https://github.com/christopherzc/behavior-cues"
+
+    - title: "Efficient Agentic Reasoning Through Self-Regulated Simulative Planning"
+      authors: "Mingkai Deng, Jinyu Hou, Lara Sá Neves, Varad Pimpalkhute, <strong>Taylor W. Killian</strong>, Zhengzhong Liu, Eric P. Xing"
+      venue: "arXiv pre-print"
+      description: "SR²AM splits agent decision-making into simulative reasoning over a world model, self-regulation that decides when planning is worth it, and reactive execution. Planning only when necessary matches much larger models while using 25.8–95.3% fewer reasoning tokens."
+      featured: false
+      links:
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2605.22138"
+        - text: "Code"
+          url: "https://github.com/sailing-lab/sr2am"
+
+    - title: "LARK: Learnability-Grounded Trajectory Selection for Efficient Reasoning Distillation"
+      authors: "Tianrun Yu, Kaixiang Zhao, Chih-Chun Chen, Amanda Hughes, <strong>Taylor W. Killian</strong>, Fenglong Ma, Weitong Zhang, Porter Jenkins"
+      venue: "arXiv pre-print"
+      description: "Selects teacher-generated reasoning trajectories by what the student can actually learn from, measured as how quickly a trajectory reduces training loss, balanced against distributional coverage — rather than by heuristics like quality or confidence."
+      featured: false
+      links:
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2605.30651"
+        - text: "Code"
+          url: "https://github.com/Tianrun-Yu/LARK"
+
+- year: 2025
+  papers:
+    - title: "BraVE: Offline Reinforcement Learning for Discrete Combinatorial Action Spaces"
+      authors: "Matt Landers, <strong>Taylor W. Killian</strong>, Hugo Barnes, Tom Hartvigsen, Afsaneh Doryab"
+      venue: "NeurIPS 2025"
+      description: "Offline RL in high-dimensional discrete action spaces, using tree-structured traversal to capture sub-action dependencies. Only a linear number of joint actions need to be evaluated, outperforming existing methods by up to 20x in complex environments."
+      featured: true
+      areas: [offline-reinforcement-learning, structured-action-spaces]
+      links:
+        - text: "Website"
+          url: "https://neurips.cc/virtual/2025/loc/san-diego/poster/118272"
+        - text: "Paper"
+          url: "https://twkillian.github.io/papers/BraVE_LandersKillianBarnesHartvigsenDoryab_NeurIPS25.pdf"
+        - text: "Code"
+          url: "https://github.com/matthewlanders/BraVE"
+
+    - title: "SAINT: Attention-Based Policies for Discrete Combinatorial Action Spaces"
+      authors: "Matt Landers, <strong>Taylor W. Killian</strong>, Tom Hartvigsen, Afsaneh Doryab"
+      venue: "arXiv pre-print"
+      description: "A permutation-invariant policy architecture that treats a combinatorial action as an unordered set and models sub-action dependencies with self-attention, holding up in environments with up to 1.35 x 10^18 possible actions."
+      featured: true
+      areas: [structured-action-spaces]
+      links:
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2505.12109"
+        - text: "Code"
+          url: "https://github.com/matthewlanders/SAINT"
+
+    - title: "Revisiting Reinforcement Learning for LLM Reasoning from A Cross-Domain Perspective"
+      authors: "Zhoujun Cheng, Shibo Hao, Tianyang Liu, Fan Zhou, Yutao Xie, Feng Yao, Yuexin Bian, Yonghao Zhuang, Nilabjo Dey, Yuheng Zha, Yi Gu, Kun Zhou, Yuqi Wang, Yuan Li, Richard Fan, Jianshu She, Chengqian Gao, Abulhair Saparov, Haonan Li, <strong>Taylor W. Killian</strong>, Mikhail Yurochkin, Zhengzhong Liu, Eric P. Xing, Zhiting Hu"
+      venue: "NeurIPS 2025"
+      description: "Most open RL-for-reasoning work targets math and code, which limits what we know about general reasoning. Guru is a curated RL reasoning corpus spanning six domains, released with models and data."
+      featured: false
+      links:
+        - text: "Website"
+          url: "https://guru-reasoning.github.io/"
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2506.14965"
+        - text: "Code"
+          url: "https://github.com/LLM360/Reasoning360"
+        - text: "Data"
+          url: "https://huggingface.co/datasets/LLM360/guru-RL-92k"
+
+    - title: "Robust Autonomy Emerges from Self-Play"
+      authors: "Marco Cusumano-Towner, David Hafner, Alex Hertzberg, Brody Huval, Aleksei Petrenko, Eugene Vinitsky, Erik Wijmans, <strong>Taylor W. Killian</strong>, Stuart Bowers, Ozan Sener, Philipp Krähenbühl, Vladlen Koltun"
+      venue: "ICML 2025"
+      description: "A robust simulated driving agent trained by self-play at massive scale, in a simulator built for extensive parallelism so each agent's physical and behavioral characteristics could be aggressively randomized."
+      featured: false
+      links:
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2502.03349"
+
+    - title: "Concise Reasoning in the Lens of Lagrangian Optimization"
+      authors: "Chengqian Gao, Haonan Li, <strong>Taylor W. Killian</strong>, Jianshu She, Renxi Wang, Liqun Ma, Zhoujun Cheng, Shibo Hao, Zhiqiang Xu"
+      venue: "arXiv pre-print"
+      description: "PALU treats concision as an explicit trade-off between output length and accuracy, cutting response length by 65% while improving performance across domains and model scales."
+      featured: false
+      links:
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2510.10168"
+
+- year: 2024
+  papers:
+    - title: "Clinically Motivated Sequential Decision Making Under Uncertainty in Offline Settings"
+      authors: "<strong>Taylor W. Killian</strong>"
+      venue: "PhD Thesis, University of Toronto, Department of Computer Science"
+      description: "The modeling decisions that let you draw actionable conclusions from sequentially observed healthcare data — anchoring method development in the intended real-world use case rather than the benchmark."
+      featured: false
+      areas: [offline-reinforcement-learning, clinical-and-scientific-decision-making]
+      links:
+        - text: "Thesis"
+          url: "https://utoronto.scholaris.ca/items/dba5032c-47a8-4ed2-9cb3-2cbf90d26e11"
+
+- year: 2023
+  papers:
+    - title: "Risk Sensitive Dead-end Identification in Safety-Critical Offline Reinforcement Learning"
+      authors: "<strong>Taylor W. Killian</strong>, Sonali Parbhoo, Marzyeh Ghassemi"
+      venue: "Transactions on Machine Learning Research (TMLR)"
+      description: "A risk-sensitive treatment of dead-end discovery that uses distributional RL for value estimation, flagging unrecoverable states earlier and tunably, according to the risk tolerance of the task."
+      featured: true
+      areas: [offline-reinforcement-learning, irreversibility-and-risk, clinical-and-scientific-decision-making]
+      links:
+        - text: "Paper"
+          url: "https://twkillian.github.io/papers/KillianParbhooGhassemi_2023TMLR.pdf"
+        - text: "Forum"
+          url: "https://openreview.net/forum?id=oKlEOT83gI"
+        - text: "Code"
+          url: "https://github.com/MLforHealth/DistDeD"
+
+    - title: "Continuous Time Evidential Distributions for Irregular Time Series"
+      authors: "<strong>Taylor W. Killian</strong>, Haoran Zhang, Thomas Hartvigsen, Ava Amini"
+      venue: "Interpretable Machine Learning in Healthcare Workshop, ICML 2023"
+      description: "Extends evidential deep learning to continuous time so it can handle the irregularly sampled series that clinical data actually produces, giving stable predictions and calibrated uncertainty that tightens as evidence accumulates."
+      featured: false
+      areas: [clinical-and-scientific-decision-making]
+      links:
+        - text: "Paper"
+          url: "https://twkillian.github.io/papers/KillianZhangHartvigsenAmini_2023IMLH.pdf"
+        - text: "Code"
+          url: "https://github.com/twkillian/EDICT"
+
+- year: 2022
+  papers:
+    - title: "Counterfactually Guided Policy Transfer in Clinical Settings"
+      authors: "<strong>Taylor W. Killian</strong>, Marzyeh Ghassemi, Shalmali Joshi"
+      venue: "Conference on Health, Inference and Learning (CHIL) 2022"
+      featured: false
+      areas: [offline-reinforcement-learning, clinical-and-scientific-decision-making]
+      links:
+        - text: "Paper"
+          url: "https://twkillian.github.io/papers/KillianGhassemiJoshi_2022CHIL.pdf"
+        - text: "Poster"
+          url: "https://twkillian.github.io/papers/KillianGhassemiJoshi_2022CHIL_poster.pdf"
+
+- year: 2021
+  papers:
+    - title: "Medical Dead-ends and Learning to Identify High-Risk States and Treatments"
+      authors: "Mehdi Fatemi, <strong>Taylor W. Killian</strong>, Jayakumar Subramanian, Marzyeh Ghassemi"
+      venue: "NeurIPS 2021"
+      description: "In data-constrained offline settings an optimal policy may simply not be recoverable. Negative outcomes in the data can still be used to identify behaviors to avoid, guarding against the overoptimistic decisions that reduced data availability invites."
+      featured: true
+      areas: [offline-reinforcement-learning, irreversibility-and-risk, clinical-and-scientific-decision-making]
+      links:
+        - text: "Paper"
+          url: "https://twkillian.github.io/papers/FatemiKillianSubramanianGhassemi_2021NeurIPS.pdf"
+        - text: "Code"
+          url: "https://github.com/microsoft/med-deadend"
+        - text: "MSR Blog"
+          url: "https://www.microsoft.com/en-us/research/blog/using-reinforcement-learning-to-identify-high-risk-states-and-treatments-in-healthcare/"
+
+- year: 2020
+  papers:
+    - title: "An Empirical Study of Representation Learning for Reinforcement Learning in Healthcare"
+      authors: "<strong>Taylor W. Killian</strong>, Haoran Zhang, Jayakumar Subramanian, Mehdi Fatemi, Marzyeh Ghassemi"
+      venue: "ML4H: Machine Learning for Health Workshop at NeurIPS"
+      description: "How the choice of state representation changes what an offline RL agent learns from clinical time series, evaluated across a range of representation learning approaches."
+      featured: false
+      areas: [offline-reinforcement-learning, clinical-and-scientific-decision-making]
+      links:
+        - text: "Paper"
+          url: "https://twkillian.github.io/papers/KillianZhangSubramanianFatemiGhassemi_2020ML4H.pdf"
+        - text: "Code"
+          url: "https://github.com/MLforHealth/rl_representations/"
+
+    - title: "Counterfactual Transfer via Inductive Bias in Clinical Settings"
+      authors: "<strong>Taylor W. Killian</strong>, Marzyeh Ghassemi, Shalmali Joshi"
+      venue: "Inductive Biases, Invariances and Generalization in RL (BIG) Workshop, ICML"
+      featured: false
+      areas: [offline-reinforcement-learning, clinical-and-scientific-decision-making]
+      links:
+        - text: "Paper"
+          url: "https://biases-invariances-generalization.github.io/pdf/big_40.pdf"
+
+- year: 2017
+  papers:
+    - title: "Robust and Efficient Transfer Learning with Hidden Parameter Markov Decision Processes"
+      authors: "<strong>Taylor W. Killian</strong>, Samuel Daulton, George Konidaris, Finale Doshi-Velez"
+      venue: "NeurIPS 2017"
+      description: "Hidden Parameter MDPs model a family of related tasks that differ only in a few latent parameters, which makes transfer across instances tractable — an early version of the adaptation problem the lab still works on."
+      featured: false
+      links:
+        - text: "Paper"
+          url: "https://twkillian.github.io/papers/KillianDaultonKonidarisFDV2017.pdf"
+        - text: "Code"
+          url: "https://github.com/dtak/hip-mdp-public"

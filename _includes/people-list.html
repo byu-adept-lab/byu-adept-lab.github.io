@@ -1,0 +1,46 @@
+{%- comment -%}
+  One people group as a compact list rather than photo cards: name and level,
+  years, then where the person went. This is the conventional shape for alumni,
+  who do not need a headshot and a bio to be useful on the page.
+  Usage: {% include people-list.html group="past" eyebrow="People · Alumni" heading="Alumni" %}
+
+  Hides itself entirely when the group is empty, exactly as people-group.html
+  does, so an empty Alumni section never renders a bare heading.
+
+  Reads `years` and `next` from _data/people.yml, and reuses the same level chip
+  as the person cards so a degree level looks the same everywhere on the site.
+{%- endcomment -%}
+{%- assign members = site.data.people | where: "group", include.group | sort: "order" -%}
+{%- if members.size > 0 %}
+<div class="people-group">
+  <div class="people-group-head">
+    {%- if include.eyebrow %}{% include eyebrow.html text=include.eyebrow %}{% endif %}
+    {%- if include.heading %}<h2 class="section-title">{{ include.heading }}</h2>{% endif %}
+    {%- if include.framing %}<p class="framing">{{ include.framing }}</p>{% endif %}
+  </div>
+
+  <ul class="people-list">
+    {%- for person in members %}
+    <li class="people-list-item">
+      {%- comment -%}
+        The literal spaces before the chip and before the destination are load
+        bearing: the visual gaps come from flex gap and a margin, which do not
+        exist for a screen reader or for copied text. Whitespace between flex
+        items is not rendered, so the space costs nothing visually.
+      {%- endcomment -%}
+      <p class="people-list-name">
+        {%- if person.website %}<a href="{{ person.website }}">{{ person.name }}</a>{% else %}{{ person.name }}{% endif %}
+        {% if person.level %}<span class="chip chip-level">{{ person.level }}</span>{% endif -%}
+      </p>
+
+      {%- comment -%} Cells render even when empty, so the columns stay aligned. {%- endcomment -%}
+      <p class="people-list-years">{% if person.years %}{{ person.years }}{% endif %}</p>
+
+      <p class="people-list-next">
+        {%- if person.next %}<span class="people-list-label">Now</span> {{ person.next }}{% endif -%}
+      </p>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>
+{%- endif %}

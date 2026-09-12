@@ -1,0 +1,18 @@
+# Optional accent colour per project-type tag.
+#
+# Tags themselves are FREEFORM — write anything you like in a person's `tags:`
+# list and it will render. This file only overrides the accent stripe on the
+# chip. Unmapped tags fall back to the default (--slate) with no CSS changes
+# needed, so you never have to touch this file to add a tag.
+#
+# Keys are lowercase; lookup downcases the tag, so `RL`, `rl` and `Rl` all
+# match the `rl:` key below.
+rl: "#6e88a8"
+offline rl: "#45586d"
+healthcare: "#1a3d62"
+clinical: "#1a3d62"
+llms: "#122b45"
+reasoning: "#122b45"
+causal inference: "#45586d"
+uncertainty: "#6e88a8"
+scientific discovery: "#45586d"

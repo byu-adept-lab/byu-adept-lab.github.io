@@ -1,0 +1,218 @@
+# ============================================================================
+# ADEPT Lab people. Everything on the People page and in the homepage People
+# section is rendered from this file — there is no hardcoded person anywhere.
+#
+# `group` decides which section a person appears in:
+#
+#   pi            Principal investigator
+#   current       Current students and lab members  (shown on the homepage)
+#   past          Alumni                            (People page only)
+#   collaborators External collaborators            (People page only)
+#
+# Empty groups hide themselves, except `current`, which falls back to the
+# "open positions" panel. So you can add a `past` or `collaborators` entry
+# whenever there is one, and until then those sections simply do not render.
+#
+# `tags` are FREEFORM. Write whatever describes the work — "RL",
+# "Healthcare", "LLMs", "Delayed Feedback", anything. Chips render
+# automatically. Optionally give a tag an accent colour in _data/tags.yml;
+# unmapped tags still look right.
+#
+# `level` is the degree level — "PhD", "Master's", "Undergraduate". It renders
+# as the first chip in the row, outlined rather than filled so it reads as a
+# different kind of fact from the project areas that follow it. It is as
+# freeform as `tags`: any string renders. Because it is a chip, a student does
+# not also need `role`, which is the uppercase kicker above the name.
+#
+# Headshots live in assets/img/people/. Square images crop best (they are
+# displayed 1:1). A person with no `photo` gets the ADEPT mark as a
+# placeholder, so it is fine to add someone before you have their picture.
+# ============================================================================
+
+- name: Taylor W. Killian
+  group: pi
+  order: 1
+  role: Principal Investigator
+  photo: /assets/img/people/TKillian_Headshot.jpg
+  photo_alt: Taylor W. Killian
+  affiliation: Assistant Professor, BYU Computer Science
+  tags:
+    - RL
+    - Healthcare
+    - LLMs
+    - Causal Inference
+  website: https://twkillian.github.io
+  email: tkillian@cs.byu.edu
+  scholar: xA3RcaUAAAAJ
+  bluesky: twkillian.bsky.social
+  twitter: tw_killian
+  linkedin: taylor-w-killian
+
+# ============================================================================
+# PLACEHOLDERS — DELETE OR REPLACE
+#
+# The six entries below are invented. They exist only to exercise the student
+# carousel on /people/ (three tiles a page, two pages) with names and blurbs of
+# different lengths. Every surname is a placeholder word — Example, Placeholder,
+# Sample, Testcase, Fixture, Mockup — so the block is easy to find and delete.
+#
+# Replace them with real students as they arrive, or delete the whole block:
+# with `current` empty, /people/ and the homepage both fall back to the
+# open-positions panel on their own.
+#
+# None of them has a `photo`, which is the point of the second half of the
+# test: the no-photo path renders the ADEPT mark in the tile instead.
+# ============================================================================
+
+- name: Avery Example
+  group: current
+  order: 10
+  level: PhD
+  blurb: Offline policy learning when the logged data is thin.
+  tags:
+    - RL
+    - Offline RL
+  email: avery.example@byu.edu
+
+- name: Rosalind Placeholder
+  group: current
+  order: 20
+  level: PhD
+  blurb: >-
+    Works on treatment policies that have to be learned from observational
+    records. Interested in what happens when the outcome that scores a decision
+    does not arrive for weeks.
+  tags:
+    - Healthcare
+    - Delayed Feedback
+    - Offline RL
+
+- name: Kai Sample
+  group: current
+  order: 30
+  level: "Master's"
+  blurb: >-
+    Uses language models to summarise clinical histories into states an agent
+    can act on.
+  tags:
+    - LLMs
+    - Causal Inference
+  email: kai.sample@byu.edu
+
+- name: Marguerite Testcase
+  group: current
+  order: 40
+  level: "Master's"
+  blurb: >-
+    Studies action spaces that are structured rather than flat — doses, timings
+    and combinations that constrain each other. Building the evaluation setup
+    the rest of the group borrows.
+  tags:
+    - Structured Actions
+    - RL
+
+- name: Devon Fixture
+  group: current
+  order: 50
+  level: Undergraduate
+  blurb: Runs the simulation sweeps and keeps the benchmark harness honest.
+  tags:
+    - RL
+    - Healthcare
+
+- name: Tobias Mockup
+  group: current
+  order: 60
+  level: Undergraduate
+  blurb: >-
+    Reads transcripts alongside the models that score them, looking for the
+    cases where the two disagree.
+  tags:
+    - LLMs
+    - Delayed Feedback
+
+# ============================================================================
+# PLACEHOLDERS — DELETE OR REPLACE
+#
+# Invented alumni, so the Alumni list on /people/ has something to show. The
+# lab opened in August 2026 and has no alumni yet, so the names, the year
+# ranges and the destinations here are all fictional. Surnames continue the
+# students' convention of being placeholder words — Stub, Lorem, Ipsum,
+# Boilerplate, Stand-In — so the block is easy to find and delete.
+#
+# Deleting it hides the Alumni heading again on its own; nothing else to undo.
+#
+# Alumni render as a compact list of name, level, years and destination, not as
+# photo cards, so no `photo` and no `blurb` here.
+# ============================================================================
+
+- name: Imogen Stub
+  group: past
+  order: 10
+  level: PhD
+  years: 2026–2031
+  next: Postdoctoral researcher at a research university
+
+- name: Oluwaseun Boilerplate
+  group: past
+  order: 20
+  level: PhD
+  years: 2026–2030
+  next: Research scientist at an industry lab
+
+- name: Hector Lorem
+  group: past
+  order: 30
+  level: "Master's"
+  years: 2026–2028
+  next: Machine learning engineer at a software company
+
+- name: Wren Ipsum
+  group: past
+  order: 40
+  level: "Master's"
+  years: 2027–2029
+  next: Data scientist at a regional health system
+
+- name: Marcus Stand-In
+  group: past
+  order: 50
+  level: Undergraduate
+  years: 2026–2027
+  next: Graduate student at another university
+
+# ----------------------------------------------------------------------------
+# TEMPLATE — copy the block below, uncomment it, and edit. It exercises every
+# supported field; delete the lines you do not need. `name` is the only one
+# that is required.
+# ----------------------------------------------------------------------------
+#
+# - name: Ada Lovelace                       # required
+#   group: current                           # pi | current | past | collaborators
+#   order: 10                                # sort within the group; lower is first
+#   level: PhD                               # PhD | Master's | Undergraduate | ...
+#                                            # first chip in the row, outlined
+#   role: PhD Student                        # rendered as the uppercase kicker
+#                                            # (redundant with `level`; students
+#                                            # usually want one or the other)
+#   photo: /assets/img/people/alovelace.jpg  # drop the file in assets/img/people/
+#   photo_alt: Ada Lovelace                  # alt text; defaults to `name`
+#   affiliation: BYU Computer Science        # small line under the role
+#   years: 2026–2031                         # useful for alumni
+#   next: Research Scientist, Somewhere      # where an alum went, shown as "Now: ..."
+#   blurb: >-                                # two or three sentences, no more
+#     One or two sentences on what they work on and what they are chasing.
+#     Wraps automatically; keep it short enough to read at a glance.
+#   tags:                                    # freeform — anything you like
+#     - RL
+#     - Healthcare
+#     - Delayed Feedback
+#   website: https://example.com             # personal site; becomes the name link
+#   email: ada@byu.edu
+#   scholar: XXXXXXXXXXXX                    # Scholar user ID, or a full URL
+#   github: adalovelace
+#   orcid: 0000-0002-1825-0097
+#   bluesky: ada.bsky.social
+#   twitter: adalovelace
+#   linkedin: adalovelace
+#   cv: /assets/files/ada-cv.pdf             # local file or external URL

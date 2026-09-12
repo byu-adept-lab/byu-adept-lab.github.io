@@ -1,0 +1,27 @@
+---
+layout: page
+permalink: /news/
+title: News
+description: >-
+  Every news item from the ADEPT Lab at Brigham Young University — papers accepted, talks
+  given, people arriving — newest first.
+eyebrow: News &middot; Archive
+framing: Every item, newest first.
+---
+
+<div class="section">
+  <div class="container container-narrow">
+
+    {% include eyebrow.html text="News &middot; All items" %}
+
+    {%- if site.data.news and site.data.news.size > 0 %}
+    {% include news-list.html %}
+    {%- else %}
+    <p class="small">
+      No news items yet. The most recent items also appear on the
+      <a href="{{ '/' | relative_url }}">front page</a>.
+    </p>
+    {%- endif %}
+
+  </div>
+</div>

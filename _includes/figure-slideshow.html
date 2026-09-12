@@ -1,0 +1,112 @@
+{%- comment -%}
+  Figure 1 of each of the lab's papers, one at a time, from
+  _data/research_figures.yml. Read that file's header before editing either.
+
+  Usage: {% include figure-slideshow.html %}
+
+  Used twice — beside the About paragraphs on the homepage and beside the
+  intro prose on /research/ — so both pages page through one implementation
+  rather than two copies of the same markup. .figure-split is the two-column
+  layout it sits in; both callers use it.
+
+  A slide is the figure, its caption, its research-area tags, and the link to
+  the paper it came from, in that order.
+
+  Areas are optional. The IsoCompute entry carries `areas: []` on purpose — it
+  is a study of LLM reasoning and belongs to none of the lab's named areas — so
+  the chip row is guarded and that slide renders no row at all rather than an
+  empty one holding its margin. Chips prefer each area's `card_title` ("Offline
+  RL") over its full `title` ("Offline reinforcement learning"): three full
+  titles wrap to three rows in this column and read as a paragraph rather than
+  as tags. Those values carry HTML entities, so they are not escaped.
+
+  `alt` is a different thing from the caption: it is never shown, only read
+  aloud, and the two say different things — the caption says what the figure
+  means, the alt says what it depicts. It is escaped because some entries quote
+  a label off the figure — the SPIN alt text contains a double quote that would
+  otherwise end the attribute early.
+
+  Machinery is the shared carousel: assets/js/carousel.js finds this by
+  data-carousel and adds the paging controls. It is the .carousel-solo variant,
+  the same one-per-page shape as the hero slideshow. The viewport is a snapping
+  scroll container that already holds all seven figures, so with JS off, by
+  keyboard, or under a screen reader every figure stays reachable and nothing
+  is hidden.
+
+  data-carousel-autoplay is the opt-in for advancing on its own, in
+  milliseconds. It is per instance and not implied by .carousel-solo, so the
+  research-area and student carousels — which are navigation — stay manual, and
+  the hero can opt in by adding this one attribute once it has photographs. The
+  script pauses it on hover and focus, in a hidden tab, and for good as soon as
+  the reader pages by hand, and does not run it at all under
+  prefers-reduced-motion. Slide changes are not announced: a live region firing
+  every twelve seconds would talk over whatever the reader is on.
+
+  Both callers sit within a screen of the research-area carousel, so the
+  accessible names here say figures where that one says research areas — two
+  sets of prev/next in view otherwise read as one broken control.
+{%- endcomment -%}
+{%- assign figs = site.data.research_figures -%}
+{%- if figs and figs.size > 0 %}
+<div class="carousel carousel-solo figure-slideshow" data-carousel
+     data-carousel-autoplay="12000" role="group" aria-roledescription="carousel"
+     aria-label="Figures from the lab&rsquo;s papers">
+  <div class="carousel-viewport" data-carousel-viewport tabindex="0">
+    <div class="carousel-track" data-carousel-track>
+      {%- for fig in figs %}
+      <figure class="figure-slide">
+        {%- comment -%}
+          .figure-frame is a fixed-height box holding a variable-shape figure.
+          It carries the aspect ratio; the image inside keeps its own and is
+          centred. That is what pins the caption below to the same height on
+          every slide while still letting each figure render at full width.
+        {%- endcomment -%}
+        <div class="figure-frame">
+          <img src="{{ fig.image | relative_url }}" alt="{{ fig.alt | escape }}"
+               width="{{ fig.width }}" height="{{ fig.height }}"
+               {%- unless forloop.first %} loading="lazy"{% endunless %}>
+        </div>
+
+        <figcaption>
+          <p class="figure-caption">{{ fig.caption }}</p>
+
+          {%- if fig.areas and fig.areas.size > 0 %}
+          <ul class="chip-row" aria-label="Research areas">
+            {%- for slug in fig.areas -%}
+              {%- assign area_url = slug | prepend: "/research/" | append: "/" -%}
+              {%- assign area = site.research | where: "url", area_url | first -%}
+              <li class="chip">{% if area.card_title %}{{ area.card_title }}{% elsif area.title %}{{ area.title }}{% else %}{{ slug | replace: "-", " " | capitalize }}{% endif %}</li>
+            {%- endfor -%}
+          </ul>
+          {%- endif %}
+
+          <p class="figure-source">
+            <a href="{{ fig.url }}">{{ fig.paper }}</a>
+          </p>
+        </figcaption>
+      </figure>
+      {%- endfor %}
+    </div>
+  </div>
+
+  <div class="carousel-controls">
+    <button class="carousel-arrow" type="button" data-carousel-prev
+            aria-label="Previous figure">
+      <span aria-hidden="true">&#9664;</span>
+    </button>
+    <button class="carousel-arrow" type="button" data-carousel-next
+            aria-label="Next figure">
+      <span aria-hidden="true">&#9654;</span>
+    </button>
+    <!-- WCAG 2.2.2: motion that starts on its own and runs past five seconds
+         needs a way to stop it. Hidden until the script confirms it is actually
+         advancing, so it never offers to pause something standing still. -->
+    <button class="carousel-arrow carousel-toggle" type="button" data-carousel-toggle
+            aria-label="Pause the slideshow">
+      <span aria-hidden="true">&#9646;&#9646;</span>
+    </button>
+    <div class="carousel-dots" data-carousel-dots role="group"
+         aria-label="Figure pages"></div>
+  </div>
+</div>
+{%- endif %}

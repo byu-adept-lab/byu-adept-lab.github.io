@@ -1,0 +1,95 @@
+---
+layout: default
+---
+<header class="page-head">
+  <div class="container">
+    {% include eyebrow.html text=page.eyebrow %}
+    <h1>{{ page.title }}</h1>
+    {%- if page.framing %}<p class="framing">{{ page.framing }}</p>{% endif %}
+  </div>
+</header>
+
+<div class="section">
+  <div class="container container-narrow">
+    <div class="prose">
+      {{ content }}
+    </div>
+
+    {%- if page.tags and page.tags.size > 0 %}
+    <ul class="chip-row" style="margin-top: 2.5rem;" aria-label="Areas">
+      {%- for tag in page.tags -%}
+        {%- assign tag_key = tag | downcase -%}
+        {%- assign accent = site.data.tags[tag_key] -%}
+        <li class="chip"{% if accent %} style="--chip-accent: {{ accent }}"{% endif %}>{{ tag }}</li>
+      {%- endfor -%}
+    </ul>
+    {%- endif %}
+
+    <div class="content-foot">
+      <a class="more-link" href="{{ '/research/' | relative_url }}">All research areas</a>
+    </div>
+  </div>
+</div>
+
+{%- comment -%}
+  Papers from _data/publications.yml whose `areas` list contains this page's slug.
+  `where` cannot filter on array membership, so membership is tested with `contains`
+  inside the loop. Year groups are already in descending order in the data file.
+  An area with no tagged papers still renders the section, with a placeholder in place of
+  the list, so tagging the first paper for an area is the only change needed to populate it.
+{%- endcomment -%}
+{%- assign area_slug = page.slug -%}
+{%- assign area_match_count = 0 -%}
+{%- for year_group in site.data.publications -%}
+  {%- for pub in year_group.papers -%}
+    {%- if pub.areas contains area_slug -%}
+      {%- assign area_match_count = area_match_count | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor %}
+<div class="section section-tight section-tinted">
+  <div class="container container-narrow">
+    {% include eyebrow.html text="Publications" %}
+    <h2 style="margin-bottom: 2.25rem;">Related papers</h2>
+
+    {%- if area_match_count > 0 %}
+    {%- for year_group in site.data.publications %}
+    {%- assign year_match_count = 0 -%}
+    {%- for pub in year_group.papers -%}
+      {%- if pub.areas contains area_slug -%}
+        {%- assign year_match_count = year_match_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if year_match_count > 0 %}
+    <section class="pub-year" data-year="{{ year_group.year }}">
+      <h3 class="pub-year-heading">{{ year_group.year }}</h3>
+
+      {%- for pub in year_group.papers %}
+      {%- if pub.areas contains area_slug %}
+      <article class="publication">
+        <h4 class="pub-title">{{ pub.title }}</h4>
+        <p class="pub-authors">{{ pub.authors }}</p>
+        {%- if pub.venue %}<p class="pub-venue">{{ pub.venue }}</p>{% endif %}
+        {%- if pub.description %}<p class="pub-description">{{ pub.description }}</p>{% endif %}
+        {%- if pub.links and pub.links.size > 0 %}
+        <div class="pub-links">
+          {%- for link in pub.links %}
+          <a class="pub-link" href="{{ link.url }}">{{ link.text }}</a>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+      </article>
+      {%- endif %}
+      {%- endfor %}
+    </section>
+    {%- endif %}
+    {%- endfor %}
+    {%- else %}
+    <p class="small">Stay tuned!</p>
+    {%- endif %}
+
+    <p style="margin-top: 2.25rem;">
+      <a class="more-link" href="{{ '/publications/' | relative_url }}">All publications</a>
+    </p>
+  </div>
+</div>

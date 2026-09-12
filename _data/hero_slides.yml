@@ -1,0 +1,28 @@
+# Hero slideshow — photographs of lab activity and images from our research,
+# shown to the right of the "ADEPT Lab" heading on the homepage.
+#
+# Empty is a supported state. With every entry below commented out, the hero
+# falls back to the ADEPT lockup, so the front page still looks finished with no
+# photos on hand. Uncomment entries as photos arrive; nothing else has to change.
+#
+# How to add one:
+#
+#   - Put the file in assets/img/hero/.
+#   - Landscape images work best. The frame is a fixed 3:2 box that crops with
+#     object-fit: cover, so any roughly landscape photo survives; portrait
+#     photos get cropped hard at the top and bottom.
+#   - About 1200px wide is plenty. Larger files only cost load time.
+#   - alt is REQUIRED on every entry. One sentence describing what is in the
+#     picture, for anyone who cannot see it. Skip the words "image of".
+#   - caption is optional and prints under the picture.
+#
+# One entry renders as a plain image with no controls. Two or more render as a
+# slideshow with previous and next buttons.
+
+# - image: /assets/img/hero/lab-meeting-2026-09.jpg
+#   alt: Members of the ADEPT Lab at a whiteboard during a weekly meeting
+#   caption: Weekly lab meeting          # optional
+#
+# - image: /assets/img/hero/policy-evaluation-2026-10.png
+#   alt: Plots comparing learned treatment policies across simulated patient states
+#   caption: Off-policy evaluation on simulated patient trajectories

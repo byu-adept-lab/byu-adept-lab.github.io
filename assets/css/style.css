@@ -1,0 +1,2267 @@
+/* ===================================================================
+   ADEPT Lab — Brigham Young University
+   Skin derived from the ADEPT slide template: flat square-cornered
+   surfaces, hairline rules, triangle markers, no shadows anywhere.
+   Structure mirrors twkillian.github.io so the two sites read as
+   siblings (.container / .section / .section-title / .btn / .news-list).
+   =================================================================== */
+
+/* === Tokens === */
+:root {
+  /* Sampled from the slide deck. */
+  --navy: #122b45;
+  --navy-2: #1a3d62;
+  --slate: #6e88a8;
+  --slate-deep: #45586d;
+  --slate-pale: #a9bcd0;
+  --slate-paler: #b6c8db;
+  --off-white: #f1f5f9;
+  --tint: #e4edf5;
+  --ink: #1f2933;
+  --muted: #6b7684;
+  --white: #ffffff;
+
+  /* Hairlines do the work that shadows would. */
+  --rule: #d7e1ec;
+  --rule-strong: #c2d1e0;
+  --rule-on-navy: rgba(182, 200, 219, 0.28);
+
+  --serif: "Source Serif 4", Cambria, Georgia, serif;
+  --sans: "Lato", Calibri, -apple-system, "Segoe UI", sans-serif;
+
+  --maxw: 1180px;
+  --maxw-narrow: 760px;
+  /* One reading measure for long-form copy (~70-76 characters). The container
+     is sized for grids; text has to be capped separately or it runs the full
+     1180px and reads as flush-left sprawl. */
+  --measure: 38rem;
+  --gutter: 2rem;
+
+  /* Deck geometry: square corners, full stop. */
+  --radius: 0;
+}
+
+/* === Reset / base === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: var(--navy-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+a:hover {
+  color: var(--navy);
+  border-bottom-color: var(--slate);
+}
+
+/* Links on navy surfaces.
+   The default link colour (--navy-2, #1a3d62) is 1.3:1 against --navy
+   (#122b45) — effectively invisible. Contrast against --navy: --white 14.4:1,
+   --slate-paler 8.4:1, --slate-pale 7.4:1, --slate 4.0:1 (a hairline rule can
+   use it, body text cannot). Keyed off the surface rather than the paragraph so
+   copy added later cannot miss it. Buttons carry their own colours. */
+.hero a:not(.btn),
+.recruit a:not(.btn),
+.section-navy a:not(.btn) {
+  color: var(--white);
+  border-bottom-color: var(--slate);
+}
+
+.hero a:not(.btn):hover,
+.recruit a:not(.btn):hover,
+.section-navy a:not(.btn):hover {
+  color: var(--white);
+  border-bottom-color: var(--white);
+}
+
+strong,
+b {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+/* === Focus / skip link === */
+:focus-visible {
+  outline: 2px solid var(--slate);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  background: var(--white);
+  color: var(--navy);
+  border: 1px solid var(--navy);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* === Layout === */
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.container-narrow {
+  max-width: var(--maxw-narrow);
+}
+
+.section {
+  padding: 4.5rem 0;
+}
+
+.section-tight {
+  padding: 3rem 0;
+}
+
+.section-light {
+  background-color: var(--off-white);
+}
+
+.section-tinted {
+  background-color: var(--tint);
+}
+
+.section-navy {
+  background-color: var(--navy);
+  color: var(--slate-pale);
+}
+
+.rule {
+  height: 1px;
+  background-color: var(--rule);
+  border: 0;
+  margin: 0;
+}
+
+/* === Display typography === */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--serif);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4.6vw, 3.25rem);
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3vw, 2.375rem);
+}
+
+h3 {
+  font-size: 1.3125rem;
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: 1.0625rem;
+}
+
+p {
+  margin-bottom: 1.1rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* The single most distinctive element of the deck. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-bottom: 1.1rem;
+  font-family: var(--sans);
+  font-size: 0.71875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--slate);
+  line-height: 1.4;
+}
+
+.eyebrow-tri {
+  font-size: 0.625rem;
+  line-height: 1;
+  color: var(--slate);
+  flex: none;
+}
+
+.section-navy .eyebrow,
+.hero .eyebrow,
+.recruit .eyebrow {
+  color: var(--slate-paler);
+}
+
+.section-navy .eyebrow-tri,
+.hero .eyebrow-tri,
+.recruit .eyebrow-tri {
+  color: var(--slate);
+}
+
+/* One italic serif sentence under a heading. */
+.framing {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.0625rem;
+  color: var(--muted);
+  margin-top: 0.9rem;
+  margin-bottom: 0;
+  max-width: 62ch;
+}
+
+.section-navy .framing,
+.hero .framing,
+.recruit .framing {
+  color: var(--slate-pale);
+}
+
+.section-title {
+  margin-bottom: 0;
+  max-width: 30ch;
+}
+
+.section-head {
+  margin-bottom: 2.75rem;
+}
+
+.section-head .framing {
+  margin-bottom: 0;
+}
+
+/* Where the eyebrow is the section's only header, its own spacing is redundant. */
+.section-head .eyebrow:last-child {
+  margin-bottom: 0;
+}
+
+.lede {
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  max-width: var(--measure);
+}
+
+.small {
+  font-size: 0.875rem;
+  color: var(--slate-deep);
+}
+
+/* === Triangle bullets — no round bullets anywhere === */
+.tri-list {
+  list-style: none;
+}
+
+.tri-list > li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.tri-list > li::before {
+  content: "\25B2";
+  position: absolute;
+  left: 0;
+  top: 0.44em;
+  font-size: 0.5rem;
+  line-height: 1;
+  color: var(--slate);
+}
+
+.tri-list > li:last-child {
+  margin-bottom: 0;
+}
+
+.tri-list-tight > li {
+  margin-bottom: 0.35rem;
+}
+
+.section-navy .tri-list > li::before {
+  color: var(--slate);
+}
+
+/* === Buttons === */
+.btn {
+  display: inline-block;
+  padding: 0.8125rem 1.5rem;
+  background-color: var(--navy);
+  color: var(--white);
+  border: 1px solid var(--navy);
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.btn:hover {
+  background-color: var(--navy-2);
+  border-color: var(--navy-2);
+  color: var(--white);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--navy);
+}
+
+.btn-outline:hover {
+  background-color: var(--navy);
+  color: var(--white);
+}
+
+.btn-invert {
+  background-color: var(--white);
+  border-color: var(--white);
+  color: var(--navy);
+}
+
+.btn-invert:hover {
+  background-color: var(--tint);
+  border-color: var(--tint);
+  color: var(--navy);
+}
+
+.btn-ghost-invert {
+  background-color: transparent;
+  border-color: var(--slate);
+  color: var(--white);
+}
+
+.btn-ghost-invert:hover {
+  background-color: var(--navy-2);
+  border-color: var(--slate-paler);
+  color: var(--white);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+  margin-top: 2rem;
+}
+
+/* Text link with a trailing marker, used to close sections. */
+.more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy-2);
+  border-bottom: 1px solid var(--slate);
+  padding-bottom: 2px;
+}
+
+.more-link::after {
+  content: "\25B8";
+  font-size: 0.75rem;
+  color: var(--slate);
+}
+
+.more-link:hover {
+  color: var(--navy);
+  border-bottom-color: var(--navy);
+}
+
+/* === The mark === */
+.mark {
+  display: block;
+  color: var(--navy);
+}
+
+.mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* === Navbar === */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--navy);
+  border-bottom: 1px solid var(--rule-on-navy);
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 4.25rem;
+}
+
+/* The lab's own brand leads; the official BYU monogram follows it as a
+   secondary mark, set off by a hairline rule. BYU brand policy sets a minimum
+   width of 56px and clear space of at least the width of the mark's "B"
+   (~30% of its width), so these sizes are in px rather than rem — the root
+   font size shrinks on small screens and rem would breach the minimum. */
+.navbar-brands {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: none;
+}
+
+.navbar-byu {
+  display: flex;
+  align-items: center;
+  padding-right: 1.5rem;
+  border-bottom: 0;
+  border-right: 1px solid var(--rule-on-navy);
+  flex: none;
+}
+
+.navbar-byu img {
+  display: block;
+  width: 72px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--white);
+  border-bottom: 0;
+  flex: none;
+}
+
+.navbar-brand:hover {
+  color: var(--white);
+}
+
+.navbar-brand .mark {
+  width: 2rem;
+  height: 2rem;
+  color: var(--white);
+  flex: none;
+}
+
+.navbar-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.navbar-brand-name {
+  font-family: var(--serif);
+  font-size: 1.1875rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.navbar-brand-sub {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--slate-pale);
+  margin-top: 0.2rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.navbar-nav a {
+  display: inline-block;
+  color: var(--slate-paler);
+  border-bottom: 2px solid transparent;
+  padding: 0.35rem 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.navbar-nav a:hover,
+.navbar-nav a[aria-current="page"] {
+  color: var(--white);
+  border-bottom-color: var(--slate);
+}
+
+.nav-toggle {
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: transparent;
+  border: 1px solid var(--rule-on-navy);
+  border-radius: var(--radius);
+  color: var(--white);
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+.nav-toggle-bars,
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  display: block;
+  width: 1.125rem;
+  height: 2px;
+  background-color: currentColor;
+  margin: 0 auto;
+  content: "";
+}
+
+.nav-toggle-bars::before {
+  transform: translateY(-6px);
+}
+
+.nav-toggle-bars::after {
+  transform: translateY(4px);
+}
+
+/* === Hero ===
+   Words left, media right. The two only stack when the viewport is too narrow
+   to hold both, and then the words still come first. */
+.hero {
+  background-color: var(--navy);
+  color: var(--slate-pale);
+  padding: 5.5rem 0 5rem;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+/* Grid items default to min-content-based minimums; this lets them shrink. */
+.hero-text,
+.hero-media {
+  min-width: 0;
+}
+
+.hero h1 {
+  color: var(--white);
+  max-width: 22ch;
+}
+
+.hero-positioning {
+  margin-top: 1.75rem;
+  max-width: 60ch;
+  font-size: 1.0625rem;
+  color: var(--slate-paler);
+}
+
+.hero-byline {
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule-on-navy);
+  font-size: 0.9375rem;
+  color: var(--slate-pale);
+  max-width: 60ch;
+}
+
+/* === Hero media === */
+/* The lockup, shown until there are photographs to show instead. Kept well
+   inside the column so it reads as a mark beside the words, not a banner. */
+.hero-logo {
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* A fixed frame: photographs of mixed dimensions cannot shift the layout. */
+.hero-slide {
+  margin: 0;
+}
+
+.hero-slide img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background-color: var(--navy-2);
+  border: 1px solid var(--rule-on-navy);
+}
+
+.hero-slide figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--slate-pale);
+}
+
+/* === Stat row (deck p07) === */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.stat {
+  padding: 2rem 1.75rem 1.875rem;
+  border-radius: var(--radius);
+  background-color: var(--off-white);
+}
+
+/* Alternate fills across the row. */
+.stat:nth-child(even) {
+  background-color: var(--tint);
+}
+
+.stat-figure {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  line-height: 1;
+  color: var(--slate);
+  margin-bottom: 0.75rem;
+}
+
+.stat:nth-child(even) .stat-figure {
+  color: var(--navy);
+}
+
+.stat-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+}
+
+.stat-note {
+  font-size: 0.9375rem;
+  color: var(--slate-deep);
+  margin-bottom: 0;
+}
+
+.stat-footnote {
+  margin-top: 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--slate-deep);
+  max-width: var(--measure);
+}
+
+/* === Tiles (research teaser, generic cards) === */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.tile-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 1.625rem;
+  background-color: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  border-top: 3px solid var(--slate);
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.tile:hover {
+  background-color: var(--off-white);
+  border-color: var(--rule-strong);
+  border-top-color: var(--navy);
+}
+
+.tile-title {
+  font-size: 1.1875rem;
+  margin-bottom: 0.625rem;
+}
+
+.tile-title a {
+  color: var(--navy);
+  border-bottom: 0;
+}
+
+.tile-title a:hover {
+  color: var(--navy-2);
+}
+
+.tile-body {
+  font-size: 0.9375rem;
+  color: var(--slate-deep);
+  margin-bottom: 1.25rem;
+}
+
+.tile-foot {
+  margin-top: auto;
+}
+
+/* === Carousel ===
+   The viewport is a snapping scroll container holding every tile, so the set is
+   fully reachable before carousel.js runs or with JS off; the script only adds
+   .is-active, which reveals the paging controls. Nothing is ever hidden. */
+.carousel {
+  --carousel-per-view: 3;
+  --carousel-rows: 1;
+  --carousel-gap: 1.25rem;
+  position: relative;
+}
+
+.carousel-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  /* A hairline scrollbar is the no-JS affordance, so it stays visible. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-strong) transparent;
+  padding-bottom: 0.5rem;
+}
+
+.carousel-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(
+    (100% - (var(--carousel-gap) * (var(--carousel-per-view) - 1))) / var(--carousel-per-view)
+  );
+  /* Tiles fill a column before starting the next one, so --carousel-rows says
+     how many stack per page. At the default 1 this is the single row the
+     research and hero tracks have always had. */
+  grid-template-rows: repeat(var(--carousel-rows), auto);
+  gap: var(--carousel-gap);
+}
+
+.carousel-track > * {
+  scroll-snap-align: start;
+}
+
+/* Wider tiles are the point of the carousel: more room for the summary text. */
+.carousel-track .tile {
+  padding: 2rem 1.875rem 1.875rem;
+}
+
+/* Fewer tiles than fit in one view: fall back to a plain grid. */
+.carousel.is-static .carousel-viewport {
+  overflow: visible;
+  padding-bottom: 0;
+}
+
+.carousel.is-static .carousel-track {
+  grid-auto-flow: row;
+  grid-auto-columns: auto;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.carousel-controls {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+}
+
+.carousel.is-active .carousel-controls {
+  display: flex;
+}
+
+.carousel-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background-color: var(--white);
+  color: var(--navy);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 0.625rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.carousel-arrow:hover {
+  background-color: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+/* Dashes, not dots — nothing round anywhere on the site. */
+.carousel-dot {
+  width: 2rem;
+  height: 1.25rem;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--rule-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.18s ease;
+}
+
+.carousel-dot:hover {
+  border-bottom-color: var(--slate);
+}
+
+.carousel-dot[aria-current="true"] {
+  border-bottom-color: var(--navy);
+}
+
+/* Pause/play, for instances carrying data-carousel-autoplay. Styled as a third
+   arrow so it reads as a peer of prev and next rather than as a feature. Hidden
+   until carousel.js adds .has-autoplay, which it only does while the track can
+   actually advance on its own — so it never shows with JS off, under
+   prefers-reduced-motion, or when there is nowhere to page to. */
+.carousel-toggle {
+  display: none;
+  /* Separates the two bars of the pause glyph, which otherwise read as one. */
+  letter-spacing: 0.15em;
+  text-indent: 0.15em;
+}
+
+.carousel.has-autoplay .carousel-toggle {
+  display: flex;
+}
+
+/* One item per view, edge to edge: the hero photo slideshow and the paper-figure
+   slideshow both reuse the whole component with nothing but these two custom
+   properties changed. Being solo also opts them out of the per-view
+   breakpoints below, which are scoped to .carousel:not(.carousel-solo). */
+.carousel-solo {
+  --carousel-per-view: 1;
+  /* 0px, not 0: this feeds the grid-auto-columns calc above, and
+     calc(100% - 0) is invalid CSS where calc(100% - 0px) is not. Unitless here
+     throws the whole declaration out, the columns fall back to auto, and the
+     track sizes itself to its content instead of one slide per view. */
+  --carousel-gap: 0px;
+}
+
+/* The chrome above is drawn for light sections; on the navy hero it inverts. */
+.hero-media .carousel-controls {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top-color: var(--rule-on-navy);
+}
+
+.hero-media .carousel-viewport {
+  scrollbar-color: var(--slate) transparent;
+}
+
+.hero-media .carousel-arrow {
+  background-color: transparent;
+  border-color: var(--rule-on-navy);
+  color: var(--slate-paler);
+}
+
+.hero-media .carousel-arrow:hover {
+  background-color: var(--navy-2);
+  border-color: var(--slate);
+  color: var(--white);
+}
+
+.hero-media .carousel-dot {
+  border-bottom-color: var(--slate);
+}
+
+.hero-media .carousel-dot:hover {
+  border-bottom-color: var(--slate-paler);
+}
+
+.hero-media .carousel-dot[aria-current="true"] {
+  border-bottom-color: var(--white);
+}
+
+/* === Paper figures beside prose (About on the homepage, the /research/ intro) ===
+   40/60 in the figures' favour, per the PI: the figures are the point of this
+   row, and paper figures need width before they need anything else. At the
+   1180px container that is a 427px text track and a 641px figure track.
+
+   427px puts the prose at about 47 characters a line — inside the ~45-character
+   floor this site holds to, but only just, and it is the text track rather than
+   --measure doing the capping now. 30/70 was considered and measured at 320px
+   and 37 characters, which is through the floor, so it was not taken.
+
+   2fr gets a 26rem floor rather than a breakpoint. Straight 2fr/3fr only clears
+   45 characters above about a 1130px viewport, so a breakpoint would leave the
+   PI's ratio applying in a sliver of widths and 57/43 everywhere else. With the
+   floor, 40/60 is exact at the full container and narrower viewports take the
+   room out of the figures instead of out of the line length — the figures still
+   hold 53-54% at the point the columns stack.
+
+   minmax(0, …) on the second track as on .people-split, so the slideshow's
+   scroll container shrinks to its column instead of widening the track to fit
+   all seven figures. */
+.figure-split {
+  display: grid;
+  grid-template-columns: minmax(26rem, 2fr) minmax(0, 3fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.figure-slide {
+  margin: 0;
+}
+
+/* The ratio lives on the frame; each figure keeps its own inside it.
+
+   These figures run from 5:1 to 1.3:1, and no single ratio applied to the image
+   itself serves that spread. Putting the tallest entry's 1483 x 1103 on the
+   image and containing the rest is what made the IsoCompute strip fill 40% of a
+   bordered box and read as something small adrift in grey — the PI's objection.
+   Putting the median 3.4:1 there instead fills the box for five of the seven,
+   but makes the two tall figures height-bound so they render at 40% and 48% of
+   the column, throwing away detail in a plot to fix a framing problem.
+
+   So the fixed height sits on this box and the border sits on the image. Every
+   figure renders at the column's full width at its own shape, nothing is
+   cropped and nothing is downscaled, and the hairline wraps the figure rather
+   than a box it fails to fill — the wide ones now read as wide figures with air
+   around them instead of small ones in a big frame.
+
+   The fixed height is what carries the caption: it does not vary with which
+   figure is showing, so the caption, chips and paper link below start at the
+   same height on all seven slides. Centred rather than top-aligned, so the gap
+   that opens under a short figure is halved and split either side of it. */
+.figure-frame {
+  display: flex;
+  align-items: center;
+  aspect-ratio: 1483 / 1103;
+}
+
+/* width/height in _data/research_figures.yml give the ratio and reserve the
+   space before the image arrives, so nothing shifts on load. max-height and
+   contain only catch the tallest entry, whose natural height lands a fraction
+   of a pixel over the frame once the border is counted. */
+.figure-slide img {
+  display: block;
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background-color: var(--off-white);
+  border: 1px solid var(--rule);
+}
+
+.figure-slide figcaption {
+  margin-top: 0.875rem;
+}
+
+/* The caption says what the figure means; the alt text says what it depicts. */
+.figure-caption {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--slate-deep);
+  margin-bottom: 0;
+}
+
+/* The site-wide .chip-row carries a bottom margin for cards; here the row is
+   mid-stack, so it is spaced from above instead. Guarded in the include, so a
+   figure with no areas has no row to space. */
+.figure-slide .chip-row {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+/* Last line of the stack: every figure is Figure 1 of one of the lab's papers,
+   and the title is the link to it — both the attribution and the way to the
+   real thing. Smaller than the caption so the two do not read as one block. */
+.figure-source {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* Seven pages of dashes have to fit a column about 460px wide, so they are
+   shorter here than under a full-width track, and they wrap if they run out. */
+.figure-slideshow .carousel-dots {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  row-gap: 0.25rem;
+}
+
+.figure-slideshow .carousel-dot {
+  width: 1.25rem;
+}
+
+/* Four-quadrant layout (deck p06). */
+.quad-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.quad {
+  padding: 1.75rem 1.625rem;
+  background-color: var(--off-white);
+  border-radius: var(--radius);
+}
+
+.quad:nth-child(2n) {
+  background-color: var(--tint);
+}
+
+.quad h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.1875rem;
+}
+
+.quad p,
+.quad li {
+  font-size: 0.9375rem;
+  color: var(--slate-deep);
+}
+
+.quad strong {
+  color: var(--navy);
+}
+
+/* Two-column compare (deck p05). */
+.compare {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+
+.compare-col {
+  padding: 2rem 1.875rem;
+}
+
+.compare-col + .compare-col {
+  border-left: 1px solid var(--rule);
+  background-color: var(--off-white);
+}
+
+.compare-col h3 {
+  font-size: 1.1875rem;
+  margin-bottom: 1.25rem;
+}
+
+.compare-col li {
+  font-size: 0.9375rem;
+}
+
+.compare-col li strong {
+  display: inline;
+}
+
+/* === News === */
+.news-list {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.news-item {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 1.5rem;
+  padding: 1.125rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.news-date {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate-deep);
+  padding-top: 0.28rem;
+}
+
+.news-content {
+  font-size: 0.9375rem;
+  margin-bottom: 0;
+}
+
+/* === Tag chips (freeform, data-driven) === */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  /* Chips are dense little blocks; 6px between them read as one bar. */
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.chip {
+  /* --chip-accent is set inline from _data/tags.yml when a tag is mapped;
+     unmapped tags fall back to the deck default and still render correctly.
+
+     Sized to be read, not skimmed past: the tags are a primary signal on a
+     person's card. 700 is the heaviest Lato the site loads, so the weight here
+     comes from size, padding and the accent edge rather than a synthesised
+     bolder face or a louder colour. */
+  display: inline-flex;
+  /* Centred, so a chip with a heavier border keeps its text on the same line
+     as its neighbours when the flex row stretches them to a common height. */
+  align-items: center;
+  padding: 0.4375rem 0.6875rem;
+  background-color: var(--tint);
+  color: var(--slate-deep);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--chip-accent, var(--slate));
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* Degree level is a different kind of fact from a project area, so it stays
+   outlined where the project areas are filled. Outlines lose an unfair fight
+   against filled neighbours, so this one carries a doubled navy rule and sits
+   on white; the padding is trimmed by the extra border width to keep the box
+   the same height as the chips beside it. Level text is as freeform as the
+   tags: any string renders, no mapping needed. */
+.chip-level {
+  padding: 0.3125rem 0.5625rem;
+  background-color: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--navy);
+}
+
+/* === People === */
+.people-group + .people-group {
+  margin-top: 3.5rem;
+}
+
+.people-group-head {
+  margin-bottom: 1.75rem;
+}
+
+/* === People as a list (alumni) ===
+   Closed-out groups do not need headshots and bios. Hairline-separated rows of
+   name and level, years, and destination — the same device the news list uses,
+   and deliberately nothing like the student tiles. */
+.people-list {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.people-list-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) 8rem minmax(0, 1.5fr);
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 1.125rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.people-list-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 0;
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--navy);
+}
+
+.people-list-name a {
+  color: var(--navy);
+  border-bottom: 0;
+}
+
+.people-list-name a:hover {
+  color: var(--navy-2);
+  border-bottom: 1px solid var(--slate);
+}
+
+.people-list-years {
+  margin-bottom: 0;
+  font-size: 0.8125rem;
+  color: var(--slate-deep);
+}
+
+.people-list-next {
+  margin-bottom: 0;
+  font-size: 0.9375rem;
+  color: var(--slate-deep);
+}
+
+.people-list-label {
+  margin-right: 0.5em;
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.person-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  gap: 1.25rem;
+}
+
+.person-grid-pi {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  max-width: 640px;
+}
+
+.person-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+
+.person-photo {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--tint);
+  border-bottom: 1px solid var(--rule);
+}
+
+.person-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* Crop a non-square source to the frame from its centre; never distort. */
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Fallback headshot: the mark in --slate on --tint, same tile geometry. */
+.person-photo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* height: auto, not a matching percentage — the mark is 483×418, so a square
+   box would sit the artwork above the true centre of the frame. */
+.person-photo-placeholder .mark {
+  width: 38%;
+  height: auto;
+  color: var(--slate);
+  opacity: 0.85;
+}
+
+.person-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 1.375rem 1.375rem 1.25rem;
+}
+
+.person-name {
+  font-size: 1.125rem;
+  margin-bottom: 0.3rem;
+}
+
+.person-name a {
+  color: var(--navy);
+  border-bottom: 0;
+}
+
+.person-name a:hover {
+  color: var(--navy-2);
+  border-bottom: 1px solid var(--slate);
+}
+
+.person-role {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 0.875rem;
+}
+
+.person-meta {
+  font-size: 0.8125rem;
+  color: var(--slate-deep);
+  margin-bottom: 1rem;
+}
+
+/* The chip row sits under the blurb, so this is the gap above the chips. */
+.person-blurb {
+  font-size: 0.9375rem;
+  color: var(--slate-deep);
+  margin-bottom: 0.875rem;
+}
+
+/* Most people have no links, which leaves the chips last in the card; the row
+   should not then pay for a gap to nothing. Buys back the height the heavier
+   chips cost, which is what keeps the student tiles inside their photo square. */
+.person-body .chip-row:last-child {
+  margin-bottom: 0;
+}
+
+.person-links {
+  display: flex;
+  flex-wrap: wrap;
+  /* Matching the chip gap; these are buttons and need to read as separate. */
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.25rem;
+}
+
+.person-link {
+  display: inline-block;
+  padding: 0.375rem 0.625rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--navy-2);
+}
+
+.person-link:hover {
+  background-color: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+.person-link-primary {
+  border-color: var(--navy);
+  background-color: var(--navy);
+  color: var(--white);
+}
+
+.person-link-primary:hover {
+  background-color: var(--navy-2);
+  border-color: var(--navy-2);
+}
+
+/* === People: the PI beside the student carousel (/people/) === */
+.people-split {
+  display: grid;
+  /* A third for the PI, two thirds for the students. minmax(0, …) so the
+     carousel's scroll container can shrink to its column instead of widening
+     the track to fit every tile. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.people-split-head {
+  margin-bottom: 1.75rem;
+}
+
+/* Column headings, not page headings: the section-title clamp is sized for a
+   full-width band and shouts at a third of one. */
+.people-split .section-title {
+  font-size: clamp(1.375rem, 2vw, 1.625rem);
+  max-width: 22ch;
+}
+
+/* The PI's card. Prominent through type, padding and the navy top edge rather
+   than through the size of the photograph. */
+.person-card-feature {
+  padding: 1.75rem 1.625rem 1.5rem;
+  border-top: 3px solid var(--navy);
+}
+
+/* Four passes on this number: 640px full-bleed (dominated the page) → 136px
+   (too far) → 208px → the full text measure, which is where it lands. Flush
+   with the text block on both edges, so it fills the card left to right and the
+   alignment reads as deliberate rather than as a ragged inset. Dropping a row
+   of links paid for the extra height.
+
+   The cap matters: stacked, this card goes full-container-width, and a
+   percentage alone would put the photo back near its original size. */
+.person-card-feature .person-photo {
+  width: 100%;
+  max-width: 19.5rem;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--rule);
+  margin-bottom: 1.5rem;
+}
+
+.person-card-feature .person-body {
+  padding: 0;
+}
+
+.person-card-feature .person-name {
+  font-size: 1.375rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Affiliation, chips and links are three separate bands, not one block. */
+.person-card-feature .person-role {
+  margin-bottom: 1rem;
+}
+
+.person-card-feature .person-meta {
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.person-card-feature .chip-row {
+  margin-bottom: 1.5rem;
+}
+
+/* The hairline does the separating that a shadow would elsewhere. */
+.person-card-feature .person-links {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  gap: 0.5rem;
+}
+
+/* Horizontal student tile: photo left, text right, two stacked to a page. */
+.person-card-horizontal {
+  /* One fixed square for every student photo. It is the tallest thing in the
+     tile, so it is what sets the tile's height — no min-height needed, and the
+     photo is never stretched to chase a height set by something else. */
+  --tile-photo: 10rem;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.25rem 1.375rem;
+}
+
+.person-card-horizontal .person-photo {
+  flex: none;
+  align-self: flex-start;
+  width: var(--tile-photo);
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--rule);
+}
+
+/* The mark stands in for a missing headshot at any tile size; at this one it
+   takes a larger share of the frame to stay legible. */
+.person-card-horizontal .person-photo-placeholder .mark {
+  width: 45%;
+}
+
+/* Stretched to the square so the link row can sit on the photo's bottom edge,
+   which spreads the stack over the tile instead of bunching it at the top. */
+.person-card-horizontal .person-body {
+  align-self: stretch;
+  min-width: 0;
+  padding: 0;
+}
+
+.person-card-horizontal .person-name {
+  font-size: 1.0625rem;
+  margin-bottom: 0.5rem;
+}
+
+.person-card-horizontal .person-blurb {
+  margin-bottom: 0.9375rem;
+}
+
+.person-card-horizontal .chip-row {
+  margin-bottom: 0.9375rem;
+}
+
+/* One page is one column of three stacked tiles — three rather than two so the
+   column stands roughly as tall as the PI's card beside it. Six students is
+   then two pages of three. The script reads the row count off the DOM, so this
+   value is the only place it is declared. */
+.carousel.people-carousel {
+  --carousel-rows: 3;
+}
+
+/* The column is sized here rather than through --carousel-per-view: this
+   carousel is one-up at every width, so it should not inherit the shared
+   per-view breakpoints the multi-column tracks need. */
+.carousel.people-carousel .carousel-track {
+  grid-auto-columns: 100%;
+  /* 1fr, not auto: the rows equalise to the tallest one, so every tile on a
+     page is the same height and both pages look regular. */
+  grid-template-rows: repeat(var(--carousel-rows), 1fr);
+}
+
+/* Nothing to page to: keep the pair stacked instead of letting the shared
+   fallback spread it into auto-fit columns. */
+.carousel.people-carousel.is-static .carousel-track {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* On the homepage the panel follows the split rather than replacing it. */
+.people-split + .open-panel {
+  margin-top: 3.5rem;
+}
+
+.open-panel + .more-link {
+  margin-top: 2rem;
+}
+
+/* Empty state for current members — a real panel, not a blank grid. */
+.open-panel {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  padding: 2.25rem 2rem;
+  background-color: var(--tint);
+  border-left: 3px solid var(--slate);
+  border-radius: var(--radius);
+}
+
+.open-panel .mark {
+  width: 4.5rem;
+  height: 4.5rem;
+  color: var(--slate);
+}
+
+.open-panel h3 {
+  font-size: 1.375rem;
+  margin-bottom: 0.75rem;
+}
+
+.open-panel p {
+  color: var(--slate-deep);
+  max-width: 62ch;
+  font-size: 0.9375rem;
+}
+
+/* === Recruiting band === */
+.recruit {
+  background-color: var(--navy);
+  color: var(--slate-pale);
+  padding: 4.5rem 0;
+}
+
+.recruit h2 {
+  color: var(--white);
+  max-width: 30ch;
+}
+
+.recruit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.75rem;
+}
+
+.recruit-card {
+  padding: 1.625rem 1.5rem;
+  border: 1px solid var(--rule-on-navy);
+  border-top: 3px solid var(--slate);
+  border-radius: var(--radius);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.recruit-card h3 {
+  color: var(--white);
+  font-size: 1.0625rem;
+  margin-bottom: 0.625rem;
+}
+
+.recruit-card p {
+  font-size: 0.9375rem;
+  color: var(--slate-pale);
+  margin-bottom: 0.875rem;
+}
+
+.recruit-card p:last-child {
+  margin-bottom: 0;
+}
+
+.recruit-card a {
+  color: var(--white);
+  border-bottom-color: var(--slate);
+}
+
+.recruit-card a:hover {
+  border-bottom-color: var(--slate-paler);
+}
+
+.recruit-do {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--slate-paler);
+  margin-bottom: 0.5rem;
+}
+
+/* === Publications === */
+.pub-year {
+  margin-bottom: 2.75rem;
+}
+
+.pub-year:last-child {
+  margin-bottom: 0;
+}
+
+.pub-year-heading {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--slate);
+  padding-bottom: 0.625rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.publication {
+  padding: 1.375rem 0 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.publication:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.pub-title {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.pub-authors {
+  font-size: 0.875rem;
+  color: var(--slate-deep);
+  margin-bottom: 0.3rem;
+}
+
+.pub-authors strong {
+  color: var(--navy);
+}
+
+.pub-venue {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+.pub-description {
+  font-size: 0.9375rem;
+  color: var(--slate-deep);
+  margin-bottom: 0.875rem;
+  max-width: 78ch;
+}
+
+.pub-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.pub-link {
+  display: inline-block;
+  padding: 0.3125rem 0.625rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--navy-2);
+}
+
+.pub-link:hover {
+  background-color: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+/* === Page headers === */
+.page-head {
+  padding: 3.75rem 0 3rem;
+  background-color: var(--off-white);
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-head h1 {
+  max-width: 26ch;
+}
+
+.page-head .framing {
+  margin-top: 1.125rem;
+}
+
+.page-head .lede {
+  margin-top: 1.5rem;
+  color: var(--slate-deep);
+}
+
+/* === Prose (markdown bodies) === */
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  max-width: var(--measure);
+}
+
+.prose > * + * {
+  margin-top: 1.15rem;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.prose h3 {
+  font-size: 1.1875rem;
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 0;
+  list-style: none;
+}
+
+.prose ol {
+  counter-reset: prose-ol;
+}
+
+.prose li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose ul > li::before {
+  content: "\25B2";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  font-size: 0.5rem;
+  line-height: 1;
+  color: var(--slate);
+}
+
+.prose ol > li {
+  counter-increment: prose-ol;
+}
+
+.prose ol > li::before {
+  content: counter(prose-ol) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: var(--slate);
+}
+
+.prose blockquote {
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  border-left: 3px solid var(--slate);
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--muted);
+}
+
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 0.875em;
+  background-color: var(--off-white);
+  border: 1px solid var(--rule);
+  padding: 0.1em 0.35em;
+}
+
+.prose pre {
+  background-color: var(--off-white);
+  border: 1px solid var(--rule);
+  padding: 1rem 1.125rem;
+  overflow-x: auto;
+}
+
+.prose pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.prose img {
+  display: block;
+}
+
+.prose hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--rule);
+  margin: 2.5rem 0;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.prose th,
+.prose td {
+  text-align: left;
+  padding: 0.625rem 0.875rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.prose th {
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background-color: var(--off-white);
+}
+
+/* Research area footer navigation. */
+.content-foot {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* === Contact === */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.contact-item {
+  padding-top: 1.125rem;
+  border-top: 1px solid var(--rule);
+}
+
+.contact-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 0.5rem;
+}
+
+.contact-value {
+  font-size: 0.9375rem;
+  margin-bottom: 0;
+}
+
+/* === Footer === */
+.site-footer {
+  background-color: var(--navy);
+  color: var(--slate-pale);
+  padding: 3.5rem 0 2rem;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 2.25rem;
+  border-bottom: 1px solid var(--rule-on-navy);
+}
+
+.footer-brand {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.footer-brand .mark {
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--white);
+  flex: none;
+}
+
+.footer-name {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.footer-tagline {
+  font-size: 0.8125rem;
+  color: var(--slate-pale);
+  margin-top: 0.4rem;
+  max-width: 34ch;
+}
+
+.footer-heading {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--slate-paler);
+  margin-bottom: 0.875rem;
+}
+
+.footer-list {
+  list-style: none;
+  font-size: 0.9375rem;
+}
+
+.footer-list li {
+  margin-bottom: 0.5rem;
+}
+
+/* --slate-paler on the navy footer is 8.4:1, so these read; the link lists are
+   identifiable from their context, but inline links in prose need the rule. */
+.site-footer a {
+  color: var(--slate-paler);
+  border-bottom-color: transparent;
+}
+
+.footer-bottom a,
+.footer-tagline a {
+  border-bottom-color: var(--slate);
+}
+
+.site-footer a:hover {
+  color: var(--white);
+  border-bottom-color: var(--slate);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--slate-pale);
+}
+
+/* === Responsive === */
+@media (max-width: 1000px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* The solo slideshows are one at a time at every width, so they opt out. */
+  .carousel:not(.carousel-solo) {
+    --carousel-per-view: 2;
+  }
+
+  /* Columns stack in source order: the PI, then the students. */
+  .people-split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.75rem;
+  }
+
+  /* Same, in source order: the paragraphs, then the figures. Stacked, the
+     slideshow gets a cap of its own, or a 4:3 frame at the container's full
+     width stands as tall as the paragraphs above it — the move .hero-media
+     makes one breakpoint down. */
+  .figure-split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+
+  .figure-slideshow {
+    max-width: 32rem;
+  }
+
+  .quad-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .compare {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-col + .compare-col {
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+  }
+}
+
+@media (max-width: 820px) {
+  :root {
+    --gutter: 1.5rem;
+  }
+
+  /* Too narrow for two columns. Source order puts the words first, and the
+     media shrinks so it does not take over a phone screen. */
+  .hero .container {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
+  .hero-media {
+    max-width: 26rem;
+  }
+
+  .hero-logo {
+    max-width: 15rem;
+    margin: 0;
+  }
+
+  .navbar .container {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .navbar-nav {
+    display: none;
+    order: 3;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding-bottom: 0.75rem;
+    border-top: 1px solid var(--rule-on-navy);
+    margin-top: 0.25rem;
+  }
+
+  .navbar-nav.is-open {
+    display: flex;
+  }
+
+  .navbar-nav li {
+    border-bottom: 1px solid var(--rule-on-navy);
+  }
+
+  .navbar-nav li:last-child {
+    border-bottom: 0;
+  }
+
+  .navbar-nav a {
+    display: block;
+    padding: 0.875rem 0;
+    border-bottom: 0;
+  }
+
+  .navbar-nav a:hover,
+  .navbar-nav a[aria-current="page"] {
+    border-bottom: 0;
+    color: var(--white);
+  }
+
+  .hero {
+    padding: 4rem 0 3.5rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .news-item {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  /* One column each, so a name never has to share a line with a destination. */
+  .people-list-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .news-date {
+    padding-top: 0;
+  }
+
+  .open-panel {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 560px) {
+  html {
+    font-size: 15px;
+  }
+
+  .person-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel:not(.carousel-solo) {
+    --carousel-per-view: 1;
+  }
+
+  /* On a phone the student tile goes vertical, so a page is one tile. */
+  .carousel.people-carousel {
+    --carousel-rows: 1;
+  }
+
+  /* The square stays the same square; only its position changes — it moves
+     above the text, and the card's own gap separates them. */
+  .person-card-horizontal {
+    flex-direction: column;
+  }
+
+  .btn-row .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .page-head {
+    padding: 2.75rem 0 2.25rem;
+  }
+
+  .navbar-brand-sub {
+    display: none;
+  }
+
+  /* Tight quarters. Drop the separator rule — which also clears a competing
+     graphic out of the BYU mark's clear space — and step the mark down, still
+     above BYU's 56px minimum, so the hamburger keeps its room. The 1.5rem
+     flex gap alone then exceeds the required clear space. */
+  .navbar-byu {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .navbar-byu img {
+    width: 60px;
+  }
+}
+
+/* Below ~360px the two marks and the hamburger no longer share a row, and BYU's
+   56px minimum width rules out shrinking the mark any further, so it steps out
+   rather than push the toggle onto a second line. The header still names the
+   university in the footer and in the page title. */
+@media (max-width: 359px) {
+  .navbar-byu {
+    display: none;
+  }
+}
+
+/* === Motion === */
+@media (prefers-reduced-motion: reduce) {
+  html,
+  .carousel-viewport {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* === Print === */
+@media print {
+  .navbar,
+  .site-footer,
+  .skip-link {
+    display: none;
+  }
+
+  body {
+    color: #000;
+  }
+}

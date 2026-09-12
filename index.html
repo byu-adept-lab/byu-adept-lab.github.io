@@ -1,0 +1,355 @@
+---
+layout: default
+title: ADEPT Lab
+description: >-
+  The ADEPT Lab at Brigham Young University builds adaptive, person-centered methods for
+  sequential decision-making in messy, high-stakes settings — offline reinforcement
+  learning, irreversibility and risk, delayed and unreliable feedback, structured action
+  spaces, and clinical and scientific decision-making. Directed by Taylor W. Killian.
+  Recruiting graduate and undergraduate researchers now.
+---
+
+<!-- ============================================================ Hero -->
+{%- assign slides = site.data.hero_slides -%}
+<section class="hero">
+  <div class="container">
+    <div class="hero-text">
+      <h1>{{ site.title }}</h1>
+
+      <p class="hero-positioning">
+        A research lab at <a href="https://byu.edu">{{ site.institution }}</a> building
+        adaptive, person-centered methods for sequential decision-making in the messy,
+        high-stakes settings where clean benchmarks run out.
+      </p>
+
+      <p class="hero-byline">
+        Directed by <a href="{{ site.pi.site }}">Dr. {{ site.pi.name }}</a>, Assistant
+        Professor of <a href="https://cs.byu.edu">{{ site.department }}</a> at
+        {{ site.institution }}.
+      </p>
+
+      <div class="btn-row">
+        <a class="btn btn-invert" href="{{ '/research/' | relative_url }}">What we work on</a>
+        <a class="btn btn-ghost-invert" href="{{ '/joining/' | relative_url }}">Joining the lab</a>
+      </div>
+    </div>
+
+    <!-- Lab photographs from _data/hero_slides.yml; the lockup while that is empty. -->
+    <div class="hero-media">
+      {%- if slides and slides.size > 1 %}
+      <div class="carousel carousel-solo" data-carousel role="group"
+           aria-roledescription="carousel" aria-label="Photographs from the lab">
+        <div class="carousel-viewport" data-carousel-viewport tabindex="0">
+          <div class="carousel-track" data-carousel-track>
+            {%- for slide in slides %}
+            <figure class="hero-slide">
+              <img src="{{ slide.image | relative_url }}" alt="{{ slide.alt }}"
+                   {%- unless forloop.first %} loading="lazy"{% endunless %}>
+              {%- if slide.caption %}
+              <figcaption>{{ slide.caption }}</figcaption>
+              {%- endif %}
+            </figure>
+            {%- endfor %}
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="carousel-arrow" type="button" data-carousel-prev
+                  aria-label="Previous photograph">
+            <span aria-hidden="true">&#9664;</span>
+          </button>
+          <button class="carousel-arrow" type="button" data-carousel-next
+                  aria-label="Next photograph">
+            <span aria-hidden="true">&#9654;</span>
+          </button>
+          <div class="carousel-dots" data-carousel-dots role="group"
+               aria-label="Photographs from the lab"></div>
+        </div>
+      </div>
+      {%- elsif slides and slides.size == 1 %}
+      {%- assign slide = slides[0] %}
+      <figure class="hero-slide">
+        <img src="{{ slide.image | relative_url }}" alt="{{ slide.alt }}">
+        {%- if slide.caption %}
+        <figcaption>{{ slide.caption }}</figcaption>
+        {%- endif %}
+      </figure>
+      {%- else %}
+      <img class="hero-logo"
+           src="{{ '/assets/img/adept-full-white.png' | relative_url }}"
+           width="634" height="350"
+           alt="ADEPT Lab &mdash; Adaptive, Decision-making, Exploration, Practical Thinking">
+      {%- endif %}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ Mission -->
+<section class="section" aria-labelledby="mission-title">
+  <div class="container">
+    <div class="section-head">
+      {% include eyebrow.html text="About &middot; What we do" %}
+      <h2 class="section-title" id="mission-title">Methods for decisions that have to be made.</h2>
+      <p class="framing">
+        We are less interested in clean problems with benchmarks than in the sequential,
+        partially-observed ones that demand new thinking.
+      </p>
+    </div>
+
+    <!-- The paragraphs stop at --measure, which used to leave the right half of
+         this row empty. Figures from the lab's papers fill it; same slideshow
+         as the one above the area cards on /research/. -->
+    <div class="figure-split">
+      <div class="prose">
+        <p class="lede">
+          ADEPT builds adaptive, person-centered methods for real-world decision-making. We
+          draw on reinforcement learning, uncertainty quantification, causal inference, and
+          large language model reasoning, and we care most about the problems that separate
+          genuine deployment from a leaderboard.
+        </p>
+
+        <p>
+          Those problems have a family resemblance. The state is only partially observed. The
+          feedback that tells you whether a choice was good arrives late, or noisily, or not
+          at all. The data was collected by someone else, for reasons you cannot fully
+          reconstruct, which means it is confounded in ways no amount of fitting will undo.
+          And some mistakes cannot be walked back. Acting well under that much genuine
+          uncertainty is a methodological question, not an engineering detail.
+        </p>
+
+        <p>
+          Our work is grounded in clinical decision-making, where adaptive, context-sensitive
+          choices have direct consequences for patients, and extends to scientific discovery.
+          We are pragmatic by design: the aim is methods that researchers and practitioners
+          can actually pick up and use.
+        </p>
+      </div>
+
+      {% include figure-slideshow.html %}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ At a glance -->
+<section class="section section-tinted" aria-labelledby="glance-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="eyebrow" id="glance-title">
+        <span class="eyebrow-tri" aria-hidden="true">&#9650;</span>Lab &middot; At a glance
+      </h2>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat">
+        <p class="stat-figure">5</p>
+        <p class="stat-label">Research areas</p>
+        <p class="stat-note">
+          Five connected threads, running from offline reinforcement learning to the
+          clinical and scientific settings.
+        </p>
+      </div>
+
+      <div class="stat">
+        <p class="stat-figure">2026</p>
+        <p class="stat-label">Lab launched</p>
+        <p class="stat-note">
+          ADEPT opened in August 2026 within the
+          <a href="https://cs.byu.edu">BYU Department of Computer Science</a>
+        </p>
+      </div>
+
+      <div class="stat">
+        <p class="stat-figure">Open</p>
+        <p class="stat-label">Recruiting now</p>
+        <p class="stat-note">
+          Graduate and undergraduate researchers are being recruited for the lab&rsquo;s
+          first cohort.
+        </p>
+      </div>
+    </div>
+
+    <p class="stat-footnote">
+      Counts of students, publications, and funding will appear here as the lab accrues
+      them.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ Research -->
+{%- assign areas = site.research | sort: "order" -%}
+{%- if areas.size > 0 %}
+<section class="section" aria-labelledby="research-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="eyebrow" id="research-title">
+        <span class="eyebrow-tri" aria-hidden="true">&#9650;</span>Research &middot; Areas
+      </h2>
+    </div>
+
+    <div class="carousel" data-carousel role="group" aria-roledescription="carousel"
+         aria-label="Research areas">
+      <div class="carousel-viewport" data-carousel-viewport tabindex="0">
+        <div class="carousel-track" data-carousel-track>
+          {%- for item in areas %}
+          <article class="tile">
+            <h3 class="tile-title">
+              <a href="{{ item.url | relative_url }}">{% if item.card_title %}{{ item.card_title }}{% else %}{{ item.title }}{% endif %}</a>
+            </h3>
+
+            {%- if item.summary %}
+            <p class="tile-body">{{ item.summary }}</p>
+            {%- endif %}
+
+            {%- if item.tags and item.tags.size > 0 %}
+            <ul class="chip-row tile-foot" aria-label="Topics in {{ item.title }}">
+              {%- for tag in item.tags -%}
+                {%- assign tag_key = tag | downcase -%}
+                {%- assign accent = site.data.tags[tag_key] -%}
+                <li class="chip"{% if accent %} style="--chip-accent: {{ accent }}"{% endif %}>{{ tag }}</li>
+              {%- endfor -%}
+            </ul>
+            {%- endif %}
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-arrow" type="button" data-carousel-prev
+                aria-label="Previous research areas">
+          <span aria-hidden="true">&#9664;</span>
+        </button>
+        <button class="carousel-arrow" type="button" data-carousel-next
+                aria-label="Next research areas">
+          <span aria-hidden="true">&#9654;</span>
+        </button>
+        <div class="carousel-dots" data-carousel-dots role="group"
+             aria-label="Research area pages"></div>
+      </div>
+    </div>
+
+    <a class="more-link" href="{{ '/research/' | relative_url }}">All research areas</a>
+  </div>
+</section>
+{%- endif %}
+
+<!-- ============================================================ People -->
+{%- assign pi = site.data.people | where: "group", "pi" | sort: "order" | first -%}
+<section class="section section-light" aria-label="People">
+  <div class="container">
+    <!-- Same two columns and the same tiles as /people/, so the two read as
+         one section seen twice. -->
+    <div class="people-split">
+      <div class="people-split-pi">
+        <div class="people-split-head">
+          {% include eyebrow.html text="People &middot; Principal investigator" %}
+          <h2 class="section-title">Principal Investigator</h2>
+        </div>
+
+        {%- if pi %}
+        {% include person-card.html person=pi layout="feature" %}
+        {%- endif %}
+      </div>
+
+      <div class="people-split-students">
+        <div class="people-split-head">
+          {% include eyebrow.html text="People &middot; Current students" %}
+          <h2 class="section-title">Current Students</h2>
+        </div>
+
+        {% include people-carousel.html group="current" label="current students" %}
+      </div>
+    </div>
+
+    <!-- Unconditional, unlike /people/, where it is only the empty state: the
+         homepage should carry the openings whether or not there are students to
+         show, and the carousel above renders nothing when there are none. -->
+    {% include open-positions.html %}
+
+    <a class="more-link" href="{{ '/people/' | relative_url }}">Full ADEPT Roster (past and present)</a>
+  </div>
+</section>
+
+<!-- ============================================================ Publications -->
+{%- assign featured_count = 0 -%}
+{%- for year_group in site.data.publications -%}
+  {%- assign year_featured = year_group.papers | where: "featured", true -%}
+  {%- assign featured_count = featured_count | plus: year_featured.size -%}
+{%- endfor -%}
+{%- if featured_count > 0 %}
+<section class="section section-tinted" aria-labelledby="publications-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="eyebrow" id="publications-title">
+        <span class="eyebrow-tri" aria-hidden="true">&#9650;</span>Publications &middot; Featured
+      </h2>
+    </div>
+
+    <!-- Same include as /publications/, filtered to the entries flagged
+         `featured: true` in _data/publications.yml and rendered without their
+         description paragraphs, which is what keeps this list short. -->
+    {% include publications-list.html featured_only=true compact=true %}
+
+    <a class="more-link" href="{{ '/publications/' | relative_url }}">All publications</a>
+  </div>
+</section>
+{%- endif %}
+
+<!-- ============================================================ News -->
+{%- if site.data.news and site.data.news.size > 0 %}
+<section class="section" aria-labelledby="news-title">
+  <div class="container">
+    <div class="section-head">
+      {% include eyebrow.html text="Lab &middot; Recent news" %}
+      <h2 class="section-title" id="news-title">What has been happening</h2>
+    </div>
+
+    <!-- Same include as /news/, so the five shown here and the full archive
+         cannot drift apart. -->
+    {% include news-list.html limit=5 %}
+
+    <a class="more-link" href="{{ '/news/' | relative_url }}">All news</a>
+  </div>
+</section>
+{%- endif %}
+
+<!-- ============================================================ Recruiting -->
+{% include recruiting.html %}
+
+<!-- ============================================================ Contact -->
+<section class="section section-tight" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="section-head">
+      {% include eyebrow.html text="Contact &middot; Reach us" %}
+      <h2 class="section-title" id="contact-title">Get in touch</h2>
+      <p class="framing">
+        A short, specific email is always better than a long, general one.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-item">
+        <p class="contact-label">Email</p>
+        <p class="contact-value"><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      </div>
+
+      <div class="contact-item">
+        <p class="contact-label">Where we are</p>
+        <p class="contact-value">
+          <a href="https://byu.edu">{{ site.institution }}</a><br>
+          {{ site.location }}
+        </p>
+      </div>
+
+      <div class="contact-item">
+        <p class="contact-label">Code and notes</p>
+        <p class="contact-value">
+          <a href="https://github.com/{{ site.github_org }}">github.com/{{ site.github_org }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paging for the research carousel. The track scrolls and snaps without it. -->
+<script src="{{ '/assets/js/carousel.js' | relative_url }}" defer></script>

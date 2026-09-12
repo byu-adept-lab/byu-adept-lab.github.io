@@ -1,0 +1,47 @@
+{%- comment -%}
+  Open positions. Two jobs: the empty state for the current-members grid
+  (index.html, people.html) until the first students join, and the closing
+  section of the Joining page. It carries the per-audience next steps that
+  used to live in recruiting.html, so the two are no longer separate bands.
+
+  Pass heading_id="..." when the surrounding section needs it for
+  aria-labelledby. The "How to join" button is dropped on the Joining page so
+  the panel does not link to the page it is on.
+{%- endcomment -%}
+<div class="open-panel">
+  <span class="mark" aria-hidden="true">
+    <img src="{{ '/assets/img/adept-mark-navy.png' | relative_url }}" alt="" loading="lazy">
+  </span>
+  <div>
+    <h3{% if include.heading_id %} id="{{ include.heading_id }}"{% endif %}>Open positions</h3>
+    <p>
+      The lab opened in August 2026 and is building its first cohort. Graduate and
+      undergraduate researchers are being recruited now.
+    </p>
+
+    <ul class="tri-list tri-list-tight">
+      <li>
+        <strong>Prospective graduate students.</strong> Apply to the
+        <a href="https://cs.byu.edu/education/graduate/">BYU CS graduate program</a> and name
+        ADEPT and the research areas that pull at you in your materials. Then email
+        me at <a href="mailto:{{ site.email }}">{{ site.email }}</a> to say you have
+        applied.
+      </li>
+      <li>
+        <strong>BYU undergraduates.</strong> Email a short note about what you are excited
+        about, have been building, or reading about.
+      </li>
+      <li>
+        <strong>Collaborators.</strong> Write about applied problems where the usual
+        assumptions break.
+      </li>
+    </ul>
+
+    <div class="btn-row">
+      <a class="btn" href="mailto:{{ site.email }}">Email {{ site.email }}</a>
+      {%- if page.url != '/joining/' %}
+      <a class="btn btn-outline" href="{{ '/joining/' | relative_url }}">How to join</a>
+      {%- endif %}
+    </div>
+  </div>
+</div>

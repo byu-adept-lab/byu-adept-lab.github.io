@@ -1,0 +1,17 @@
+# Primary navigation. Order here is the order in the navbar.
+# `url` must match the page's permalink exactly so the current-page
+# highlight works.
+- title: Research
+  url: /research/
+
+- title: People
+  url: /people/
+
+- title: Publications
+  url: /publications/
+
+- title: Joining
+  url: /joining/
+
+- title: News
+  url: /news/

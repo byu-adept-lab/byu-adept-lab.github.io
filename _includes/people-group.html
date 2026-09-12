@@ -1,0 +1,29 @@
+{%- comment -%}
+  Renders one people group from _data/people.yml.
+  Usage: {% include people-group.html group="past" eyebrow="People · Alumni" heading="Alumni" %}
+
+  Hides itself entirely when the group is empty, so an empty Alumni or
+  Collaborators section never renders a bare heading. Pass
+  `empty_state="open"` to swap in the open-positions panel instead
+  (used for `current`, which has no members yet).
+{%- endcomment -%}
+{%- assign members = site.data.people | where: "group", include.group | sort: "order" -%}
+{%- if members.size > 0 or include.empty_state %}
+<div class="people-group">
+  <div class="people-group-head">
+    {%- if include.eyebrow %}{% include eyebrow.html text=include.eyebrow %}{% endif %}
+    {%- if include.heading %}<h2 class="section-title">{{ include.heading }}</h2>{% endif %}
+    {%- if include.framing %}<p class="framing">{{ include.framing }}</p>{% endif %}
+  </div>
+
+  {%- if members.size > 0 %}
+  <div class="person-grid{% if include.group == 'pi' %} person-grid-pi{% endif %}">
+    {%- for person in members %}
+    {% include person-card.html person=person %}
+    {%- endfor %}
+  </div>
+  {%- elsif include.empty_state == "open" %}
+  {% include open-positions.html %}
+  {%- endif %}
+</div>
+{%- endif %}

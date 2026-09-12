@@ -1,0 +1,49 @@
+---
+layout: page
+permalink: /people/
+title: People
+description: >-
+  The people of the ADEPT Lab at Brigham Young University — principal investigator
+  Taylor W. Killian, current members, alumni, and collaborators.
+eyebrow: People &middot; Overview
+lede: ADEPT opened at BYU Computer Science in August 2026.
+---
+
+{%- assign pi = site.data.people | where: "group", "pi" | sort: "order" | first -%}
+
+<div class="section">
+  <div class="container">
+    <div class="people-split">
+      <div class="people-split-pi">
+        <div class="people-split-head">
+          {% include eyebrow.html text="People &middot; Principal investigator" %}
+          <h2 class="section-title">Principal Investigator</h2>
+        </div>
+
+        {%- if pi %}
+        {% include person-card.html person=pi layout="feature" %}
+        {%- endif %}
+      </div>
+
+      <div class="people-split-students">
+        <div class="people-split-head">
+          {% include eyebrow.html text="People &middot; Current students" %}
+          <h2 class="section-title">Current Students</h2>
+        </div>
+
+        {% include people-carousel.html group="current" label="current students" empty_state="open" %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    {% include people-list.html group="past" eyebrow="People &middot; Alumni" heading="Alumni" framing="Where people went after ADEPT." %}
+
+    {% include people-group.html group="collaborators" eyebrow="People &middot; Collaborators" heading="Collaborators" framing="People outside BYU we work with regularly." %}
+  </div>
+</div>
+
+<!-- Paging for the student carousel. The track scrolls and snaps without it. -->
+<script src="{{ '/assets/js/carousel.js' | relative_url }}" defer></script>

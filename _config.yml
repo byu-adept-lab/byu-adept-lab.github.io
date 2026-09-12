@@ -1,0 +1,99 @@
+title: ADEPT Lab
+tagline: Adaptive · Decision-making · Exploration · Practical Thinking
+description: >-
+  The ADEPT Lab at Brigham Young University builds adaptive, person-centered methods for
+  sequential decision-making in messy, high-stakes settings — offline reinforcement
+  learning, irreversibility and risk, delayed feedback, structured action spaces, and
+  clinical and scientific decision-making.
+url: "https://byu-adept-lab.github.io"
+baseurl: ""
+lang: en
+
+# Lab / PI details, surfaced in the footer and contact blocks.
+institution: Brigham Young University
+department: Computer Science
+location: Provo, Utah
+email: tkillian@cs.byu.edu
+github_org: byu-adept-lab
+pi:
+  name: Taylor W. Killian
+  site: https://twkillian.github.io
+  scholar: xA3RcaUAAAAJ
+  github: twkillian
+  twitter: tw_killian
+  bluesky: twkillian.bsky.social
+  linkedin: taylor-w-killian
+
+# jekyll-seo-tag reads these.
+# An object, not a bare string: jekyll-seo-tag reads `author.twitter` for
+# twitter:creator, and with a string it emits the display name instead.
+author:
+  name: Taylor W. Killian
+  twitter: tw_killian
+twitter:
+  username: tw_killian
+  card: summary_large_image
+logo: /assets/img/adept-mark-navy.png
+social:
+  name: ADEPT Lab
+  links:
+    - https://github.com/byu-adept-lab
+    - https://twkillian.github.io
+
+# Google Analytics 4 measurement ID, emitted by _includes/analytics.html and
+# only in production builds. This is the PI's EXISTING GA4 property — the same
+# property, and the same web data stream, that twkillian.github.io already
+# reports into. It is not a new one, so the lab site joins the history that is
+# already there rather than starting a parallel dataset.
+#
+# Both sites must carry this identical value. That is what lets GA4 stitch a
+# single session across the two hostnames when a visitor follows the nav link
+# from the personal site to this one; the two sites remain separable in reports
+# through the `hostname` dimension. Cross-domain measurement also has to be
+# enabled once in the GA4 admin, listing both hostnames.
+#
+# In GA4 the value is shown under:
+#   Admin > Data streams > (the web stream) > Measurement ID  (top right)
+google_analytics: G-4261TQJZV6
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+collections:
+  research:
+    output: true
+    permalink: /research/:name/
+
+defaults:
+  # jekyll-seo-tag reads `page.image`, not a site-level key, so this has to be a
+  # default rather than a single setting. Without it there is no og:image at all
+  # and `card: summary_large_image` silently degrades to a text-only `summary`.
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/adept-social-card.jpg
+  - scope:
+      path: ""
+      type: research
+    values:
+      layout: research
+
+exclude:
+  - _design-reference
+  # Full-resolution backup kept after the shipped mark was downscaled. Nothing
+  # references it, so keep it in the repo but out of the published output.
+  - assets/img/adept-mark-navy-original.png
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - .bundle
+  - .jekyll-cache

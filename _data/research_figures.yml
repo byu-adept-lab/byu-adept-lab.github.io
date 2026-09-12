@@ -1,0 +1,192 @@
+# Research figures for the homepage slideshow.
+#
+# Each entry is the "Figure 1" of one of the PI's own papers, cropped out of
+# the published PDF and saved to assets/img/research/. Titles, `url`s and
+# `areas` are copied verbatim from _data/publications.yml — if you edit a
+# paper's title or link there, update it here too so the two files agree.
+#
+# Fields:
+#   image    site-relative path to the PNG in assets/img/research/
+#   alt      screen-reader description of what the figure actually depicts
+#   caption  one plain sentence a visitor can read under the figure
+#   paper    paper title, verbatim from _data/publications.yml
+#   url      paper link, verbatim from that paper's `links` in publications.yml
+#   areas    that paper's `areas` list, verbatim
+#   width    final pixel width of the PNG  (set the CSS aspect ratio from these
+#   height   final pixel height of the PNG  two so the page does not reflow)
+#
+# Aspect ratios vary a lot here — from roughly 5:1 (the EDICT pipeline) to
+# 4:3 (the CVaR density plot) — because paper figures are shaped to fit a
+# column. Size the slideshow frame for the widest entry and centre the rest
+# rather than cropping to a single ratio.
+#
+# To add an entry: crop Figure 1 from the paper's PDF to a PNG about
+# 1400-2000 px wide and under ~500 KB (these load on the homepage), drop it in
+# assets/img/research/ with a lowercase hyphenated name ending in -fig1.png,
+# then copy the paper's title, link and areas out of _data/publications.yml
+# and write an `alt` that describes the picture rather than naming it.
+# To replace one, overwrite the PNG and correct `width`/`height` to match.
+#
+# Between them these seven papers cover four research areas:
+# offline-reinforcement-learning, clinical-and-scientific-decision-making,
+# structured-action-spaces and irreversibility-and-risk. No paper in
+# publications.yml is tagged delayed-and-unreliable-feedback, so that area is
+# not represented. The IsoCompute entry carries no areas at all, because that
+# paper has no `areas` key in publications.yml — `areas: []` here records that
+# rather than guessing one, so anything rendering area tags should expect the
+# list to be empty.
+
+- image: /assets/img/research/medical-dead-ends-fig1.png
+  alt: >-
+    Three square grid maps side by side, sharing a colour scale that runs from
+    -1 in dark red through white at 0 to +1 in blue. The first, labelled
+    LifeGate Env, shows the layout: a mostly black grid with a grey wall
+    segment part-way down the left side, a yellow block filling the lower
+    right, a blue strip along the top right edge, a red strip down the whole
+    right edge, and a small white square marking the agent near the bottom.
+    The second and third show the learned dead-end value and rescue value over
+    those same cells. The dead-end map is pale in the upper left and deepens to
+    dark red across the lower right; the rescue map is the near mirror image,
+    deep blue through the upper left and fading to white toward the lower
+    right.
+  caption: >-
+    In a small navigation task, separately learned dead-end and rescue values
+    mark which regions of the grid still allow a good outcome and which no
+    longer do.
+  paper: "Medical Dead-ends and Learning to Identify High-Risk States and Treatments"
+  url: "https://twkillian.github.io/papers/FatemiKillianSubramanianGhassemi_2021NeurIPS.pdf"
+  areas: [offline-reinforcement-learning, irreversibility-and-risk, clinical-and-scientific-decision-making]
+  width: 1695
+  height: 487
+
+- image: /assets/img/research/risk-sensitive-dead-end-identification-fig1.png
+  alt: >-
+    A probability density curve, labelled Z-pi of s and a, drawn over return
+    value on the horizontal axis and density on the vertical axis. The
+    distribution has two humps: a small one over low returns near -0.5 and a
+    much larger one near +0.2. The low-return tail beneath the small hump is
+    shaded grey and cut by two vertical dashed lines — the value-at-risk
+    threshold at roughly -0.5, and to its left the conditional value-at-risk,
+    the average of that shaded tail, at roughly -0.65.
+  caption: >-
+    Conditional value at risk summarises the low-return tail of a return
+    distribution instead of its average, which is what lets the method flag
+    unrecoverable states at a chosen risk tolerance.
+  paper: "Risk Sensitive Dead-end Identification in Safety-Critical Offline Reinforcement Learning"
+  url: "https://twkillian.github.io/papers/KillianParbhooGhassemi_2023TMLR.pdf"
+  areas: [offline-reinforcement-learning, irreversibility-and-risk, clinical-and-scientific-decision-making]
+  width: 1483
+  height: 1103
+
+- image: /assets/img/research/continuous-time-evidential-distributions-fig1.png
+  alt: >-
+    A left-to-right pipeline schematic. On the left, three dashed coloured
+    traces of a multivariate time series X of t, with open circles marking
+    observations at unevenly spaced times t0, t1, t2 through tT and the gap
+    between two of them marked delta t. An arrow leads into a tapering block
+    labelled Backbone NN, then a narrow block labelled Evidential Layer, which
+    emits Normal Inverse-Wishart parameters phi. Two arrows branch to the
+    right: the first to a shaded fan of predicted trajectories widening and
+    narrowing around the observations, labelled calibrated, temporally
+    correlated uncertainty; the second to a pair of small panels, a contour map
+    of the distribution over the mean and covariance beside a scatter of orange
+    and blue points split by a curved boundary, labelled uncertainty-guided,
+    robust classification.
+  caption: >-
+    An irregularly sampled clinical time series is mapped to the parameters of
+    an evidential distribution, so the model reports uncertainty that stays
+    correlated across time rather than at isolated points.
+  paper: "Continuous Time Evidential Distributions for Irregular Time Series"
+  url: "https://twkillian.github.io/papers/KillianZhangHartvigsenAmini_2023IMLH.pdf"
+  areas: [clinical-and-scientific-decision-making]
+  width: 1801
+  height: 359
+
+- image: /assets/img/research/brave-fig1.png
+  alt: >-
+    A tree diagram of a three-part action. From a filled root node, three
+    branches labelled a1 = 0, a1 = 1 and a1 = 2 lead to boxed action vectors
+    [0,0,0], [1,0,0] and [2,0,0], so each node holds a full action with the
+    not-yet-chosen entries left at a default of zero. A branch labelled a2 = 1
+    descends from [0,0,0] to [0,1,0], which in turn splits along a3 = 1 and
+    a3 = 2 to [0,1,1] and [0,1,2]. A smaller copy of the whole tree sits at
+    lower right with one root-to-leaf path drawn in solid black and every other
+    branch greyed out.
+  caption: >-
+    Laying a combinatorial action out as a tree lets the policy pick one
+    sub-action per level and score a single path, rather than enumerating every
+    combination of sub-actions.
+  paper: "BraVE: Offline Reinforcement Learning for Discrete Combinatorial Action Spaces"
+  url: "https://twkillian.github.io/papers/BraVE_LandersKillianBarnesHartvigsenDoryab_NeurIPS25.pdf"
+  areas: [offline-reinforcement-learning, structured-action-spaces]
+  width: 1701
+  height: 593
+
+- image: /assets/img/research/saint-fig1.png
+  alt: >-
+    A left-to-right block diagram of a policy network. A circle holding the
+    state s and a box labelled Sub-Action Embedding Table both feed a tall
+    State Conditioning block, whose state-aware embeddings pass into a
+    Transformer Block marked as repeated L times. Its output X enters a dashed
+    group marked as repeated for each of the A sub-actions, containing a
+    Decision MLP that emits distribution parameters and a Sample Sub-Action
+    step that draws sub-action a-i. A Concat block gathers the sampled
+    sub-actions into the final action vector a.
+  caption: >-
+    Self-attention over sub-action embeddings, conditioned on the state, lets
+    each sub-action be chosen with the others in view and in no fixed order.
+  paper: "SAINT: Attention-Based Policies for Discrete Combinatorial Action Spaces"
+  url: "https://arxiv.org/abs/2505.12109"
+  areas: [structured-action-spaces]
+  width: 1689
+  height: 472
+
+- image: /assets/img/research/structured-policy-initialization-fig1.png
+  alt: >-
+    A line chart of learning progress against wall-clock time, with time in
+    minutes from 0 to 300 on the horizontal axis and percentage of the
+    reference FIQL asymptotic score on the vertical axis. A horizontal dashed
+    line marks the 100 percent target. The thick dark navy SPIN curve sits flat
+    at zero during pre-training, jumps past the target at a vertical dashed
+    line annotated "ASM Learning Complete" around ten minutes, and stays above
+    it. The three baseline curves — Factored IQL, SAINT and AR-IQL — climb
+    gradually from the start and only approach the target somewhere between
+    roughly 150 and 300 minutes.
+  caption: >-
+    On the humanoid-stand task, pre-training a model of which joint actions are
+    valid lets policy learning reach the reference score within about ten
+    minutes, where the baselines take hours.
+  paper: "Improving and Accelerating Offline RL in Large Discrete Action Spaces with Structured Policy Initialization"
+  url: "https://twkillian.github.io/papers/SPIN_LandersKillianHartvigsenDoryab_ICLR26.pdf"
+  areas: [offline-reinforcement-learning, structured-action-spaces]
+  width: 1418
+  height: 864
+
+# `areas` is empty because this paper has no `areas` key in publications.yml.
+- image: /assets/img/research/isocompute-playbook-fig1.png
+  alt: >-
+    A three-part diagram summarising how to spend a fixed sampling budget,
+    divided by dashed vertical rules and annotated with three numbered
+    findings in salmon callout boxes. On the left, a set of three-dimensional
+    axes — parallel rollouts per problem going up, problems per batch and
+    sequential iterations along the base — carries a pale blue plane with
+    dashed contours and a red line climbing through a row of yellow points,
+    labelled: more compute, larger numbers of rollouts, on both easy and hard
+    problem sets. In the middle, two small line charts plotted against
+    sequential iterations: rollouts per problem rising in an S-shape, and
+    problems per batch falling in the mirror image, labelled: with the total
+    batch size held fixed, more iterations means more rollouts and fewer
+    problems per batch. On the right, another set of the same
+    three-dimensional axes with a flat orange surface low across the base,
+    labelled: problems per batch has only a marginal effect within a moderate
+    range.
+  caption: >-
+    A fixed sampling budget for reinforcement learning on language models is
+    split three ways — rollouts per problem, problems per batch, and
+    sequential iterations — and the number of rollouts per problem is the
+    allocation that should grow as the budget grows.
+  paper: "IsoCompute Playbook: Optimally Scaling Sampling Compute for LLM RL"
+  url: "https://arxiv.org/abs/2603.12151"
+  areas: []
+  width: 1839
+  height: 541

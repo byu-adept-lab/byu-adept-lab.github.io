@@ -1,0 +1,104 @@
+{%- comment -%}
+  One people group as a rotating carousel of horizontal tiles, three to a page,
+  stacked as rows.
+  Usage: {% include people-carousel.html group="current" label="current students" %}
+
+  Same machinery as the research carousel on the homepage: assets/js/carousel.js
+  picks this up from data-carousel and adds the paging controls. The viewport is
+  a snapping scroll container that already holds every tile, so with JS off, by
+  keyboard, or under a screen reader the whole group stays reachable and nothing
+  is hidden.
+
+  The three-rows-per-page shape is CSS — `--carousel-rows` on .people-carousel —
+  and the script measures it off the DOM, so a breakpoint can change it without
+  touching the JavaScript.
+
+  Pass empty_state="open" to fall back to the open-positions panel when the
+  group has no entries, which is what `current` does between cohorts.
+
+  `current` is additionally shuffled per page load — see the script below the
+  markup. `order` in _data/people.yml still decides the authored order, which is
+  what the shuffle starts from and what stays on screen with JS off.
+{%- endcomment -%}
+{%- assign members = site.data.people | where: "group", include.group | sort: "order" -%}
+{%- assign label = include.label | default: "people" -%}
+{%- if members.size > 0 %}
+<div class="carousel people-carousel" data-carousel role="group"
+     aria-roledescription="carousel" aria-label="{{ label | capitalize }}">
+  <div class="carousel-viewport" data-carousel-viewport tabindex="0">
+    <div class="carousel-track" data-carousel-track>
+      {%- for person in members %}
+      {% include person-card.html person=person layout="horizontal" %}
+      {%- endfor %}
+    </div>
+  </div>
+
+  <div class="carousel-controls">
+    <button class="carousel-arrow" type="button" data-carousel-prev
+            aria-label="Previous {{ label }}">
+      <span aria-hidden="true">&#9664;</span>
+    </button>
+    <button class="carousel-arrow" type="button" data-carousel-next
+            aria-label="Next {{ label }}">
+      <span aria-hidden="true">&#9654;</span>
+    </button>
+    <div class="carousel-dots" data-carousel-dots role="group"
+         aria-label="Pages of {{ label }}"></div>
+  </div>
+</div>
+{%- if include.group == "current" %}
+{%- comment -%}
+  Shuffle the students on every load so that whoever `order` happens to put
+  first is not permanently at the front of the page. Only this group: alumni are
+  deliberately reverse-chronological, and the PI renders outside the carousel.
+
+  Inline and parser-blocking rather than a file in assets/js/, because both
+  things this has to get in front of are questions of timing:
+
+  - First paint. The reorder has to land before the tiles can be painted in
+    authored order, or they visibly jump. An inline script runs in the same
+    parser task that just finished the track, so there is no gap to paint in; a
+    <script src> would open one, stalling the parser on a fetch at exactly the
+    moment the unshuffled tiles are sitting in the DOM.
+  - carousel.js, which is deferred and therefore does not run until parsing
+    ends. Anything parser-blocking is already ahead of it wherever a page puts
+    its tag. That ordering is load bearing: the script measures the track and
+    builds the dots from the DOM as it finds it, so a later shuffle would leave
+    the paging and the indicators describing an arrangement that is not there.
+
+  Keep it immediately after the carousel it reorders.
+{%- endcomment -%}
+<script>
+  (function () {
+    'use strict';
+
+    var script = document.currentScript;
+    var carousel = script && script.previousElementSibling;
+    var track = carousel && carousel.querySelector('[data-carousel-track]');
+    if (!track) return;
+
+    /* Fisher-Yates rather than sort() with a random comparator: that one is
+       biased, and a lab roster is small enough for the bias to be visible over
+       a few reloads. One tile and none at all fall outside the loop bounds on
+       their own, so neither needs a case of its own. */
+    var cards = Array.prototype.slice.call(track.children);
+    for (var i = cards.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var swap = cards[i];
+      cards[i] = cards[j];
+      cards[j] = swap;
+    }
+
+    /* appendChild moves a node that is already in the document rather than
+       copying it, so re-appending in the shuffled order is the reorder. Real
+       nodes in a new DOM order, not CSS `order`, which is what keeps tab order
+       and screen-reader order matching what is on screen. */
+    for (var k = 0; k < cards.length; k++) {
+      track.appendChild(cards[k]);
+    }
+  })();
+</script>
+{%- endif %}
+{%- elsif include.empty_state == "open" %}
+{% include open-positions.html %}
+{%- endif %}

@@ -1,0 +1,52 @@
+---
+layout: page
+permalink: /publications/
+title: Publications
+description: >-
+  Lab-relevant publications from the ADEPT Lab and its principal investigator —
+  offline reinforcement learning, irreversibility and risk, clinical decision-making,
+  causal inference, and reasoning in language models.
+eyebrow: Publications &middot; Selected work
+framing: The papers that explain what the lab means by "decision-making under uncertainty."
+lede: >-
+  Work on offline reinforcement learning, irreversibility and risk, structured action
+  spaces, clinical decision-making, and reasoning in language models. Newest first.
+---
+
+<div class="section">
+  <div class="container container-narrow">
+    {%- if site.data.publications and site.data.publications.size > 0 %}
+    {% include publications-list.html %}
+    {%- else %}
+    <div class="prose">
+      <p>
+        Publications are listed in <code>_data/publications.yml</code>, which is currently
+        empty. A fuller list lives on the principal investigator's site.
+      </p>
+    </div>
+    {%- endif %}
+  </div>
+</div>
+
+<div class="section section-tight section-tinted">
+  <div class="container container-narrow">
+    <div class="prose">
+      <p>
+        This page is filtered to work that bears on what the lab does. For the complete
+        record, including papers outside these themes, talks, and the PhD thesis, see
+        <a href="https://twkillian.github.io">Taylor W. Killian's personal site</a> and its
+        <a href="https://twkillian.github.io/publications/">publications page</a>, or
+        <a href="https://scholar.google.com/citations?hl=en&amp;user={{ site.pi.scholar }}">Google&nbsp;Scholar</a>.
+      </p>
+      <p class="small">
+        Preprints are labelled as such. Where a paper has a public implementation, the code
+        link points at the authors' own repository rather than a mirror.
+      </p>
+    </div>
+
+    <div class="btn-row">
+      <a class="btn" href="{{ '/research/' | relative_url }}">Research areas</a>
+      <a class="btn btn-outline" href="https://twkillian.github.io/publications/">Full publication list</a>
+    </div>
+  </div>
+</div>

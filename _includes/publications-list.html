@@ -1,0 +1,35 @@
+{%- comment -%}
+  Renders _data/publications.yml, already grouped by year in the data file.
+  Parameters:
+  - featured_only: true renders only entries flagged `featured: true`
+  - limit: cap the number of entries shown per year
+  - compact: true drops the `description` paragraph, for the short homepage list
+  A year with nothing to show is skipped rather than rendered empty.
+{%- endcomment -%}
+{%- for year_group in site.data.publications %}
+  {%- assign papers = year_group.papers -%}
+  {%- if include.featured_only %}{% assign papers = papers | where: "featured", true %}{% endif -%}
+  {%- if include.limit %}{% assign papers = papers | slice: 0, include.limit %}{% endif -%}
+
+  {%- if papers.size > 0 %}
+<section class="pub-year" data-year="{{ year_group.year }}">
+  <h2 class="pub-year-heading">{{ year_group.year }}</h2>
+
+  {%- for pub in papers %}
+  <article class="publication">
+    <h3 class="pub-title">{{ pub.title }}</h3>
+    <p class="pub-authors">{{ pub.authors }}</p>
+    {%- if pub.venue %}<p class="pub-venue">{{ pub.venue }}</p>{% endif %}
+    {%- if pub.description and include.compact != true %}<p class="pub-description">{{ pub.description }}</p>{% endif %}
+    {%- if pub.links and pub.links.size > 0 %}
+    <div class="pub-links">
+      {%- for link in pub.links %}
+      <a class="pub-link" href="{{ link.url }}">{{ link.text }}</a>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </article>
+  {%- endfor %}
+</section>
+  {%- endif %}
+{%- endfor %}

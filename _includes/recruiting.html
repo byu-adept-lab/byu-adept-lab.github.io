@@ -1,0 +1,18 @@
+{%- comment -%}
+  Navy closing band, used by the homepage. The per-audience next steps moved
+  into open-positions.html, which the Joining and People pages carry, so this
+  band points at them instead of repeating them.
+{%- endcomment -%}
+<section class="recruit" id="recruiting">
+  <div class="container">
+    {% include eyebrow.html text="Joining &middot; Now recruiting" %}
+    <h2>Recruiting graduate and undergraduate researchers for the first cohort.</h2>
+    <p class="framing">The next step for each group is on the joining page.</p>
+
+    <div class="btn-row">
+      <a class="btn btn-invert" href="mailto:{{ site.email }}">Email {{ site.email }}</a>
+      <a class="btn btn-ghost-invert" href="{{ '/joining/' | relative_url }}">How to join</a>
+      <a class="btn btn-ghost-invert" href="{{ '/research/' | relative_url }}">Research areas</a>
+    </div>
+  </div>
+</section>

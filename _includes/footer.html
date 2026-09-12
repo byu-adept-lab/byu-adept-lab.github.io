@@ -1,0 +1,39 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="mark" aria-hidden="true">
+          <img src="{{ '/assets/img/adept-mark-white.png' | relative_url }}" alt="" loading="lazy">
+        </span>
+        <div>
+          <div class="footer-name">{{ site.title }}</div>
+          <p class="footer-tagline">{{ site.tagline }}</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer-heading">Contact</p>
+        <ul class="footer-list">
+          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          <li>{{ site.department }}, {{ site.institution }}</li>
+          <li>{{ site.location }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-heading">Elsewhere</p>
+        <ul class="footer-list">
+          <li><a href="https://github.com/{{ site.github_org }}">GitHub&nbsp;&mdash;&nbsp;{{ site.github_org }}</a></li>
+          <li><a href="{{ site.pi.site }}">{{ site.pi.name }}</a></li>
+          <li><a href="https://cs.byu.edu">BYU Computer Science</a></li>
+          <li><a href="https://www.byu.edu">Brigham Young University</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}, {{ site.institution }}.</span>
+      <span>Directed by <a href="{{ site.pi.site }}">{{ site.pi.name }}</a>.</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,126 @@
+{%- comment -%}
+  One person tile. Driven entirely by an entry in _data/people.yml.
+  Usage: {% include person-card.html person=entry %}
+         {% include person-card.html person=entry layout="horizontal" %}
+
+  Only `name` is required. Missing photo falls back to the ADEPT mark on a
+  tint field, in the same tile geometry. Tag chips render whatever strings
+  appear in `tags:` — accents come from _data/tags.yml when the tag is
+  mapped there, otherwise from the CSS default, so new tags need no edits.
+  `level:` (PhD, Master's, Undergraduate, anything) renders as the first chip
+  and is styled apart from the freeform project-area chips after it.
+
+  `layout` only swaps a class — the markup is identical either way, so the
+  variants cannot drift apart:
+
+    (default)    photo above text; the person grids on / and /people/
+    horizontal   photo left of text; the student carousel tiles
+    feature      the PI's card: larger type, small inset photo
+{%- endcomment -%}
+{%- assign person = include.person -%}
+{%- case include.layout -%}
+  {%- when "horizontal" -%}{%- assign layout_class = " person-card-horizontal" -%}
+  {%- when "feature" -%}{%- assign layout_class = " person-card-feature" -%}
+  {%- else -%}{%- assign layout_class = "" -%}
+{%- endcase -%}
+<article class="person-card{{ layout_class }}">
+  {%- if person.photo %}
+  <div class="person-photo">
+    <img src="{{ person.photo | relative_url }}" alt="{% if person.photo_alt %}{{ person.photo_alt }}{% else %}{{ person.name }}{% endif %}" loading="lazy">
+  </div>
+  {%- else %}
+  <div class="person-photo person-photo-placeholder">
+    <span class="mark" aria-hidden="true">
+      <img src="{{ '/assets/img/adept-mark-navy.png' | relative_url }}" alt="" loading="lazy">
+    </span>
+  </div>
+  {%- endif %}
+
+  <div class="person-body">
+    <h3 class="person-name">
+      {%- if person.website %}<a href="{{ person.website }}">{{ person.name }}</a>{% else %}{{ person.name }}{% endif -%}
+    </h3>
+
+    {%- if person.role %}
+    <p class="person-role">{{ person.role }}</p>
+    {%- endif %}
+
+    {%- if person.affiliation or person.years or person.next %}
+    <p class="person-meta">
+      {%- if person.affiliation %}{{ person.affiliation }}{% endif -%}
+      {%- if person.affiliation and person.years %} &middot; {% endif -%}
+      {%- if person.years %}{{ person.years }}{% endif -%}
+      {%- if person.next %}{% if person.affiliation or person.years %} &middot; {% endif %}Now: {{ person.next }}{% endif -%}
+    </p>
+    {%- endif %}
+
+    {%- if person.blurb %}
+    <p class="person-blurb">{{ person.blurb }}</p>
+    {%- endif %}
+
+    {%- comment -%} Under the blurb: degree level first, then project areas. {%- endcomment -%}
+    {%- assign tag_count = person.tags | size %}
+    {%- if person.level or tag_count > 0 %}
+    <ul class="chip-row" aria-label="{% if person.level %}Level and project areas{% else %}Project areas{% endif %} for {{ person.name }}">
+      {%- if person.level -%}
+        <li class="chip chip-level">{{ person.level }}</li>
+      {%- endif -%}
+      {%- for tag in person.tags -%}
+        {%- assign tag_key = tag | downcase -%}
+        {%- assign accent = site.data.tags[tag_key] -%}
+        <li class="chip"{% if accent %} style="--chip-accent: {{ accent }}"{% endif %}>{{ tag }}</li>
+      {%- endfor -%}
+    </ul>
+    {%- endif %}
+
+    {%- comment -%}
+      Captured first so that someone with no links renders no row at all. An
+      empty row would still take its margin, and in the PI card it would draw
+      the hairline that separates the link band from the chips above it.
+    {%- endcomment -%}
+    {%- capture person_links -%}
+      {%- if person.website %}
+      <a class="person-link person-link-primary" href="{{ person.website }}">Website</a>
+      {%- endif %}
+      {%- if person.scholar %}
+        {%- if person.scholar contains "http" -%}
+          {%- assign scholar_url = person.scholar -%}
+        {%- else -%}
+          {%- assign scholar_url = person.scholar | prepend: "https://scholar.google.com/citations?hl=en&user=" -%}
+        {%- endif %}
+      <a class="person-link" href="{{ scholar_url }}">Scholar</a>
+      {%- endif %}
+      {%- if person.github %}
+      <a class="person-link" href="https://github.com/{{ person.github }}">GitHub</a>
+      {%- endif %}
+      {%- if person.orcid %}
+      <a class="person-link" href="https://orcid.org/{{ person.orcid }}">ORCID</a>
+      {%- endif %}
+      {%- if person.bluesky %}
+      <a class="person-link" href="https://bsky.app/profile/{{ person.bluesky }}">Bluesky</a>
+      {%- endif %}
+      {%- if person.twitter %}
+      <a class="person-link" href="https://twitter.com/{{ person.twitter }}">Twitter</a>
+      {%- endif %}
+      {%- if person.linkedin %}
+      <a class="person-link" href="https://linkedin.com/in/{{ person.linkedin }}">LinkedIn</a>
+      {%- endif %}
+      {%- if person.cv %}
+      {%- comment -%}
+        `cv` is documented as a local file or an external URL. relative_url adds
+        the baseurl to the former and returns the latter untouched, so the one
+        filter covers both.
+      {%- endcomment %}
+      <a class="person-link" href="{{ person.cv | relative_url }}">CV</a>
+      {%- endif %}
+      {%- if person.email %}
+      <a class="person-link" href="mailto:{{ person.email }}">Email</a>
+      {%- endif %}
+    {%- endcapture -%}
+    {%- assign link_count = person_links | strip | size %}
+    {%- if link_count > 0 %}
+    <div class="person-links">{{ person_links }}
+    </div>
+    {%- endif %}
+  </div>
+</article>

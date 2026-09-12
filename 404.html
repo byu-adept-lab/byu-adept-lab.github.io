@@ -1,0 +1,30 @@
+---
+layout: page
+permalink: /404.html
+title: Page not found
+description: >-
+  The requested page does not exist on the ADEPT Lab site at Brigham Young University.
+eyebrow: Error &middot; 404
+framing: The link may be out of date, or the address mistyped.
+---
+
+<!-- GitHub Pages serves this file for any unmatched path, at any depth, without
+     redirecting — so a visitor can be reading it from /a/b/c/. Every link and
+     asset it pulls in therefore has to resolve from the site root rather than
+     from wherever the reader happens to be, which is what relative_url does
+     here and in the layout, nav, footer and head this page inherits.
+
+     permalink pins the file to /404.html. Without it Jekyll would prettify the
+     page into /404/index.html, which GitHub Pages does not look for. It also
+     keeps the page out of sitemap.xml, which jekyll-sitemap skips by URL. -->
+<div class="section section-tight">
+  <div class="container">
+    <div class="btn-row">
+      <a class="btn" href="{{ '/research/' | relative_url }}">Research</a>
+      <a class="btn btn-outline" href="{{ '/people/' | relative_url }}">People</a>
+      <a class="btn btn-outline" href="{{ '/publications/' | relative_url }}">Publications</a>
+      <a class="btn btn-outline" href="{{ '/joining/' | relative_url }}">Joining</a>
+      <a class="btn btn-outline" href="{{ '/news/' | relative_url }}">News</a>
+    </div>
+  </div>
+</div>

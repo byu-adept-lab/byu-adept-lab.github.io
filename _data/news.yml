@@ -1,0 +1,20 @@
+# Lab news, newest first. `date` is ISO (YYYY-MM-DD) and is reformatted for
+# display; `text` may contain inline HTML, including links.
+#
+# To add an item, copy the two-line block to the top of this file:
+#
+#   - date: 2026-10-01
+#     text: 'Short sentence. Links are fine: <a href="https://example.com">like this</a>.'
+#
+# Write links to pages on this site root-relative — <a href="/joining/"> — and not
+# with the relative_url filter, which data files do not run through Liquid.
+# _includes/news-list.html adds the baseurl to those paths as it renders them.
+
+- date: 2026-08-03
+  text: 'The ADEPT Lab opens at BYU Computer Science. We are <a href="/joining/">recruiting</a> graduate and undergraduate researchers now.'
+
+- date: 2026-04-30
+  text: 'The <a href="https://compute-optimal-rl-llm-scaling.github.io/">IsoCompute Playbook</a> was accepted to ICML 2026.'
+
+- date: 2026-01-26
+  text: '<a href="https://arxiv.org/abs/2601.04441">SPIN</a>, on offline RL in large discrete action spaces, was accepted to ICLR 2026.'

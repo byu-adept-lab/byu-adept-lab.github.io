@@ -1,0 +1,106 @@
+---
+layout: page
+permalink: /research/
+title: Research
+description: >-
+  The ADEPT Lab works on sequential decision-making where the usual assumptions fail —
+  offline reinforcement learning, irreversibility and risk, delayed and unreliable
+  feedback, structured action spaces, and clinical and scientific decision-making.
+eyebrow: Research &middot; Overview
+lede: >-
+  We build adaptive, person-centered methods for decision-making in messy, high-stakes
+  settings, drawing on reinforcement learning, uncertainty quantification, causal
+  inference, and language model reasoning.
+---
+
+<div class="section">
+  <!-- The wide container, not container-narrow: the paragraphs still stop at
+       --measure, and the figures take the room that leaves. Same slideshow as
+       the About section on the homepage. -->
+  <div class="container">
+    <div class="figure-split">
+      <div class="prose">
+        <p>
+          Most reinforcement learning results are reported on problems that were built to be
+          measurable: the state is observed, the reward arrives on the next step, the data was
+          collected by the agent being trained, and a bad action costs you nothing but a reset.
+          Real decisions are not like that. The settings we care about are partially observed
+          and confounded, the consequence of a choice can arrive weeks after the choice, the
+          data was collected by somebody else for reasons you cannot fully reconstruct, and
+          some actions cannot be taken back.
+        </p>
+        <p>
+          Each area below is a distinct methodological thread, but they share a
+          commitment: we are less interested in clean problems with established benchmarks than
+          in the contextual, sequential, partially observed problems that demand new thinking,
+          and in methods that researchers and practitioners can actually use.
+        </p>
+      </div>
+
+      {% include figure-slideshow.html %}
+    </div>
+  </div>
+</div>
+
+<div class="section section-tinted">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="eyebrow"><span class="eyebrow-tri" aria-hidden="true">&#9650;</span>Research &middot; Areas</h2>
+    </div>
+
+    {%- assign areas = site.research | sort: "order" %}
+    {%- if areas.size > 0 %}
+    <div class="carousel" data-carousel role="group" aria-roledescription="carousel"
+         aria-label="Research areas">
+      <div class="carousel-viewport" data-carousel-viewport tabindex="0">
+        <div class="carousel-track" data-carousel-track>
+          {%- for item in areas %}
+          <article class="tile">
+            <h3 class="tile-title">
+              <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            </h3>
+            {%- if item.framing %}
+            <p class="framing">{{ item.framing }}</p>
+            {%- endif %}
+            {%- if item.summary %}
+            <p class="tile-body">{{ item.summary }}</p>
+            {%- endif %}
+            {%- if item.tags and item.tags.size > 0 %}
+            <ul class="chip-row" aria-label="Topics in {{ item.title | strip_html }}">
+              {%- for tag in item.tags -%}
+                {%- assign tag_key = tag | downcase -%}
+                {%- assign accent = site.data.tags[tag_key] -%}
+                <li class="chip"{% if accent %} style="--chip-accent: {{ accent }}"{% endif %}>{{ tag }}</li>
+              {%- endfor -%}
+            </ul>
+            {%- endif %}
+            <div class="tile-foot">
+              <a class="more-link" href="{{ item.url | relative_url }}">
+                Read more<span class="visually-hidden"> about {{ item.title | strip_html }}</span>
+              </a>
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-arrow" type="button" data-carousel-prev
+                aria-label="Previous research areas">
+          <span aria-hidden="true">&#9664;</span>
+        </button>
+        <button class="carousel-arrow" type="button" data-carousel-next
+                aria-label="Next research areas">
+          <span aria-hidden="true">&#9654;</span>
+        </button>
+        <div class="carousel-dots" data-carousel-dots role="group"
+             aria-label="Research area pages"></div>
+      </div>
+    </div>
+    {%- endif %}
+  </div>
+</div>
+
+<!-- Paging for both carousels on this page, the figures and the area cards.
+     Either track scrolls and snaps without it. -->
+<script src="{{ '/assets/js/carousel.js' | relative_url }}" defer></script>

@@ -1,0 +1,29 @@
+{%- comment -%}
+  Renders _data/news.yml in file order, which is newest first. Shared by the
+  homepage news section and the /news/ archive so the two cannot drift apart.
+  Parameters:
+  - limit: cap the number of items shown; omit to show every item
+  `text` is authored as HTML in the data file, so it is deliberately not escaped.
+  Callers guard the empty case themselves: the homepage drops its whole section,
+  the archive prints an empty state in its place.
+
+  Internal links inside `text` are written root-relative (`/joining/`), matching
+  how every other path in _data/ is stored. Those paths are normally piped
+  through relative_url at the point they are used, but a filter cannot reach
+  inside an HTML string, so the baseurl is spliced onto them here instead.
+  Without this the links are correct only while baseurl is empty.
+{%- endcomment -%}
+{%- assign news_items = site.data.news -%}
+{%- if include.limit %}{% assign news_items = news_items | slice: 0, include.limit %}{% endif -%}
+{%- capture href_root %}href="{{ '/' | relative_url }}{% endcapture -%}
+{%- capture src_root %}src="{{ '/' | relative_url }}{% endcapture -%}
+<ul class="news-list">
+  {%- for item in news_items %}
+  <li class="news-item">
+    <p class="news-date">
+      <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: "%b %-d, %Y" }}</time>
+    </p>
+    <p class="news-content">{{ item.text | replace: 'href="/', href_root | replace: 'src="/', src_root }}</p>
+  </li>
+  {%- endfor %}
+</ul>

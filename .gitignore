@@ -1,0 +1,24 @@
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+vendor/
+.bundle/
+.DS_Store
+
+# Design working material. Kept on disk; the slide renders include internal
+# material that is not for publication.
+_design-reference/
+
+# Python bytecode. Embeds local absolute paths.
+__pycache__/
+*.pyc
+
+# Kept on disk: the only full-resolution copy of the mark, and nothing
+# regenerates it. Also under exclude: in _config.yml, which covers the build
+# but not git.
+assets/img/adept-mark-navy-original.png
+
+# Kept on disk: make-assets.py derives the logo set from it. Unpublished by
+# choice; carries a C2PA manifest declaring AI-generated origin.
+assets/img/adept-full.png
