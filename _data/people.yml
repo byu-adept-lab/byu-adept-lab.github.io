@@ -64,15 +64,20 @@
 # test: the no-photo path renders the ADEPT mark in the tile instead.
 # ============================================================================
 
-- name: Avery Example
+- name: Tianrun Yu
   group: current
   order: 10
   level: PhD
-  blurb: Offline policy learning when the logged data is thin.
+  photo: /assets/img/people/TYu_Headshot.jpg  # drop the file in assets/img/people/
+  photo_alt: Tianrun Yu                  # alt text; defaults to `name`
+  affiliation: BYU Computer Science        # small line under the role
+  blurb: Tianrun Yu is a PhD student in Computer Science at Brigham Young University. His research focuses on reinforcement learning, large language models, robotics, and world models.
   tags:
     - RL
-    - Offline RL
-  email: avery.example@byu.edu
+    - LLMs
+    - Robotics
+  email: tianruny@byu.edu
+  website: https://tianrun-yu.github.io/
 
 - name: Rosalind Placeholder
   group: current
