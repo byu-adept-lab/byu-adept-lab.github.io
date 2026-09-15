@@ -65,6 +65,23 @@
   email: tianruny@byu.edu
   website: https://tianrun-yu.github.io/
 
+- name: Kaixiang Zhao
+  group: current
+  order: 15
+  level: PhD
+  photo: /assets/img/people/KZhao_Headshot.jpg
+  photo_alt: Kaixiang Zhao
+  blurb: >-
+    PhD student co-advised with Amanda Hughes, working on LLM reasoning,
+    RL, and VLMs. M.S. from Notre Dame and B.Eng. from Beijing Jiaotong University.
+  tags:
+    - RL
+    - LLMs
+    - VLMs
+  website: https://kzhao5.github.io/
+  scholar: j2QZb90AAAAJ
+  linkedin: kaixiang-zhao
+
 - name: Preston Hancock
   group: current
   order: 20
@@ -130,11 +147,10 @@
 # ============================================================================
 # PLACEHOLDERS — DELETE OR REPLACE
 #
-# The ten entries below are invented. They exist only to exercise the
+# The six entries below are invented. They exist only to exercise the
 # student carousel on /people/ (three tiles a page) with names and blurbs of
-# different lengths. Every surname is a placeholder word — Mockup, Dummy,
-# Sentinel, Scaffold, Prototype, Widget, Specimen, Sandbox, Canary, Token —
-# so the block is easy to find and delete.
+# different lengths. Every surname is a placeholder word — Mockup, Sentinel,
+# Scaffold, Sandbox, Canary, Token — so the block is easy to find and delete.
 #
 # Replace them with real students as they arrive, or delete the whole block:
 # with `current` empty, /people/ and the homepage both fall back to the
@@ -143,26 +159,6 @@
 # None of them has a `photo`, which is the point of the second half of the
 # test: the no-photo path renders the ADEPT mark in the tile instead.
 # ============================================================================
-
-- name: Tobias Mockup
-  group: current
-  order: 60
-  level: Undergraduate
-  blurb: >-
-    Reads transcripts alongside the models that score them, looking for the
-    cases where the two disagree.
-  tags:
-    - LLMs
-    - Delayed Feedback
-
-- name: Soren Dummy
-  group: current
-  order: 70
-  level: PhD
-  blurb: Learns treatment policies from observational records that are thinner than they look.
-  tags:
-    - Offline RL
-    - Healthcare
 
 - name: Amara Sentinel
   group: current
@@ -193,24 +189,6 @@
   tags:
     - RL
     - Healthcare
-
-- name: Ines Canary
-  group: current
-  order: 140
-  level: Undergraduate
-  blurb: Flags when a new run looks too good, then finds the leak.
-  tags:
-    - LLMs
-    - Delayed Feedback
-
-- name: Rowan Token
-  group: current
-  order: 150
-  level: Undergraduate
-  blurb: Helps label trajectories and keeps the data pipeline from quietly drifting.
-  tags:
-    - Offline RL
-    - LLMs
 
 # ============================================================================
 # PLACEHOLDERS — DELETE OR REPLACE
