@@ -111,14 +111,30 @@
   linkedin: ben-calvert-94064624b/
   github: bencalvert04
 
+- name: Danny Graviet
+  group: current
+  order: 50
+  level: Undergraduate
+  photo: /assets/img/people/DGraviet_Headshot.jpg
+  photo_alt: Danny Graviet
+  blurb: >-
+    Junior interested in classical RL, efficient compute, and the systems that
+    make large-scale experimentation possible.
+  tags:
+    - RL
+    - Delayed Feedback
+  email: gravietd@byu.edu
+  website: https://graviet.io
+  twitter: dtgrav
+
 # ============================================================================
 # PLACEHOLDERS — DELETE OR REPLACE
 #
-# The eleven entries below are invented. They exist only to exercise the
+# The ten entries below are invented. They exist only to exercise the
 # student carousel on /people/ (three tiles a page) with names and blurbs of
-# different lengths. Every surname is a placeholder word — Fixture, Mockup,
-# Dummy, Sentinel, Scaffold, Prototype, Widget, Specimen, Sandbox, Canary,
-# Token — so the block is easy to find and delete.
+# different lengths. Every surname is a placeholder word — Mockup, Dummy,
+# Sentinel, Scaffold, Prototype, Widget, Specimen, Sandbox, Canary, Token —
+# so the block is easy to find and delete.
 #
 # Replace them with real students as they arrive, or delete the whole block:
 # with `current` empty, /people/ and the homepage both fall back to the
@@ -127,15 +143,6 @@
 # None of them has a `photo`, which is the point of the second half of the
 # test: the no-photo path renders the ADEPT mark in the tile instead.
 # ============================================================================
-
-- name: Devon Fixture
-  group: current
-  order: 50
-  level: Undergraduate
-  blurb: Runs the simulation sweeps and keeps the benchmark harness honest.
-  tags:
-    - RL
-    - Healthcare
 
 - name: Tobias Mockup
   group: current
@@ -177,36 +184,6 @@
   tags:
     - Structured Actions
     - RL
-
-- name: Ellis Prototype
-  group: current
-  order: 100
-  level: "Master's"
-  blurb: Uses language models to summarise clinical histories into states an agent can act on.
-  tags:
-    - LLMs
-    - Causal Inference
-  email: ellis.prototype@byu.edu
-
-- name: Farid Widget
-  group: current
-  order: 110
-  level: "Master's"
-  blurb: Chases the cases where a logged policy and a counterfactual evaluator disagree.
-  tags:
-    - Causal Inference
-    - Offline RL
-
-- name: Juniper Specimen
-  group: current
-  order: 120
-  level: "Master's"
-  blurb: >-
-    Builds the evaluation setup the rest of the group borrows, then tries to
-    break it.
-  tags:
-    - RL
-    - Delayed Feedback
 
 - name: Kofi Sandbox
   group: current
