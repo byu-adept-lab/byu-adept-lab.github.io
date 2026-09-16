@@ -82,6 +82,20 @@
   scholar: j2QZb90AAAAJ
   linkedin: kaixiang-zhao
 
+- name: Jeremy Summers
+  group: current
+  order: 18
+  level: "Master's"
+  photo: /assets/img/people/JSummers_Headshot.jpg
+  photo_alt: Jeremy Summers
+  blurb: >-
+    First-year Master's student working on RL. B.S. in CS
+    with an ML emphasis, plus minors in mathematics and statistics.
+  tags:
+    - RL
+  linkedin: jeremy-summers-27sa
+  email: jersumms@byu.edu
+
 - name: Preston Hancock
   group: current
   order: 20
@@ -144,13 +158,29 @@
   website: https://graviet.io
   twitter: dtgrav
 
+- name: Zihang Yao
+  group: current
+  order: 60
+  level: Undergraduate
+  photo: /assets/img/people/ZYao_Headshot.jpg
+  photo_alt: Zihang Yao
+  blurb: >-
+    Undergraduate researcher in embodied AI and reinforcement learning for
+    robotics, with a focus on reliable decision-making and failure-aware
+    robot learning.
+  tags:
+    - RL
+    - Robotics
+    - UQ
+  email: eason7@byu.edu
+
 # ============================================================================
 # PLACEHOLDERS — DELETE OR REPLACE
 #
-# The six entries below are invented. They exist only to exercise the
+# The two entries below are invented. They exist only to exercise the
 # student carousel on /people/ (three tiles a page) with names and blurbs of
-# different lengths. Every surname is a placeholder word — Mockup, Sentinel,
-# Scaffold, Sandbox, Canary, Token — so the block is easy to find and delete.
+# different lengths. Every surname is a placeholder word — Sentinel,
+# Scaffold — so the block is easy to find and delete.
 #
 # Replace them with real students as they arrive, or delete the whole block:
 # with `current` empty, /people/ and the homepage both fall back to the
@@ -171,24 +201,6 @@
     - Delayed Feedback
     - Healthcare
   email: amara.sentinel@byu.edu
-
-- name: Nia Scaffold
-  group: current
-  order: 90
-  level: PhD
-  blurb: Studies action spaces that are structured rather than flat — doses, timings and combinations.
-  tags:
-    - Structured Actions
-    - RL
-
-- name: Kofi Sandbox
-  group: current
-  order: 130
-  level: Undergraduate
-  blurb: Writes the small tools the others use to inspect a trained policy.
-  tags:
-    - RL
-    - Healthcare
 
 # ============================================================================
 # PLACEHOLDERS — DELETE OR REPLACE
