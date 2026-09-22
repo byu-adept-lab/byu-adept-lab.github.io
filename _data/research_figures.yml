@@ -190,3 +190,24 @@
   areas: []
   width: 1839
   height: 541
+
+# `areas` is empty because this paper has no `areas` key in publications.yml.
+- image: /assets/img/research/when-eos-tokens-disagree-fig6.png
+  alt: >-
+    Three line charts compare summed terminal-token probability over 200
+    training steps with no EOS fix, in orange, and with a semantic EOS fix, in
+    green. For Qwen3, both curves rise initially, but the unfixed probability
+    later collapses to zero while the corrected probability remains near 0.8.
+    For Llama 3.2, both begin near zero; the unfixed curve stays there while
+    the corrected curve rises to roughly 0.3. For Gemma 3, the unfixed curve
+    falls to zero early, while the corrected curve climbs sharply after about
+    60 steps and remains near 1.
+  caption: >-
+    Treating equivalent EOS tokens as one semantic stopping action prevents or
+    reverses the collapse in termination probability across Qwen, Llama and
+    Gemma.
+  paper: "When EOS Tokens Disagree: Understanding Length Inflation in On-Policy Distillation"
+  url: "https://arxiv.org/abs/2609.20511"
+  areas: []
+  width: 1800
+  height: 642
