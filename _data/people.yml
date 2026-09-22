@@ -55,7 +55,7 @@
   photo: /assets/img/people/TYu_Headshot.jpg # drop the file in assets/img/people/
   photo_alt: Tianrun Yu # alt text; defaults to `name`
   # affiliation: BYU Computer Science # small line under the role
-  blurb: >- 
+  blurb: >-
     Tianrun Yu is a PhD student in Computer Science at BYU. 
     His research focuses on RL, LLMs, robotics, and world models.
   tags:
@@ -72,7 +72,7 @@
   photo: /assets/img/people/KZhao_Headshot.jpg
   photo_alt: Kaixiang Zhao
   blurb: >-
-    PhD student co-advised with Amanda Hughes, working on LLM reasoning,
+    PhD student co-advised with Amanda Hughes: LLM reasoning,
     RL, and VLMs. M.S. from Notre Dame and B.Eng. from Beijing Jiaotong University.
   tags:
     - RL
@@ -104,7 +104,7 @@
   photo_alt: Preston Hancock
   blurb: >-
     Machine Learning major with a research focus on training dynamics, 
-    computer vision, and reinforcement learning. 
+    computer vision, and reinforcement learning.
   tags:
     - Offline RL
   email: phancoc3@byu.edu
@@ -165,7 +165,7 @@
   photo: /assets/img/people/ZYao_Headshot.jpg
   photo_alt: Zihang Yao
   blurb: >-
-    Undergraduate researcher in embodied AI and reinforcement learning for
+    Interested in embodied AI and RL for
     robotics, with a focus on reliable decision-making and failure-aware
     robot learning.
   tags:
@@ -174,49 +174,23 @@
     - UQ
   email: eason7@byu.edu
 
-# ============================================================================
-# PLACEHOLDERS — DELETE OR REPLACE
-#
-# The two entries below are invented. They exist only to exercise the
-# student carousel on /people/ (three tiles a page) with names and blurbs of
-# different lengths. Every surname is a placeholder word — Sentinel,
-# Scaffold — so the block is easy to find and delete.
-#
-# Replace them with real students as they arrive, or delete the whole block:
-# with `current` empty, /people/ and the homepage both fall back to the
-# open-positions panel on their own.
-#
-# None of them has a `photo`, which is the point of the second half of the
-# test: the no-photo path renders the ADEPT mark in the tile instead.
-# ============================================================================
-
-- name: Amara Sentinel
+- name: Jack Rich
   group: current
-  order: 80
-  level: PhD
+  order: 70
+  level: Undergraduate
+  photo: /assets/img/people/JRich_Headshot.jpg
+  photo_alt: Jack Rich
   blurb: >-
-    Works on what a policy should do when the outcome that scores a decision
-    does not arrive for weeks.
+    Junior studying Applied Math with a Machine Learning emphasis.
   tags:
-    - Delayed Feedback
-    - Healthcare
-  email: amara.sentinel@byu.edu
+    - RL
+    - Continual Learning
+  email: jack9565@byu.edu
+  linkedin: jack-rich-2345822bb
 
 # ============================================================================
-# PLACEHOLDERS — DELETE OR REPLACE
-#
-# Invented alumni, so the Alumni list on /people/ has something to show. The
-# lab opened in August 2026 and has no alumni yet, so the names, the year
-# ranges and the destinations here are all fictional. Surnames continue the
-# students' convention of being placeholder words — Stub, Lorem, Ipsum,
-# Boilerplate, Stand-In — so the block is easy to find and delete.
-#
-# Deleting it hides the Alumni heading again on its own; nothing else to undo.
-#
-# Alumni render as a compact list of name, level, optional affiliation, years
-# and destination, not as photo cards, so no `photo` and no `blurb` here.
-# `affiliation` is the institution they were at while in the lab; leave it off
-# and the name stands alone in that column.
+# Alumni. Compact list of name, level, optional affiliation, years and
+# destination — not photo cards. An empty `past` group hides this section.
 # ============================================================================
 
 - name: Matt Landers
@@ -226,36 +200,6 @@
   affiliation: University of Virginia
   years: 2023–2026
   next: AI Research @ Plastic Labs
-
-- name: Oluwaseun Boilerplate
-  group: past
-  order: 20
-  level: PhD
-  years: 2026–2030
-  next: Research scientist at an industry lab
-
-- name: Hector Lorem
-  group: past
-  order: 30
-  level: "Master's"
-  affiliation: BYU Computer Science
-  years: 2026–2028
-  next: Machine learning engineer at a software company
-
-- name: Wren Ipsum
-  group: past
-  order: 40
-  level: "Master's"
-  years: 2027–2029
-  next: Data scientist at a regional health system
-
-- name: Marcus Stand-In
-  group: past
-  order: 50
-  level: Undergraduate
-  years: 2026–2027
-  next: Graduate student at another university
-
 
 ## COLLABORATORS
 
@@ -279,7 +223,6 @@
   photo: /assets/img/people/RAmmanabrolu_Headshot.jpg
   photo_alt: Raj Ammanabrolu
   website: https://prithvirajva.com/
-
 # ----------------------------------------------------------------------------
 # TEMPLATE — copy the block below, uncomment it, and edit. It exercises every
 # supported field; delete the lines you do not need. `name` is the only one
