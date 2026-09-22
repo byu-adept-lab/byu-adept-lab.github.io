@@ -10,6 +10,9 @@
 # with the relative_url filter, which data files do not run through Liquid.
 # _includes/news-list.html adds the baseurl to those paths as it renders them.
 
+- date: 2026-09-19
+  text: 'New preprint: <a href="https://arxiv.org/abs/2609.20511">When EOS Tokens Disagree</a> explains how termination-token mismatch can make on-policy distillation penalize a model for stopping, and introduces a semantic EOS correction that reduces length inflation.'
+
 - date: 2026-08-03
   text: 'The ADEPT Lab opens at BYU Computer Science. We are <a href="/joining/">recruiting</a> graduate and undergraduate researchers now.'
 
