@@ -1,14 +1,17 @@
 {%- comment -%}
   One people group as a compact list rather than photo cards: name and level,
-  years, then where the person went. This is the conventional shape for alumni,
-  who do not need a headshot and a bio to be useful on the page.
+  optional affiliation, years, then where the person went. This is the
+  conventional shape for alumni, who do not need a headshot and a bio to be
+  useful on the page.
   Usage: {% include people-list.html group="past" eyebrow="People · Alumni" heading="Alumni" %}
 
   Hides itself entirely when the group is empty, exactly as people-group.html
   does, so an empty Alumni section never renders a bare heading.
 
-  Reads `years` and `next` from _data/people.yml, and reuses the same level chip
-  as the person cards so a degree level looks the same everywhere on the site.
+  Reads `affiliation`, `years`, and `next` from _data/people.yml, and reuses
+  the same level chip as the person cards so a degree level looks the same
+  everywhere on the site. Affiliation is optional: without it the name stands
+  alone in that column and the years / destination columns stay aligned.
 {%- endcomment -%}
 {%- assign members = site.data.people | where: "group", include.group | sort: "order" -%}
 {%- if members.size > 0 %}
@@ -28,10 +31,15 @@
         exist for a screen reader or for copied text. Whitespace between flex
         items is not rendered, so the space costs nothing visually.
       {%- endcomment -%}
-      <p class="people-list-name">
-        {%- if person.website %}<a href="{{ person.website }}">{{ person.name }}</a>{% else %}{{ person.name }}{% endif %}
-        {% if person.level %}<span class="chip chip-level">{{ person.level }}</span>{% endif -%}
-      </p>
+      <div class="people-list-who">
+        <p class="people-list-name">
+          {%- if person.website %}<a href="{{ person.website }}">{{ person.name }}</a>{% else %}{{ person.name }}{% endif %}
+          {% if person.level %}<span class="chip chip-level">{{ person.level }}</span>{% endif -%}
+        </p>
+        {%- if person.affiliation %}
+        <p class="people-list-affiliation">{{ person.affiliation }}</p>
+        {%- endif %}
+      </div>
 
       {%- comment -%} Cells render even when empty, so the columns stay aligned. {%- endcomment -%}
       <p class="people-list-years">{% if person.years %}{{ person.years }}{% endif %}</p>

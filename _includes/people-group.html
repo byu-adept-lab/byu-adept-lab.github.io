@@ -6,6 +6,9 @@
   Collaborators section never renders a bare heading. Pass
   `empty_state="open"` to swap in the open-positions panel instead
   (used for `current`, which has no members yet).
+
+  `collaborators` gets a denser grid class so a handful of tiles cannot swell
+  to the full content width the way the default person-grid would.
 {%- endcomment -%}
 {%- assign members = site.data.people | where: "group", include.group | sort: "order" -%}
 {%- if members.size > 0 or include.empty_state %}
@@ -17,7 +20,10 @@
   </div>
 
   {%- if members.size > 0 %}
-  <div class="person-grid{% if include.group == 'pi' %} person-grid-pi{% endif %}">
+  {%- capture grid_class -%}
+    {%- if include.group == "pi" %} person-grid-pi{% elsif include.group == "collaborators" %} person-grid-collaborators{% endif -%}
+  {%- endcapture %}
+  <div class="person-grid{{ grid_class }}">
     {%- for person in members %}
     {% include person-card.html person=person %}
     {%- endfor %}

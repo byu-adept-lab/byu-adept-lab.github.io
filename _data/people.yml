@@ -48,139 +48,181 @@
   twitter: tw_killian
   linkedin: taylor-w-killian
 
-# ============================================================================
-# PLACEHOLDERS — DELETE OR REPLACE
-#
-# The six entries below are invented. They exist only to exercise the student
-# carousel on /people/ (three tiles a page, two pages) with names and blurbs of
-# different lengths. Every surname is a placeholder word — Example, Placeholder,
-# Sample, Testcase, Fixture, Mockup — so the block is easy to find and delete.
-#
-# Replace them with real students as they arrive, or delete the whole block:
-# with `current` empty, /people/ and the homepage both fall back to the
-# open-positions panel on their own.
-#
-# None of them has a `photo`, which is the point of the second half of the
-# test: the no-photo path renders the ADEPT mark in the tile instead.
-# ============================================================================
-
-- name: Avery Example
+- name: Tianrun Yu
   group: current
   order: 10
   level: PhD
-  blurb: Offline policy learning when the logged data is thin.
+  photo: /assets/img/people/TYu_Headshot.jpg # drop the file in assets/img/people/
+  photo_alt: Tianrun Yu # alt text; defaults to `name`
+  # affiliation: BYU Computer Science # small line under the role
+  blurb: >-
+    Tianrun Yu is a PhD student in Computer Science at BYU. 
+    His research focuses on RL, LLMs, robotics, and world models.
   tags:
     - RL
-    - Offline RL
-  email: avery.example@byu.edu
+    - LLMs
+    - Robotics
+  email: tianruny@byu.edu
+  website: https://tianrun-yu.github.io/
 
-- name: Rosalind Placeholder
+- name: Kaixiang Zhao
+  group: current
+  order: 15
+  level: PhD
+  photo: /assets/img/people/KZhao_Headshot.jpg
+  photo_alt: Kaixiang Zhao
+  blurb: >-
+    PhD student co-advised with Amanda Hughes: LLM reasoning,
+    RL, and VLMs. M.S. from Notre Dame and B.Eng. from Beijing Jiaotong University.
+  tags:
+    - RL
+    - LLMs
+    - VLMs
+  website: https://kzhao5.github.io/
+  scholar: j2QZb90AAAAJ
+  linkedin: kaixiang-zhao
+
+- name: Jeremy Summers
+  group: current
+  order: 18
+  level: "Master's"
+  photo: /assets/img/people/JSummers_Headshot.jpg
+  photo_alt: Jeremy Summers
+  blurb: >-
+    First-year Master's student working on RL. B.S. in CS
+    with an ML emphasis, plus minors in mathematics and statistics.
+  tags:
+    - RL
+  linkedin: jeremy-summers-27sa
+  email: jersumms@byu.edu
+
+- name: Preston Hancock
   group: current
   order: 20
-  level: PhD
+  level: Undergraduate
+  photo: /assets/img/people/PHancock_Headshot.jpg
+  photo_alt: Preston Hancock
   blurb: >-
-    Works on treatment policies that have to be learned from observational
-    records. Interested in what happens when the outcome that scores a decision
-    does not arrive for weeks.
+    Machine Learning major with a research focus on training dynamics, 
+    computer vision, and reinforcement learning.
   tags:
-    - Healthcare
-    - Delayed Feedback
     - Offline RL
+  email: phancoc3@byu.edu
+  github: PJHancock
+  linkedin: preston-hancock/
 
-- name: Kai Sample
+- name: Ray Shaw
   group: current
   order: 30
-  level: "Master's"
+  level: Undergraduate
+  photo: /assets/img/people/RShaw_Headshot.jpg
+  photo_alt: Ray Shaw
   blurb: >-
-    Uses language models to summarise clinical histories into states an agent
-    can act on.
+    Junior studying Statistics with an emphasis in Data Science. 
+    My research interests include RL with a focus on LLM plasticity and empowerment.
   tags:
     - LLMs
-    - Causal Inference
-  email: kai.sample@byu.edu
+    - RL
+  email: rshaw0@byu.edu
+  linkedin: ray-shaw-726838253/
 
-- name: Marguerite Testcase
+- name: Ben Calvert
   group: current
   order: 40
-  level: "Master's"
+  level: Undergraduate
+  photo: /assets/img/people/BCalvert_Headshot.jpg
+  photo_alt: Ben Calvert
   blurb: >-
-    Studies action spaces that are structured rather than flat — doses, timings
-    and combinations that constrain each other. Building the evaluation setup
-    the rest of the group borrows.
+    Junior studying ACME with a concentration in CS, 
+    interested in evals and benchmarking; focusing on post-training, RL, and the data bottle-neck.
   tags:
-    - Structured Actions
+    - LLMs
     - RL
+  email: bcal04@byu.edu
+  linkedin: ben-calvert-94064624b/
+  github: bencalvert04
 
-- name: Devon Fixture
+- name: Danny Graviet
   group: current
   order: 50
   level: Undergraduate
-  blurb: Runs the simulation sweeps and keeps the benchmark harness honest.
+  photo: /assets/img/people/DGraviet_Headshot.jpg
+  photo_alt: Danny Graviet
+  blurb: >-
+    Junior interested in classical RL, efficient compute, and the systems that
+    make large-scale experimentation possible.
   tags:
     - RL
-    - Healthcare
+    - Delayed Feedback
+  email: gravietd@byu.edu
+  website: https://graviet.io
+  twitter: dtgrav
 
-- name: Tobias Mockup
+- name: Zihang Yao
   group: current
   order: 60
   level: Undergraduate
+  photo: /assets/img/people/ZYao_Headshot.jpg
+  photo_alt: Zihang Yao
   blurb: >-
-    Reads transcripts alongside the models that score them, looking for the
-    cases where the two disagree.
+    Interested in embodied AI and RL for
+    robotics, with a focus on reliable decision-making and failure-aware
+    robot learning.
   tags:
-    - LLMs
-    - Delayed Feedback
+    - RL
+    - Robotics
+    - UQ
+  email: eason7@byu.edu
+
+- name: Jack Rich
+  group: current
+  order: 70
+  level: Undergraduate
+  photo: /assets/img/people/JRich_Headshot.jpg
+  photo_alt: Jack Rich
+  blurb: >-
+    Junior studying Applied Math with a Machine Learning emphasis.
+  tags:
+    - RL
+    - Continual Learning
+  email: jack9565@byu.edu
+  linkedin: jack-rich-2345822bb
 
 # ============================================================================
-# PLACEHOLDERS — DELETE OR REPLACE
-#
-# Invented alumni, so the Alumni list on /people/ has something to show. The
-# lab opened in August 2026 and has no alumni yet, so the names, the year
-# ranges and the destinations here are all fictional. Surnames continue the
-# students' convention of being placeholder words — Stub, Lorem, Ipsum,
-# Boilerplate, Stand-In — so the block is easy to find and delete.
-#
-# Deleting it hides the Alumni heading again on its own; nothing else to undo.
-#
-# Alumni render as a compact list of name, level, years and destination, not as
-# photo cards, so no `photo` and no `blurb` here.
+# Alumni. Compact list of name, level, optional affiliation, years and
+# destination — not photo cards. An empty `past` group hides this section.
 # ============================================================================
 
-- name: Imogen Stub
+- name: Matt Landers
   group: past
   order: 10
   level: PhD
-  years: 2026–2031
-  next: Postdoctoral researcher at a research university
+  affiliation: University of Virginia
+  years: 2023–2026
+  next: AI Research @ Plastic Labs
 
-- name: Oluwaseun Boilerplate
-  group: past
+## COLLABORATORS
+
+- name: BYU Idea Labs
+  group: collaborators
+  order: 5
+  photo: /assets/img/people/IdeaLabs_Headshot.jpg
+  photo_alt: BYU Idea Labs
+  website: https://idealabs.byu.edu
+
+- name: Claas Voelcker
+  group: collaborators
+  order: 10
+  photo: /assets/img/people/CVoelcker_Headshot.jpg
+  photo_alt: Claas Voelcker
+  website: https://cvoelcker.de/
+
+- name: Raj Ammanabrolu
+  group: collaborators
   order: 20
-  level: PhD
-  years: 2026–2030
-  next: Research scientist at an industry lab
-
-- name: Hector Lorem
-  group: past
-  order: 30
-  level: "Master's"
-  years: 2026–2028
-  next: Machine learning engineer at a software company
-
-- name: Wren Ipsum
-  group: past
-  order: 40
-  level: "Master's"
-  years: 2027–2029
-  next: Data scientist at a regional health system
-
-- name: Marcus Stand-In
-  group: past
-  order: 50
-  level: Undergraduate
-  years: 2026–2027
-  next: Graduate student at another university
-
+  photo: /assets/img/people/RAmmanabrolu_Headshot.jpg
+  photo_alt: Raj Ammanabrolu
+  website: https://prithvirajva.com/
 # ----------------------------------------------------------------------------
 # TEMPLATE — copy the block below, uncomment it, and edit. It exercises every
 # supported field; delete the lines you do not need. `name` is the only one
@@ -197,7 +239,8 @@
 #                                            # usually want one or the other)
 #   photo: /assets/img/people/alovelace.jpg  # drop the file in assets/img/people/
 #   photo_alt: Ada Lovelace                  # alt text; defaults to `name`
-#   affiliation: BYU Computer Science        # small line under the role
+#   affiliation: BYU Computer Science        # under the name on cards and in
+#                                            # the alumni list; optional
 #   years: 2026–2031                         # useful for alumni
 #   next: Research Scientist, Somewhere      # where an alum went, shown as "Now: ..."
 #   blurb: >-                                # two or three sentences, no more
@@ -207,7 +250,8 @@
 #     - RL
 #     - Healthcare
 #     - Delayed Feedback
-#   website: https://example.com             # personal site; becomes the name link
+#   website: https://example.com             # personal site; the whole tile
+#                                            # becomes a link, and the name too
 #   email: ada@byu.edu
 #   scholar: XXXXXXXXXXXX                    # Scholar user ID, or a full URL
 #   github: adalovelace

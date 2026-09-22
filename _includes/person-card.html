@@ -23,7 +23,7 @@
   {%- when "feature" -%}{%- assign layout_class = " person-card-feature" -%}
   {%- else -%}{%- assign layout_class = "" -%}
 {%- endcase -%}
-<article class="person-card{{ layout_class }}">
+<article class="person-card{{ layout_class }}{% if person.website %} person-card-linked{% endif %}">
   {%- if person.photo %}
   <div class="person-photo">
     <img src="{{ person.photo | relative_url }}" alt="{% if person.photo_alt %}{{ person.photo_alt }}{% else %}{{ person.name }}{% endif %}" loading="lazy">
@@ -40,6 +40,11 @@
     <h3 class="person-name">
       {%- if person.website %}<a href="{{ person.website }}">{{ person.name }}</a>{% else %}{{ person.name }}{% endif -%}
     </h3>
+    {%- comment -%}
+      The name link is stretched over the whole tile in CSS, so a click
+      anywhere on the card (photo, blurb, chips) follows `website`. Other
+      `.person-link` buttons sit above that hit area and still work.
+    {%- endcomment -%}
 
     {%- if person.role %}
     <p class="person-role">{{ person.role }}</p>

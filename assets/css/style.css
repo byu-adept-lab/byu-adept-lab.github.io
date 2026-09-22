@@ -1211,8 +1211,8 @@ p:last-child {
 
 /* === People as a list (alumni) ===
    Closed-out groups do not need headshots and bios. Hairline-separated rows of
-   name and level, years, and destination — the same device the news list uses,
-   and deliberately nothing like the student tiles. */
+   name and level, optional affiliation, years, and destination — the same
+   device the news list uses, and deliberately nothing like the student tiles. */
 .people-list {
   list-style: none;
   border-top: 1px solid var(--rule);
@@ -1225,6 +1225,13 @@ p:last-child {
   align-items: baseline;
   padding: 1.125rem 0;
   border-bottom: 1px solid var(--rule);
+}
+
+/* Name + optional affiliation share the first column. The grid item's first
+   baseline is the name, so years and destination still line up across rows
+   that have an affiliation and rows that do not. */
+.people-list-who {
+  min-width: 0;
 }
 
 .people-list-name {
@@ -1248,6 +1255,12 @@ p:last-child {
 .people-list-name a:hover {
   color: var(--navy-2);
   border-bottom: 1px solid var(--slate);
+}
+
+.people-list-affiliation {
+  margin: 0.3rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--slate-deep);
 }
 
 .people-list-years {
@@ -1283,12 +1296,81 @@ p:last-child {
   max-width: 640px;
 }
 
+/* Collaborators are a supporting row, not a second student gallery. Cap the
+   column so three tiles cannot swell to fill the page; leftover space stays
+   empty on the right. 12rem is a little under the student photo square. */
+.person-grid-collaborators {
+  grid-template-columns: repeat(auto-fill, 12rem);
+  gap: 1rem;
+}
+
+.person-grid-collaborators .person-body {
+  padding: 0.75rem 0.85rem 0.85rem;
+}
+
+.person-grid-collaborators .person-name {
+  font-size: 0.9375rem;
+  margin-bottom: 0.5rem;
+}
+
+.person-grid-collaborators .person-meta {
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.person-grid-collaborators .person-blurb {
+  font-size: 0.8125rem;
+  margin-bottom: 0.5rem;
+}
+
+.person-grid-collaborators .chip-row {
+  margin-bottom: 0.5rem;
+}
+
+.person-grid-collaborators .person-links {
+  gap: 0.375rem;
+}
+
+.person-grid-collaborators .person-link {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.625rem;
+}
+
 .person-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: var(--white);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+/* `website` stretches the name link over the whole tile. The card then
+   behaves like the research-area tiles: click anywhere to follow it. */
+.person-card-linked {
+  cursor: pointer;
+}
+
+.person-card-linked:hover {
+  background-color: var(--off-white);
+}
+
+.person-card-linked:hover:not(.person-card-feature) {
+  border-color: var(--rule-strong);
+}
+
+.person-card-linked .person-name a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--radius);
+}
+
+.person-card-linked .person-links {
+  position: relative;
+  z-index: 2;
 }
 
 .person-photo {
@@ -2179,6 +2261,12 @@ p:last-child {
 
   .person-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Keep collaborators compact on a phone — two small tiles, not one full-bleed
+     card the way the default person-grid stacks. */
+  .person-grid-collaborators {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .tile-grid {
