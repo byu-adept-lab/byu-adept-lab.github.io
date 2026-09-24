@@ -11,7 +11,7 @@
 # _includes/news-list.html adds the baseurl to those paths as it renders them.
 
 - date: 2026-09-24
-  text: '<a href="https://arxiv.org/abs/2605.30651">LARK</a>, an approach for active data selection in SFT. Was accepted to NeurIPS 2026! Congratulations to <a href="https://tianrun-yu.github.io/">Tianrun Yu</a> and <a href="https://kzhao5.github.io/">Kaixiang Zhao</a>!</p>
+  text: '<a href="https://arxiv.org/abs/2605.30651">LARK</a>, an approach for active data selection in SFT. Was accepted to NeurIPS 2026! Congratulations to <a href="https://tianrun-yu.github.io/">Tianrun Yu</a> and <a href="https://kzhao5.github.io/">Kaixiang Zhao</a>!'
 
 - date: 2026-09-19
   text: 'New preprint: <a href="https://arxiv.org/abs/2609.20511">When EOS Tokens Disagree</a> explains how termination-token mismatch can make on-policy distillation penalize a model for stopping, and introduces a semantic EOS correction that reduces length inflation.'
