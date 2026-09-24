@@ -25,6 +25,17 @@
 
 - year: 2026
   papers:
+    - title: "LARK: Learnability-Grounded Trajectory Selection for Efficient Reasoning Distillation"
+      authors: "Tianrun Yu, Kaixiang Zhao, Chih-Chun Chen, Amanda Hughes, <strong>Taylor W. Killian</strong>, Fenglong Ma, Weitong Zhang, Porter Jenkins"
+      venue: "arXiv pre-print"
+      description: "Selects teacher-generated reasoning trajectories by what the student can actually learn from, measured as how quickly a trajectory reduces training loss, balanced against distributional coverage — rather than by heuristics like quality or confidence."
+      featured: true
+      links:
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2605.30651"
+        - text: "Code"
+          url: "https://github.com/Tianrun-Yu/LARK"
+    
     - title: "When EOS Tokens Disagree: Understanding Length Inflation in On-Policy Distillation"
       authors: "Yuxiao Yang, <strong>Tianrun Yu</strong>, Shangzhe Li, <strong>Kaixiang Zhao</strong>, Xuchao Zhang, Chetan Bansal, Huaxiu Yao, <strong>Taylor W. Killian</strong>, Weitong Zhang"
       venue: "arXiv pre-print"
@@ -88,17 +99,6 @@
           url: "https://arxiv.org/abs/2605.22138"
         - text: "Code"
           url: "https://github.com/sailing-lab/sr2am"
-
-    - title: "LARK: Learnability-Grounded Trajectory Selection for Efficient Reasoning Distillation"
-      authors: "Tianrun Yu, Kaixiang Zhao, Chih-Chun Chen, Amanda Hughes, <strong>Taylor W. Killian</strong>, Fenglong Ma, Weitong Zhang, Porter Jenkins"
-      venue: "arXiv pre-print"
-      description: "Selects teacher-generated reasoning trajectories by what the student can actually learn from, measured as how quickly a trajectory reduces training loss, balanced against distributional coverage — rather than by heuristics like quality or confidence."
-      featured: false
-      links:
-        - text: "Paper"
-          url: "https://arxiv.org/abs/2605.30651"
-        - text: "Code"
-          url: "https://github.com/Tianrun-Yu/LARK"
 
 - year: 2025
   papers:
