@@ -27,7 +27,7 @@
   papers:
     - title: "LARK: Learnability-Grounded Trajectory Selection for Efficient Reasoning Distillation"
       authors: "Tianrun Yu, Kaixiang Zhao, Chih-Chun Chen, Amanda Hughes, <strong>Taylor W. Killian</strong>, Fenglong Ma, Weitong Zhang, Porter Jenkins"
-      venue: "arXiv pre-print"
+      venue: "NeurIPS 2026"
       description: "Selects teacher-generated reasoning trajectories by what the student can actually learn from, measured as how quickly a trajectory reduces training loss, balanced against distributional coverage — rather than by heuristics like quality or confidence."
       featured: true
       links:
