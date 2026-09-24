@@ -29,9 +29,14 @@
   Machinery is the shared carousel: assets/js/carousel.js finds this by
   data-carousel and adds the paging controls. It is the .carousel-solo variant,
   the same one-per-page shape as the hero slideshow. The viewport is a snapping
-  scroll container that already holds all seven figures, so with JS off, by
+  scroll container that already holds every figure, so with JS off, by
   keyboard, or under a screen reader every figure stays reachable and nothing
   is hidden.
+
+  The figures are shuffled on every page load, using the same parser-blocking
+  Fisher-Yates approach as the current-student tiles. The shuffle runs before
+  deferred carousel.js measures the track, so paging, tab order, and screen
+  reader order all describe the randomized arrangement.
 
   data-carousel-autoplay is the opt-in for advancing on its own, in
   milliseconds. It is per instance and not implied by .carousel-solo, so the
@@ -109,4 +114,43 @@
          aria-label="Figure pages"></div>
   </div>
 </div>
+{%- comment -%}
+  Keep this script immediately after the carousel. It runs in the parser task
+  that created the slides, before the deferred carousel script captures their
+  order and before the authored first slide can be painted permanently at the
+  front. Real DOM nodes are moved so visual, keyboard, and assistive-technology
+  order stay aligned.
+{%- endcomment -%}
+<script>
+  (function () {
+    'use strict';
+
+    var script = document.currentScript;
+    var carousel = script && script.previousElementSibling;
+    var track = carousel && carousel.querySelector('[data-carousel-track]');
+    if (!track) return;
+
+    var slides = Array.prototype.slice.call(track.children);
+    for (var i = slides.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var swap = slides[i];
+      slides[i] = slides[j];
+      slides[j] = swap;
+    }
+
+    for (var k = 0; k < slides.length; k++) {
+      track.appendChild(slides[k]);
+
+      /* The authored first image is eager and the rest are lazy. Transfer that
+         distinction to the shuffled first slide so it is ready to display. */
+      var image = slides[k].querySelector('img');
+      if (!image) continue;
+      if (k === 0) {
+        image.removeAttribute('loading');
+      } else {
+        image.setAttribute('loading', 'lazy');
+      }
+    }
+  })();
+</script>
 {%- endif %}

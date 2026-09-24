@@ -1,9 +1,13 @@
 # Research figures for the homepage slideshow.
 #
-# Each entry is the "Figure 1" of one of the PI's own papers, cropped out of
-# the published PDF and saved to assets/img/research/. Titles, `url`s and
-# `areas` are copied verbatim from _data/publications.yml — if you edit a
-# paper's title or link there, update it here too so the two files agree.
+# The browser shuffles these entries on every page load. Their order here is
+# the no-JavaScript fallback and the input order for that shuffle.
+#
+# Each entry is a figure from one of the PI's own papers, extracted from the
+# published PDF and saved to assets/img/research/. Most are Figure 1; preserve
+# the source figure number in the filename when using another figure. Titles,
+# `url`s and `areas` are copied verbatim from _data/publications.yml — if you
+# edit a paper's title or link there, update it here too so the two files agree.
 #
 # Fields:
 #   image    site-relative path to the PNG in assets/img/research/
@@ -20,14 +24,15 @@
 # column. Size the slideshow frame for the widest entry and centre the rest
 # rather than cropping to a single ratio.
 #
-# To add an entry: crop Figure 1 from the paper's PDF to a PNG about
-# 1400-2000 px wide and under ~500 KB (these load on the homepage), drop it in
-# assets/img/research/ with a lowercase hyphenated name ending in -fig1.png,
-# then copy the paper's title, link and areas out of _data/publications.yml
-# and write an `alt` that describes the picture rather than naming it.
+# To add an entry: extract the chosen figure from the paper's PDF as a PNG
+# about 1400-2000 px wide and under ~500 KB (these load on the homepage), drop
+# it in assets/img/research/ with a lowercase hyphenated name ending in
+# -figN.png, where N is its source figure number, then copy the paper's title,
+# link and areas out of _data/publications.yml and write an `alt` that
+# describes the picture rather than naming it.
 # To replace one, overwrite the PNG and correct `width`/`height` to match.
 #
-# Between them these seven papers cover four research areas:
+# Between them these nine papers cover four research areas:
 # offline-reinforcement-learning, clinical-and-scientific-decision-making,
 # structured-action-spaces and irreversibility-and-risk. No paper in
 # publications.yml is tagged delayed-and-unreliable-feedback, so that area is
@@ -211,3 +216,25 @@
   areas: []
   width: 1800
   height: 642
+
+# `areas` is empty because this paper has no `areas` key in publications.yml.
+- image: /assets/img/research/lark-fig1.png
+  alt: >-
+    A three-stage pipeline runs from left to right. In Candidate Pool, a
+    question is sent to multiple teacher models to produce K candidate
+    reasoning trajectories, from which B will be selected. In Rank by Score,
+    the student model scores and sorts the trajectories; the top B sit inside
+    a green dashed box and receive weights proportional to the gap between
+    their scores and the first unselected score, while the remaining
+    trajectories sit inside a red dashed box with zero weight. In Weighted
+    SFT, the selected trajectories and their weights form a weighted loss that
+    is used to fine-tune the student.
+  caption: >-
+    LARK scores teacher-generated reasoning trajectories by how efficiently
+    the student can learn from them, then selects and weights the top
+    candidates for supervised fine-tuning.
+  paper: "LARK: Learnability-Grounded Trajectory Selection for Efficient Reasoning Distillation"
+  url: "https://arxiv.org/abs/2605.30651"
+  areas: []
+  width: 1800
+  height: 518

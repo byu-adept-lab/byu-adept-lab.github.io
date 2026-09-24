@@ -95,8 +95,8 @@ its own rights holders' terms, and no license to it is granted by this file.
 
 2. Research figures — assets/img/research/*.png
 
-   Each of these is a Figure 1 extract from a published paper, reproduced to
-   illustrate the work it comes from. Copyright in each remains with its
+   Each of these is a figure extracted from a published paper and reproduced
+   to illustrate the work it comes from. Copyright in each remains with its
    authors and the publisher of the venue it appeared in, and each stays
    subject to that venue's terms rather than to Section 2:
 
@@ -114,6 +114,10 @@ its own rights holders' terms, and no license to it is granted by this file.
          ICLR 2026
      isocompute-playbook-fig1.png
          ICML 2026
+     when-eos-tokens-disagree-fig6.png
+         arXiv pre-print
+     lark-fig1.png
+         NeurIPS 2026
 
    Every figure's paper title and link are recorded in
    _data/research_figures.yml. To reuse one, start from the paper.

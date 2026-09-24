@@ -105,16 +105,17 @@ This is the slideshow of paper figures. It appears twice — beside the *About* 
 the homepage, and at the top of `/research/`. Both pages use the same file, so **one edit
 updates both**.
 
-Each entry is a figure — Figure 1, in every case so far — from one of the lab's papers, so
-adding one usually follows adding the paper to `_data/publications.yml`.
+Each entry is a figure from one of the lab's papers, so adding one usually follows adding
+the paper to `_data/publications.yml`. Most use Figure 1; when another figure tells the
+story better, preserve its source figure number in the filename.
 
 1. Crop the figure out of the paper's PDF and save it as a **PNG, 1400–2000 px wide, under
    ~500 KB**.
 2. Put it in **`assets/img/research/`**, named lowercase and hyphenated ending in
-   `-fig1.png`, e.g. `saint-fig1.png`.
+   `-figN.png`, where `N` is its source figure number, e.g. `saint-fig1.png`.
 3. Note the PNG's exact pixel width and height — the entry needs them.
-4. Open **`_data/research_figures.yml`** and add an entry at the end (the order in the file
-   is the order of the slideshow).
+4. Open **`_data/research_figures.yml`** and add an entry at the end. The browser shuffles
+   the figures on each page load; file order is the fallback when JavaScript is unavailable.
 5. Copy `paper`, `url`, and `areas` **verbatim** from that paper's entry in
    `_data/publications.yml`, then write your own `alt` and `caption` and fill in `width`
    and `height`.
@@ -162,8 +163,9 @@ This is the real `saint-fig1.png` entry, to copy and edit:
   these.
 
 **What happens:** the figure joins the slideshow on the homepage and on `/research/`. The
-slideshow **advances on its own every 12 seconds** and carries a **pause button** beside
-the arrows. Every figure shares one fixed frame, and figures are **matted, never cropped**
+slideshow **starts in a random order on each page load**, advances on its own every 12
+seconds, and carries a **pause button** beside the arrows. Every figure shares one fixed
+frame, and figures are **matted, never cropped**
 — a very wide one is centred with space above and below, because cropping a plot would cut
 data out of it. The frame is sized to the tallest figure in the set (1483 × 1103), so a
 taller one renders narrower than the column rather than cropping; widening the frame means
@@ -415,14 +417,14 @@ Notes on each:
 - **Hero photos** are cropped to a 3:2 landscape frame about 640 px wide, so ~1200 px wide
   covers a high-resolution screen with room to spare.
 - **Research figures** are matted rather than cropped, so they can be any shape; the
-  existing seven run from roughly 5:1 to 4:3. They are the exception to the rule above,
+  existing nine run from roughly 5:1 to 4:3. They are the exception to the rule above,
   held at 1400–2000 px because plot text and hairlines need the resolution. Keep them as
   PNG — they are plots and line art, which JPEG blurs.
 
 The size ceilings are guidelines, not enforced anywhere. They matter because these images
 load on the front page: the first hero photo and the first research figure load
 immediately, and the rest load as a visitor pages through the slideshows. The existing
-seven figures run 25–240 KB each, about 800 KB for the set. The ~500 KB ceiling is the one
+nine figures run 25–248 KB each, about 1.2 MB for the set. The ~500 KB ceiling is the one
 written into the header of `_data/research_figures.yml`, and staying well under it is what
 keeps the front page quick on a phone.
 
