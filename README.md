@@ -1,6 +1,6 @@
 # ADEPT Lab website — how to update it
 
-The website for the [ADEPT Lab](https://byu-adept-lab.github.io/) at Brigham Young
+The website for the [ADEPT Lab](https://adept-lab.cs.byu.edu/) at Brigham Young
 University. It is a [Jekyll](https://jekyllrb.com/) site: the pages are assembled from
 templates when the site is built, so you almost never have to touch a template.
 
