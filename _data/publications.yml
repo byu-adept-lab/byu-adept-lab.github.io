@@ -34,6 +34,8 @@
       links:
         - text: "Paper"
           url: "https://arxiv.org/abs/2609.37500"
+        - text: "Code"
+          url: "https://github.com/UNCSciML/REVO"
 
     - title: "An RL View of OPD: Least Square Policy Distillation for Sample-Efficient LLM Reasoning"
       authors: "Shangzhe Li, Yuxiao Yang, <strong>Tianrun Yu</strong>, <strong>Kaixiang Zhao</strong>, Xiaoyun Wang, <strong>Taylor W. Killian</strong>, Weitong Zhang"
@@ -44,6 +46,8 @@
       links:
         - text: "Paper"
           url: "https://arxiv.org/abs/2609.35505"
+        - text: "Code"
+          url: "https://github.com/UNCSciML/LSPD"
 
     - title: "Rethinking Training-Inference Mismatch in LLM Reinforcement Learning: Where It Arises and How to Correct It"
       authors: "<strong>Tianrun Yu</strong>, <strong>Kaixiang Zhao</strong>, Shangzhe Li, Yuxiao Yang, Porter Jenkins, Weitong Zhang, <strong>Taylor W. Killian</strong>"
@@ -52,8 +56,12 @@
       featured: false
       areas: [llm-reasoning]
       links:
+        - text: "Website"
+          url: "https://kzhao5.github.io/CIS-website/"
         - text: "Paper"
           url: "https://arxiv.org/abs/2609.32444"
+        - text: "Code"
+          url: "https://github.com/kzhao5/CIS-RL"
 
     - title: "LARK: Learnability-Grounded Trajectory Selection for Efficient Reasoning Distillation"
       authors: "<strong>Tianrun Yu</strong>, <strong>Kaixiang Zhao</strong>, Chih-Chun Chen, Amanda Hughes, <strong>Taylor W. Killian</strong>, Fenglong Ma, Weitong Zhang, Porter Jenkins"
