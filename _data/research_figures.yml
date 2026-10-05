@@ -32,14 +32,10 @@
 # describes the picture rather than naming it.
 # To replace one, overwrite the PNG and correct `width`/`height` to match.
 #
-# Between them these ten papers cover four research areas:
-# offline-reinforcement-learning, clinical-and-scientific-decision-making,
-# structured-action-spaces and irreversibility-and-risk. No paper in
-# publications.yml is tagged delayed-and-unreliable-feedback, so that area is
-# not represented. The IsoCompute entry carries no areas at all, because that
-# paper has no `areas` key in publications.yml — `areas: []` here records that
-# rather than guessing one, so anything rendering area tags should expect the
-# list to be empty.
+# Between them these ten papers cover seven research areas:
+# offline-reinforcement-learning, llm-reasoning, data-curation,
+# delayed-and-unreliable-feedback, clinical-and-scientific-decision-making,
+# structured-action-spaces and irreversibility-and-risk.
 
 - image: /assets/img/research/medical-dead-ends-fig1.png
   alt: >-
@@ -192,11 +188,10 @@
     allocation that should grow as the budget grows.
   paper: "IsoCompute Playbook: Optimally Scaling Sampling Compute for LLM RL"
   url: "https://arxiv.org/abs/2603.12151"
-  areas: []
+  areas: [llm-reasoning]
   width: 1839
   height: 541
 
-# `areas` is empty because this paper has no `areas` key in publications.yml.
 - image: /assets/img/research/when-eos-tokens-disagree-fig6.png
   alt: >-
     Three line charts compare summed terminal-token probability over 200
@@ -213,11 +208,10 @@
     Gemma.
   paper: "When EOS Tokens Disagree: Understanding Length Inflation in On-Policy Distillation"
   url: "https://arxiv.org/abs/2609.20511"
-  areas: []
+  areas: [llm-reasoning]
   width: 1800
   height: 642
 
-# `areas` is empty because this paper has no `areas` key in publications.yml.
 - image: /assets/img/research/rethinking-training-inference-fig1.png
   alt: >-
     A left-to-right process diagram with a purple Inference engine generating
@@ -231,11 +225,10 @@
     reweighting token-level learning signals with confidence-aware caps.
   paper: "Rethinking Training-Inference Mismatch in LLM Reinforcement Learning: Where It Arises and How to Correct It"
   url: "https://arxiv.org/abs/2609.32444"
-  areas: []
+  areas: [llm-reasoning]
   width: 1625
   height: 570
 
-# `areas` is empty because this paper has no `areas` key in publications.yml.
 - image: /assets/img/research/lark-fig1.png
   alt: >-
     A three-stage pipeline runs from left to right. In Candidate Pool, a
@@ -253,6 +246,6 @@
     candidates for supervised fine-tuning.
   paper: "LARK: Learnability-Grounded Trajectory Selection for Efficient Reasoning Distillation"
   url: "https://arxiv.org/abs/2605.30651"
-  areas: []
+  areas: [data-curation]
   width: 1800
   height: 518

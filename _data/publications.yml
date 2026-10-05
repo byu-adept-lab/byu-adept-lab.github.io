@@ -26,37 +26,41 @@
 - year: 2026
   papers:
     - title: "REVO: Rollout-Efficient Off-Policy Distillation via Variance-Guided Reuse"
-      authors: "Yuxiao Yang, Shangzhe Li, Tianrun Yu, Kaixiang Zhao, <strong>Taylor W. Killian</strong>, Weitong Zhang"
+      authors: "Yuxiao Yang, Shangzhe Li, <strong>Tianrun Yu</strong>, <strong>Kaixiang Zhao</strong>, <strong>Taylor W. Killian</strong>, Weitong Zhang"
       venue: "arXiv pre-print"
       description: "REVO makes on-policy distillation more rollout-efficient by reusing student trajectories for multiple learner updates, correcting the resulting policy mismatch with stabilized prefix weighting, one-step resampling, and variance-guided token selection."
       featured: false
+      areas: [llm-reasoning]
       links:
         - text: "Paper"
           url: "https://arxiv.org/abs/2609.37500"
 
     - title: "An RL View of OPD: Least Square Policy Distillation for Sample-Efficient LLM Reasoning"
-      authors: "Shangzhe Li, Yuxiao Yang, Tianrun Yu, Kaixiang Zhao, Xiaoyun Wang, <strong>Taylor W. Killian</strong>, Weitong Zhang"
+      authors: "Shangzhe Li, Yuxiao Yang, <strong>Tianrun Yu</strong>, <strong>Kaixiang Zhao</strong>, Xiaoyun Wang, <strong>Taylor W. Killian</strong>, Weitong Zhang"
       venue: "arXiv pre-print"
       description: "LSPD reframes on-policy distillation through reinforcement learning, combining optimistic exploration and off-policy trajectory reuse to preserve policy diversity while improving rollout efficiency and mathematical reasoning performance."
       featured: false
+      areas: [llm-reasoning]
       links:
         - text: "Paper"
           url: "https://arxiv.org/abs/2609.35505"
 
     - title: "Rethinking Training-Inference Mismatch in LLM Reinforcement Learning: Where It Arises and How to Correct It"
-      authors: "Tianrun Yu, Kaixiang Zhao, Shangzhe Li, Yuxiao Yang, Porter Jenkins, Weitong Zhang, <strong>Taylor W. Killian</strong>"
+      authors: "<strong>Tianrun Yu</strong>, <strong>Kaixiang Zhao</strong>, Shangzhe Li, Yuxiao Yang, Porter Jenkins, Weitong Zhang, <strong>Taylor W. Killian</strong>"
       venue: "arXiv pre-print"
       description: "CIS corrects the probability mismatch between inference and training engines in RL with verifiable rewards by separating token confidence from engine discrepancy and applying confidence-aware importance-ratio truncation."
       featured: false
+      areas: [llm-reasoning]
       links:
         - text: "Paper"
           url: "https://arxiv.org/abs/2609.32444"
 
     - title: "LARK: Learnability-Grounded Trajectory Selection for Efficient Reasoning Distillation"
-      authors: "Tianrun Yu, Kaixiang Zhao, Chih-Chun Chen, Amanda Hughes, <strong>Taylor W. Killian</strong>, Fenglong Ma, Weitong Zhang, Porter Jenkins"
+      authors: "<strong>Tianrun Yu</strong>, <strong>Kaixiang Zhao</strong>, Chih-Chun Chen, Amanda Hughes, <strong>Taylor W. Killian</strong>, Fenglong Ma, Weitong Zhang, Porter Jenkins"
       venue: "NeurIPS 2026"
       description: "Selects teacher-generated reasoning trajectories by what the student can actually learn from, measured as how quickly a trajectory reduces training loss, balanced against distributional coverage — rather than by heuristics like quality or confidence."
       featured: true
+      areas: [data-curation]
       links:
         - text: "Paper"
           url: "https://arxiv.org/abs/2605.30651"
@@ -68,6 +72,7 @@
       venue: "arXiv pre-print"
       description: "On-policy distillation can suppress a student's preferred end-of-sequence token when the teacher uses a different but equivalent stopping token, causing severe length inflation. Aggregating equivalent EOS probabilities into one semantic stopping action substantially reduces excessive responses and truncation across Qwen3, Llama, and Gemma."
       featured: false
+      areas: [llm-reasoning]
       links:
         - text: "Website"
           url: "https://uncsciml.github.io/opd-eos-website/"
@@ -93,6 +98,7 @@
       venue: "ICML 2026"
       description: "Scaling laws for LLM reinforcement learning: how to allocate a fixed compute budget across parallel rollouts, problem batch size, and update steps. Increasing rollouts per problem turns out to be the primary driver, improving solution quality on easy tasks and coverage on hard ones."
       featured: true
+      areas: [llm-reasoning]
       links:
         - text: "Website"
           url: "https://compute-optimal-rl-llm-scaling.github.io/"

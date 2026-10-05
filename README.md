@@ -157,7 +157,7 @@ This is the real `saint-fig1.png` entry, to copy and edit:
   by a space is what makes quoting necessary.
 - **`areas`** — copied from the paper's own `areas` list. It draws the small area chips
   under the caption. A paper in none of the lab's areas gets `areas: []` and renders no
-  chips at all, which is the right answer — the IsoCompute entry does exactly that.
+  chips at all. Recent LLM work uses the `llm-reasoning` and `data-curation` areas.
 - **`width`** and **`height`** — the PNG's **real pixel dimensions**. They reserve the
   space before the image loads, so the page does not jump. If you replace a PNG, correct
   these.

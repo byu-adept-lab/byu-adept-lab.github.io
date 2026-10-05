@@ -12,10 +12,9 @@
   A slide is the figure, its caption, its research-area tags, and the link to
   the paper it came from, in that order.
 
-  Areas are optional. The IsoCompute entry carries `areas: []` on purpose — it
-  is a study of LLM reasoning and belongs to none of the lab's named areas — so
-  the chip row is guarded and that slide renders no row at all rather than an
-  empty one holding its margin. Chips prefer each area's `card_title` ("Offline
+  Areas are optional. Recent LLM work uses the `llm-reasoning` and
+  `data-curation` research areas, while older figures use the lab's established
+  decision-making areas. Chips prefer each area's `card_title` ("Offline
   RL") over its full `title` ("Offline reinforcement learning"): three full
   titles wrap to three rows in this column and read as a paragraph rather than
   as tags. Those values carry HTML entities, so they are not escaped.
