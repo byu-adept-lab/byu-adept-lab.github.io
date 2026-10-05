@@ -32,7 +32,7 @@
 # describes the picture rather than naming it.
 # To replace one, overwrite the PNG and correct `width`/`height` to match.
 #
-# Between them these nine papers cover four research areas:
+# Between them these ten papers cover four research areas:
 # offline-reinforcement-learning, clinical-and-scientific-decision-making,
 # structured-action-spaces and irreversibility-and-risk. No paper in
 # publications.yml is tagged delayed-and-unreliable-feedback, so that area is
@@ -216,6 +216,24 @@
   areas: []
   width: 1800
   height: 642
+
+# `areas` is empty because this paper has no `areas` key in publications.yml.
+- image: /assets/img/research/rethinking-training-inference-fig1.png
+  alt: >-
+    A left-to-right process diagram with a purple Inference engine generating
+    rollouts from a prompt, a green Training engine receiving synchronized
+    parameters and producing token confidence values, and a blue GRPO token
+    loss receiving a reward signal. The orange CIS path computes importance
+    ratios for individual tokens, clips anomalous ratios with confidence-aware
+    thresholds, and feeds the reweighted loss back into the update loop.
+  caption: >-
+    CIS corrects the mismatch between inference and training engines by
+    reweighting token-level learning signals with confidence-aware caps.
+  paper: "Rethinking Training-Inference Mismatch in LLM Reinforcement Learning: Where It Arises and How to Correct It"
+  url: "https://arxiv.org/abs/2609.32444"
+  areas: []
+  width: 1625
+  height: 570
 
 # `areas` is empty because this paper has no `areas` key in publications.yml.
 - image: /assets/img/research/lark-fig1.png

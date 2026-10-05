@@ -25,6 +25,33 @@
 
 - year: 2026
   papers:
+    - title: "REVO: Rollout-Efficient Off-Policy Distillation via Variance-Guided Reuse"
+      authors: "Yuxiao Yang, Shangzhe Li, Tianrun Yu, Kaixiang Zhao, <strong>Taylor W. Killian</strong>, Weitong Zhang"
+      venue: "arXiv pre-print"
+      description: "REVO makes on-policy distillation more rollout-efficient by reusing student trajectories for multiple learner updates, correcting the resulting policy mismatch with stabilized prefix weighting, one-step resampling, and variance-guided token selection."
+      featured: false
+      links:
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2609.37500"
+
+    - title: "An RL View of OPD: Least Square Policy Distillation for Sample-Efficient LLM Reasoning"
+      authors: "Shangzhe Li, Yuxiao Yang, Tianrun Yu, Kaixiang Zhao, Xiaoyun Wang, <strong>Taylor W. Killian</strong>, Weitong Zhang"
+      venue: "arXiv pre-print"
+      description: "LSPD reframes on-policy distillation through reinforcement learning, combining optimistic exploration and off-policy trajectory reuse to preserve policy diversity while improving rollout efficiency and mathematical reasoning performance."
+      featured: false
+      links:
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2609.35505"
+
+    - title: "Rethinking Training-Inference Mismatch in LLM Reinforcement Learning: Where It Arises and How to Correct It"
+      authors: "Tianrun Yu, Kaixiang Zhao, Shangzhe Li, Yuxiao Yang, Porter Jenkins, Weitong Zhang, <strong>Taylor W. Killian</strong>"
+      venue: "arXiv pre-print"
+      description: "CIS corrects the probability mismatch between inference and training engines in RL with verifiable rewards by separating token confidence from engine discrepancy and applying confidence-aware importance-ratio truncation."
+      featured: false
+      links:
+        - text: "Paper"
+          url: "https://arxiv.org/abs/2609.32444"
+
     - title: "LARK: Learnability-Grounded Trajectory Selection for Efficient Reasoning Distillation"
       authors: "Tianrun Yu, Kaixiang Zhao, Chih-Chun Chen, Amanda Hughes, <strong>Taylor W. Killian</strong>, Fenglong Ma, Weitong Zhang, Porter Jenkins"
       venue: "NeurIPS 2026"
