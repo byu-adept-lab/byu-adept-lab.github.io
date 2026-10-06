@@ -59,10 +59,10 @@ readable, should be a post instead — see
 
 ## 2. Add pictures to the hero header
 
-The hero is the navy band at the top of the homepage. **Every entry in
-`_data/hero_slides.yml` is commented out today**, which is why the space beside the
-"ADEPT Lab" heading shows the ADEPT lockup. Add a photo and it takes that space instead,
-turning the hero into a slideshow of lab activity.
+The hero is the navy band at the top of the homepage. It opens with the original
+ADEPT research overview from `_data/research_figures.yml`. Optional images from
+`_data/hero_slides.yml` follow it, turning the header into a slideshow. There is
+no wordmark slide or wordmark fallback.
 
 1. Put the photo in **`assets/img/hero/`**. Use a lowercase, hyphenated filename with no
    spaces, e.g. `lab-meeting-2026-09.jpg`.
@@ -85,13 +85,16 @@ with the `#` characters removed:
   filename.
 - **`alt`** — required on every entry.
 - **`caption`** — optional. Prints in small type under the photo.
+- **`fit: contain`** — optional for diagrams and plots; keeps the complete image
+  visible instead of cropping it. Photos default to filling a 3:2 frame.
+- **`width`** and **`height`** — optional exact pixel dimensions.
 
-**What happens:** one entry renders as a plain photo with no controls. Two or more turn it
-into a slideshow with ◀ ▶ buttons and a row of dashes underneath — **it does not advance on
+**What happens:** with no optional images, the overview appears alone, with a link
+to view it at full size. Adding one or more images creates a slideshow with ◀ ▶
+buttons and a row of dashes underneath — **it does not advance on
 its own**, so a visitor moves it by hand. That is deliberate, not something missing: unlike
 the research slideshow, the hero carries no `data-carousel-autoplay` attribute in
-`index.html`. Comment every entry back out and the hero returns to the lockup, so an empty
-file is a perfectly good state.
+`index.html`. Comment every optional entry back out and the overview remains.
 
 The frame is a fixed **3:2 landscape box and it crops** to fill that shape from the centre,
 so landscape photos survive and portrait photos lose their top and bottom. Sizes are in
@@ -101,11 +104,11 @@ so landscape photos survive and portrait photos lose their top and bottom. Sizes
 
 ## 3. Add pictures to the research slideshow
 
-This is the slideshow of paper figures. It appears twice — beside the *About* paragraphs on
+This is the lab overview followed by a slideshow of paper figures. It appears twice — beside the *About* paragraphs on
 the homepage, and at the top of `/research/`. Both pages use the same file, so **one edit
 updates both**.
 
-Each entry is a figure from one of the lab's papers, so adding one usually follows adding
+Apart from the original overview (`kind: overview`), each entry is a figure from one of the lab's papers, so adding one usually follows adding
 the paper to `_data/publications.yml`. Most use Figure 1; when another figure tells the
 story better, preserve its source figure number in the filename.
 
@@ -114,8 +117,9 @@ story better, preserve its source figure number in the filename.
 2. Put it in **`assets/img/research/`**, named lowercase and hyphenated ending in
    `-figN.png`, where `N` is its source figure number, e.g. `saint-fig1.png`.
 3. Note the PNG's exact pixel width and height — the entry needs them.
-4. Open **`_data/research_figures.yml`** and add an entry at the end. The browser shuffles
-   the figures on each page load; file order is the fallback when JavaScript is unavailable.
+4. Open **`_data/research_figures.yml`** and add an entry at the end. The overview stays
+   first; the browser shuffles the paper figures on each page load. File order is
+   the fallback when JavaScript is unavailable.
 5. Copy `paper`, `url`, and `areas` **verbatim** from that paper's entry in
    `_data/publications.yml`, then write your own `alt` and `caption` and fill in `width`
    and `height`.
@@ -163,7 +167,7 @@ This is the real `saint-fig1.png` entry, to copy and edit:
   these.
 
 **What happens:** the figure joins the slideshow on the homepage and on `/research/`. The
-slideshow **starts in a random order on each page load**, advances on its own every 12
+slideshow **opens with the overview, then randomly ordered paper figures**, advances on its own every 12
 seconds, and carries a **pause button** beside the arrows. Every figure shares one fixed
 frame, and figures are **matted, never cropped**
 — a very wide one is centred with space above and below, because cropping a plot would cut
@@ -173,6 +177,14 @@ editing its `aspect-ratio` in `assets/css/style.css`.
 
 Because `paper`, `url`, and `areas` are copied here by hand, **editing a paper's title or
 link in `publications.yml` means editing it here too** if that paper has a figure.
+
+The overview is an original AI-generated conceptual illustration, not a paper
+figure or empirical result. It uses `title` instead of `paper` and links to
+`/research/`. Its image and descriptive fields also supply the opening header
+visual, so replacing that one entry updates both places.
+The optional `dark_image`, `dark_width`, and `dark_height` fields select a
+transparent, light-labelled variant only for the navy header. The `image`
+field remains the light-background illustration in the research slideshow.
 
 ---
 

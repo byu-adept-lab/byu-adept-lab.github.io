@@ -631,16 +631,6 @@ p:last-child {
 }
 
 /* === Hero media === */
-/* The lockup, shown until there are photographs to show instead. Kept well
-   inside the column so it reads as a mark beside the words, not a banner. */
-.hero-logo {
-  display: block;
-  width: 100%;
-  max-width: 20rem;
-  height: auto;
-  margin: 0 auto;
-}
-
 /* A fixed frame: photographs of mixed dimensions cannot shift the layout. */
 .hero-slide {
   margin: 0;
@@ -653,6 +643,25 @@ p:last-child {
   object-fit: cover;
   background-color: var(--navy-2);
   border: 1px solid var(--rule-on-navy);
+}
+
+/* The overview is a labelled diagram, not a photograph: keep it intact and
+   offer a full-size view so its small labels remain accessible on phones. */
+.hero-slide-overview img,
+.hero-slide-contained img {
+  object-fit: contain;
+  background-color: var(--white);
+}
+
+.hero-slide-overview img {
+  aspect-ratio: auto;
+  background-color: transparent;
+  border: 0;
+}
+
+.hero .hero-figure-link {
+  display: block;
+  border-bottom: 0;
 }
 
 .hero-slide figcaption {
@@ -1041,9 +1050,8 @@ p:last-child {
   margin-bottom: 0;
 }
 
-/* Last line of the stack: every figure is Figure 1 of one of the lab's papers,
-   and the title is the link to it — both the attribution and the way to the
-   real thing. Smaller than the caption so the two do not read as one block. */
+/* Last line of the stack: a paper attribution or the original lab overview's
+   research-page link. Smaller than the caption so they read as separate roles. */
 .figure-source {
   margin-top: 0.75rem;
   font-size: 0.8125rem;
@@ -2173,11 +2181,6 @@ p:last-child {
 
   .hero-media {
     max-width: 26rem;
-  }
-
-  .hero-logo {
-    max-width: 15rem;
-    margin: 0;
   }
 
   .navbar .container {

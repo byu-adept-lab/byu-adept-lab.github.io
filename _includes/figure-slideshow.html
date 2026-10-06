@@ -1,5 +1,5 @@
 {%- comment -%}
-  Figure 1 of each of the lab's papers, one at a time, from
+  The lab overview and figures from the lab's papers, one at a time, from
   _data/research_figures.yml. Read that file's header before editing either.
 
   Usage: {% include figure-slideshow.html %}
@@ -9,8 +9,8 @@
   rather than two copies of the same markup. .figure-split is the two-column
   layout it sits in; both callers use it.
 
-  A slide is the figure, its caption, its research-area tags, and the link to
-  the paper it came from, in that order.
+  A slide is the figure, its caption, its research-area tags, and its source
+  link, in that order. The original overview links to /research/, not a paper.
 
   Areas are optional. Recent LLM work uses the `llm-reasoning` and
   `data-curation` research areas, while older figures use the lab's established
@@ -32,7 +32,8 @@
   keyboard, or under a screen reader every figure stays reachable and nothing
   is hidden.
 
-  The figures are shuffled on every page load, using the same parser-blocking
+  Paper figures are shuffled on every page load, with the overview pinned first,
+  using the same parser-blocking
   Fisher-Yates approach as the current-student tiles. The shuffle runs before
   deferred carousel.js measures the track, so paging, tab order, and screen
   reader order all describe the randomized arrangement.
@@ -54,11 +55,11 @@
 {%- if figs and figs.size > 0 %}
 <div class="carousel carousel-solo figure-slideshow" data-carousel
      data-carousel-autoplay="12000" role="group" aria-roledescription="carousel"
-     aria-label="Figures from the lab&rsquo;s papers">
+     aria-label="Lab research overview and paper figures">
   <div class="carousel-viewport" data-carousel-viewport tabindex="0">
     <div class="carousel-track" data-carousel-track>
       {%- for fig in figs %}
-      <figure class="figure-slide">
+      <figure class="figure-slide" data-figure-kind="{{ fig.kind | default: 'paper' }}">
         {%- comment -%}
           .figure-frame is a fixed-height box holding a variable-shape figure.
           It carries the aspect ratio; the image inside keeps its own and is
@@ -85,7 +86,7 @@
           {%- endif %}
 
           <p class="figure-source">
-            <a href="{{ fig.url }}">{{ fig.paper }}</a>
+            <a href="{% if fig.kind == 'overview' %}{{ fig.url | relative_url }}{% else %}{{ fig.url }}{% endif %}">{{ fig.title | default: fig.paper }}</a>
           </p>
         </figcaption>
       </figure>
@@ -129,14 +130,21 @@
     var track = carousel && carousel.querySelector('[data-carousel-track]');
     if (!track) return;
 
-    var slides = Array.prototype.slice.call(track.children);
-    for (var i = slides.length - 1; i > 0; i--) {
+    var allSlides = Array.prototype.slice.call(track.children);
+    var overviews = allSlides.filter(function (slide) {
+      return slide.getAttribute('data-figure-kind') === 'overview';
+    });
+    var papers = allSlides.filter(function (slide) {
+      return slide.getAttribute('data-figure-kind') !== 'overview';
+    });
+    for (var i = papers.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
-      var swap = slides[i];
-      slides[i] = slides[j];
-      slides[j] = swap;
+      var swap = papers[i];
+      papers[i] = papers[j];
+      papers[j] = swap;
     }
 
+    var slides = overviews.concat(papers);
     for (var k = 0; k < slides.length; k++) {
       track.appendChild(slides[k]);
 

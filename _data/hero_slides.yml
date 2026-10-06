@@ -1,9 +1,9 @@
 # Hero slideshow — photographs of lab activity and images from our research,
 # shown to the right of the "ADEPT Lab" heading on the homepage.
 #
-# Empty is a supported state. With every entry below commented out, the hero
-# falls back to the ADEPT lockup, so the front page still looks finished with no
-# photos on hand. Uncomment entries as photos arrive; nothing else has to change.
+# The original lab overview in research_figures.yml always opens the header.
+# These optional photographs follow it. An empty photo list shows only the
+# overview, without controls; there is no wordmark fallback.
 #
 # How to add one:
 #
@@ -15,9 +15,11 @@
 #   - alt is REQUIRED on every entry. One sentence describing what is in the
 #     picture, for anyone who cannot see it. Skip the words "image of".
 #   - caption is optional and prints under the picture.
+#   - For a labelled diagram or plot, use `fit: contain` to keep all of it
+#     visible instead of cropping. Optional width/height reserve image space.
 #
-# One entry renders as a plain image with no controls. Two or more render as a
-# slideshow with previous and next buttons.
+# With one or more photos, the overview and photos form a slideshow with
+# previous and next buttons. The overview is never cropped like a photograph.
 
 # - image: /assets/img/hero/lab-meeting-2026-09.jpg
 #   alt: Members of the ADEPT Lab at a whiteboard during a weekly meeting

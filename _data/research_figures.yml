@@ -1,23 +1,27 @@
 # Research figures for the homepage slideshow.
 #
-# The browser shuffles these entries on every page load. Their order here is
-# the no-JavaScript fallback and the input order for that shuffle.
+# The lab overview stays first; the browser shuffles the paper figures on every
+# page load. File order is also the no-JavaScript fallback.
 #
-# Each entry is a figure from one of the PI's own papers, extracted from the
+# Apart from the original lab overview, each entry is from a PI paper, extracted from the
 # published PDF and saved to assets/img/research/. Most are Figure 1; preserve
 # the source figure number in the filename when using another figure. Titles,
 # `url`s and `areas` are copied verbatim from _data/publications.yml — if you
 # edit a paper's title or link there, update it here too so the two files agree.
 #
 # Fields:
-#   image    site-relative path to the PNG in assets/img/research/
+#   kind     `overview` for the original lab illustration; omitted for paper figures
+#   title    overview link label (paper figures use `paper` instead)
+#   image    site-relative path to the PNG or JPEG in assets/img/research/
+#   dark_image / dark_width / dark_height  optional transparent overview variant
+#             used only in the navy homepage header; image stays the light version
 #   alt      screen-reader description of what the figure actually depicts
 #   caption  one plain sentence a visitor can read under the figure
-#   paper    paper title, verbatim from _data/publications.yml
-#   url      paper link, verbatim from that paper's `links` in publications.yml
-#   areas    that paper's `areas` list, verbatim
-#   width    final pixel width of the PNG  (set the CSS aspect ratio from these
-#   height   final pixel height of the PNG  two so the page does not reflow)
+#   paper    paper title, verbatim from _data/publications.yml (not for overview)
+#   url      paper link, or the local research page for the overview
+#   areas    research-area slugs; paper entries match publications.yml verbatim
+#   width    final pixel width of the image  (set the CSS aspect ratio from these
+#   height   final pixel height of the image two so the page does not reflow)
 #
 # Aspect ratios vary a lot here — from roughly 5:1 (the EDICT pipeline) to
 # 4:3 (the CVaR density plot) — because paper figures are shaped to fit a
@@ -36,6 +40,29 @@
 # offline-reinforcement-learning, llm-reasoning, data-curation,
 # delayed-and-unreliable-feedback, clinical-and-scientific-decision-making,
 # structured-action-spaces and irreversibility-and-risk.
+
+- kind: overview
+  title: "ADEPT Lab research overview"
+  image: /assets/img/research/adept-research-overview.jpg
+  dark_image: /assets/img/research/adept-research-overview-dark.webp
+  dark_width: 1983
+  dark_height: 793
+  alt: >-
+    A blue decision loop connects Evidence, Decisions, and Outcomes. Existing
+    trajectories and selected reasoning records feed branching reasoning and
+    structured-action choices. Outcomes show delayed feedback pulses,
+    uncertainty, and an alternate path ending at an irreversible boundary.
+    A return arrow labelled Learn from consequences leads back to Evidence.
+    Below, a clinician and patient and an experimental apparatus represent
+    person-centered care and scientific discovery, which motivate the whole loop.
+  caption: >-
+    Learning from existing evidence, choosing actions and reasoning paths, and
+    adapting to consequences connect our work in person-centered care and
+    scientific discovery.
+  url: /research/
+  areas: [offline-reinforcement-learning, llm-reasoning, data-curation, structured-action-spaces, delayed-and-unreliable-feedback, irreversibility-and-risk, clinical-and-scientific-decision-making]
+  width: 1800
+  height: 720
 
 - image: /assets/img/research/medical-dead-ends-fig1.png
   alt: >-

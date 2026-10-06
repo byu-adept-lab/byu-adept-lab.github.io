@@ -10,7 +10,10 @@ description: >-
 ---
 
 <!-- ============================================================ Hero -->
-{%- assign slides = site.data.hero_slides -%}
+{%- assign slides = site.data.research_figures | where: "kind", "overview" -%}
+{%- if site.data.hero_slides and site.data.hero_slides.size > 0 -%}
+  {%- assign slides = slides | concat: site.data.hero_slides -%}
+{%- endif -%}
 <section class="hero">
   <div class="container">
     <div class="hero-text">
@@ -34,17 +37,26 @@ description: >-
       </div>
     </div>
 
-    <!-- Lab photographs from _data/hero_slides.yml; the lockup while that is empty. -->
+    <!-- Research overview first, followed by optional header images. No wordmark. -->
     <div class="hero-media">
       {%- if slides and slides.size > 1 %}
       <div class="carousel carousel-solo" data-carousel role="group"
-           aria-roledescription="carousel" aria-label="Photographs from the lab">
+           aria-roledescription="carousel" aria-label="Lab research overview and header images">
         <div class="carousel-viewport" data-carousel-viewport tabindex="0">
           <div class="carousel-track" data-carousel-track>
             {%- for slide in slides %}
-            <figure class="hero-slide">
-              <img src="{{ slide.image | relative_url }}" alt="{{ slide.alt }}"
+            {%- assign header_image = slide.dark_image | default: slide.image -%}
+            {%- assign header_width = slide.dark_width | default: slide.width -%}
+            {%- assign header_height = slide.dark_height | default: slide.height -%}
+            <figure class="hero-slide{% if slide.kind == 'overview' %} hero-slide-overview{% endif %}{% if slide.fit == 'contain' %} hero-slide-contained{% endif %}">
+              {%- if slide.kind == 'overview' %}
+              <a class="hero-figure-link" href="{{ header_image | relative_url }}"
+                 aria-label="View the ADEPT research overview at full size">
+              {%- endif %}
+              <img src="{{ header_image | relative_url }}" alt="{{ slide.alt | escape }}"
+                   {%- if header_width %} width="{{ header_width }}" height="{{ header_height }}"{% endif %}
                    {%- unless forloop.first %} loading="lazy"{% endunless %}>
+              {%- if slide.kind == 'overview' %}</a>{% endif %}
               {%- if slide.caption %}
               <figcaption>{{ slide.caption }}</figcaption>
               {%- endif %}
@@ -55,30 +67,34 @@ description: >-
 
         <div class="carousel-controls">
           <button class="carousel-arrow" type="button" data-carousel-prev
-                  aria-label="Previous photograph">
+                  aria-label="Previous header image">
             <span aria-hidden="true">&#9664;</span>
           </button>
           <button class="carousel-arrow" type="button" data-carousel-next
-                  aria-label="Next photograph">
+                  aria-label="Next header image">
             <span aria-hidden="true">&#9654;</span>
           </button>
           <div class="carousel-dots" data-carousel-dots role="group"
-               aria-label="Photographs from the lab"></div>
+               aria-label="Header image pages"></div>
         </div>
       </div>
       {%- elsif slides and slides.size == 1 %}
       {%- assign slide = slides[0] %}
-      <figure class="hero-slide">
-        <img src="{{ slide.image | relative_url }}" alt="{{ slide.alt }}">
+      {%- assign header_image = slide.dark_image | default: slide.image -%}
+      {%- assign header_width = slide.dark_width | default: slide.width -%}
+      {%- assign header_height = slide.dark_height | default: slide.height -%}
+      <figure class="hero-slide{% if slide.kind == 'overview' %} hero-slide-overview{% endif %}{% if slide.fit == 'contain' %} hero-slide-contained{% endif %}">
+        {%- if slide.kind == 'overview' %}
+        <a class="hero-figure-link" href="{{ header_image | relative_url }}"
+           aria-label="View the ADEPT research overview at full size">
+        {%- endif %}
+        <img src="{{ header_image | relative_url }}" alt="{{ slide.alt | escape }}"
+             {%- if header_width %} width="{{ header_width }}" height="{{ header_height }}"{% endif %}>
+        {%- if slide.kind == 'overview' %}</a>{% endif %}
         {%- if slide.caption %}
         <figcaption>{{ slide.caption }}</figcaption>
         {%- endif %}
       </figure>
-      {%- else %}
-      <img class="hero-logo"
-           src="{{ '/assets/img/adept-full-white.png' | relative_url }}"
-           width="634" height="350"
-           alt="ADEPT Lab &mdash; Adaptive, Decision-making, Exploration, Practical Thinking">
       {%- endif %}
     </div>
   </div>
