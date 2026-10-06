@@ -10,10 +10,7 @@ description: >-
 ---
 
 <!-- ============================================================ Hero -->
-{%- assign slides = site.data.research_figures | where: "kind", "overview" -%}
-{%- if site.data.hero_slides and site.data.hero_slides.size > 0 -%}
-  {%- assign slides = slides | concat: site.data.hero_slides -%}
-{%- endif -%}
+{%- assign slides = site.data.hero_slides -%}
 <section class="hero">
   <div class="container">
     <div class="hero-text">
@@ -45,16 +42,13 @@ description: >-
         <div class="carousel-viewport" data-carousel-viewport tabindex="0">
           <div class="carousel-track" data-carousel-track>
             {%- for slide in slides %}
-            {%- assign header_image = slide.dark_image | default: slide.image -%}
-            {%- assign header_width = slide.dark_width | default: slide.width -%}
-            {%- assign header_height = slide.dark_height | default: slide.height -%}
             <figure class="hero-slide{% if slide.kind == 'overview' %} hero-slide-overview{% endif %}{% if slide.fit == 'contain' %} hero-slide-contained{% endif %}">
               {%- if slide.kind == 'overview' %}
-              <a class="hero-figure-link" href="{{ header_image | relative_url }}"
+              <a class="hero-figure-link" href="{{ slide.image | relative_url }}"
                  aria-label="View the ADEPT research overview at full size">
               {%- endif %}
-              <img src="{{ header_image | relative_url }}" alt="{{ slide.alt | escape }}"
-                   {%- if header_width %} width="{{ header_width }}" height="{{ header_height }}"{% endif %}
+              <img src="{{ slide.image | relative_url }}" alt="{{ slide.alt | escape }}"
+                   {%- if slide.width %} width="{{ slide.width }}" height="{{ slide.height }}"{% endif %}
                    {%- unless forloop.first %} loading="lazy"{% endunless %}>
               {%- if slide.kind == 'overview' %}</a>{% endif %}
               {%- if slide.caption %}
@@ -80,16 +74,13 @@ description: >-
       </div>
       {%- elsif slides and slides.size == 1 %}
       {%- assign slide = slides[0] %}
-      {%- assign header_image = slide.dark_image | default: slide.image -%}
-      {%- assign header_width = slide.dark_width | default: slide.width -%}
-      {%- assign header_height = slide.dark_height | default: slide.height -%}
       <figure class="hero-slide{% if slide.kind == 'overview' %} hero-slide-overview{% endif %}{% if slide.fit == 'contain' %} hero-slide-contained{% endif %}">
         {%- if slide.kind == 'overview' %}
-        <a class="hero-figure-link" href="{{ header_image | relative_url }}"
+        <a class="hero-figure-link" href="{{ slide.image | relative_url }}"
            aria-label="View the ADEPT research overview at full size">
         {%- endif %}
-        <img src="{{ header_image | relative_url }}" alt="{{ slide.alt | escape }}"
-             {%- if header_width %} width="{{ header_width }}" height="{{ header_height }}"{% endif %}>
+        <img src="{{ slide.image | relative_url }}" alt="{{ slide.alt | escape }}"
+             {%- if slide.width %} width="{{ slide.width }}" height="{{ slide.height }}"{% endif %}>
         {%- if slide.kind == 'overview' %}</a>{% endif %}
         {%- if slide.caption %}
         <figcaption>{{ slide.caption }}</figcaption>

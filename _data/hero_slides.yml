@@ -1,9 +1,9 @@
 # Hero slideshow — photographs of lab activity and images from our research,
 # shown to the right of the "ADEPT Lab" heading on the homepage.
 #
-# The original lab overview in research_figures.yml always opens the header.
-# These optional photographs follow it. An empty photo list shows only the
-# overview, without controls; there is no wordmark fallback.
+# The original lab overview below opens the header. Append photographs or
+# other images after it. With only the overview there are no controls;
+# there is no wordmark fallback.
 #
 # How to add one:
 #
@@ -20,6 +20,23 @@
 #
 # With one or more photos, the overview and photos form a slideshow with
 # previous and next buttons. The overview is never cropped like a photograph.
+
+- kind: overview
+  image: /assets/img/research/adept-research-overview-dark.webp
+  alt: >-
+    A blue decision loop connects Evidence, Decisions, and Outcomes. Existing
+    trajectories and selected reasoning records feed branching reasoning and
+    structured-action choices. Outcomes show delayed feedback pulses,
+    uncertainty, and an alternate path ending at an irreversible boundary.
+    A return arrow labelled Learn from consequences leads back to Evidence.
+    Below, a clinician and patient and an experimental apparatus represent
+    person-centered care and scientific discovery, which motivate the whole loop.
+  caption: >-
+    Learning from existing evidence, choosing actions and reasoning paths, and
+    adapting to consequences connect our work in person-centered care and
+    scientific discovery.
+  width: 1983
+  height: 793
 
 # - image: /assets/img/hero/lab-meeting-2026-09.jpg
 #   alt: Members of the ADEPT Lab at a whiteboard during a weekly meeting

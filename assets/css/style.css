@@ -1050,8 +1050,8 @@ p:last-child {
   margin-bottom: 0;
 }
 
-/* Last line of the stack: a paper attribution or the original lab overview's
-   research-page link. Smaller than the caption so they read as separate roles. */
+/* Last line of the stack: the paper attribution and link. Smaller than the
+   caption so they read as separate roles. */
 .figure-source {
   margin-top: 0.75rem;
   font-size: 0.8125rem;
